@@ -91,7 +91,7 @@ def build(n_customers=700):
             if p["rl"] is None:
                 p["rl"] = len([c for c in cl if c[2] == "CLOSED"]) >= 2
             for tm in terms:
-                pols.append((tm["pid"], st_, f"{48000 + p['gi']}", city, tm["eff"], tm["exp"], p["bcov"], p["ccov"], tm["prem"]))
+                pols.append((tm["pid"], sp["cid"], p["pid"], st_, f"{48000 + p['gi']}", city, tm["eff"], tm["exp"], p["bcov"], p["ccov"], tm["prem"]))
             for ld, amt, stt in cl:
                 clm_seq += 1
                 pl = [t for t in terms if t["eff"] <= ld < t["exp"]]
@@ -146,7 +146,7 @@ def build(n_customers=700):
             primary_county_declared_disasters_window=prim.county_declared_disasters_window, primary_county_last_declared_year=prim.county_last_declared_year,
             primary_county_hma_projects=prim.county_hma_projects, primary_county_claims_paid_per_policy=prim.county_claims_paid_per_policy))
     C = pd.DataFrame(cust_rows)
-    PO = pd.DataFrame(pols, columns=["policy_id", "state", "county_code", "community_name", "policy_effective_date", "policy_termination_date", "total_building_insurance_coverage",
+    PO = pd.DataFrame(pols, columns=["policy_id", "customer_id", "property_id", "state", "county_code", "community_name", "policy_effective_date", "policy_termination_date", "total_building_insurance_coverage",
                                      "total_contents_insurance_coverage", "total_insurance_premium"])
     PO["policy_id_uuid"] = "uuid-" + PO["policy_id"]
 
@@ -303,13 +303,10 @@ def build(n_customers=700):
 
     policy_rows = []
     for _, r in PO.iterrows():
-        p_match = P[P.active_policy_id == r["policy_id"]]
-        pid_val = p_match.iloc[0]["property_id"] if not p_match.empty else f"PROP-{r['policy_id'][-5:]}"
-        cid_val = p_match.iloc[0]["customer_id"] if not p_match.empty else f"CUST-{r['policy_id'][-5:]}"
         policy_rows.append(dict(
             policy_id=r["policy_id"],
-            customer_id=cid_val,
-            property_id=pid_val,
+            customer_id=r["customer_id"],
+            property_id=r["property_id"],
             agent_id=f"AGT-0{1 + (hash(r['policy_id']) % 5)}",
             community_id=f"COM-{48000 + (hash(r['policy_id']) % len(GEO))}",
             policy_effective_date=r["policy_effective_date"],
@@ -323,7 +320,7 @@ def build(n_customers=700):
             rated_flood_zone="AE",
             state=r["state"],
             county_code=r["county_code"],
-            synthetic_property_key=f"SYN-PROP-{pid_val}",
+            synthetic_property_key=f"SYN-PROP-{r['property_id']}",
             synthetic_policy_key=f"SYN-POL-{r['policy_id']}"
         ))
     POLICY_DF = pd.DataFrame(policy_rows)

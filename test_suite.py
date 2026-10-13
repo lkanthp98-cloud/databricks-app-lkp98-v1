@@ -207,5 +207,97 @@ class TestAlphaEarthGeoAIEngine(unittest.TestCase):
         self.assertGreaterEqual(drift["euclidean_drift_distance"], 0.0)
 
 
+class TestDataAuthenticityAndIntegrity(unittest.TestCase):
+    """Deep verification of relational, financial, temporal, and spatial authenticity of data."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mg = mock_gold.get()
+        cls.cust = cls.mg["customer"]
+        cls.prop = cls.mg["property"]
+        cls.pol = cls.mg["policy"]
+        cls.clm = cls.mg["claim"]
+
+    def test_foreign_key_referential_integrity(self):
+        """Authenticates that foreign keys map to existing primary entities."""
+        valid_cust_ids = set(self.cust["customer_id"])
+        valid_prop_ids = set(self.prop["property_id"])
+        valid_pol_ids = set(self.pol["policy_id"])
+
+        # Check policy -> customer reference
+        for cid in self.pol["customer_id"].dropna():
+            self.assertIn(cid, valid_cust_ids, f"Policy references non-existent customer: {cid}")
+
+        # Check policy -> property reference
+        for pid in self.pol["property_id"].dropna():
+            self.assertIn(pid, valid_prop_ids, f"Policy references non-existent property: {pid}")
+
+        # Check claim -> policy reference
+        for pol_id in self.clm["policy_id"].dropna():
+            self.assertIn(pol_id, valid_pol_ids, f"Claim references non-existent policy: {pol_id}")
+
+    def test_financial_reconciliation(self):
+        """Authenticates mathematical accuracy of payments, coverage, and premiums."""
+        # 1. Total paid claim reconciliation: building + contents + icc
+        bldg = self.clm["amount_paid_on_building_claim"].fillna(0.0)
+        cont = self.clm["amount_paid_on_contents_claim"].fillna(0.0)
+        icc = self.clm["amount_paid_on_icc_claim"].fillna(0.0)
+        comp_sum = (bldg + cont + icc).round(2)
+
+        if "actual_amount_paid" in self.clm.columns:
+            actual = self.clm["actual_amount_paid"].fillna(0.0).round(2)
+            np.testing.assert_allclose(comp_sum.values, actual.values, rtol=1e-4)
+
+        # 2. Payout amounts are strictly non-negative
+        self.assertTrue((bldg >= 0).all(), "Found negative building claim payouts")
+        self.assertTrue((cont >= 0).all(), "Found negative contents claim payouts")
+        self.assertTrue((icc >= 0).all(), "Found negative ICC claim payouts")
+
+        # 3. Policy premium is positive
+        self.assertTrue((self.pol["total_insurance_premium"] > 0).all(), "Found zero or negative premiums")
+
+        # 4. Coverage limits are positive
+        self.assertTrue((self.pol["total_building_insurance_coverage"] > 0).all(), "Found zero or negative building coverage")
+
+    def test_temporal_authenticity(self):
+        """Authenticates chronological ordering of effective, expiration, and loss dates."""
+        # Policy: effective date <= termination date
+        eff = pd.to_datetime(self.pol["policy_effective_date"])
+        term = pd.to_datetime(self.pol["policy_termination_date"])
+        self.assertTrue((eff <= term).all(), "Found policy where effective date is after termination date")
+
+        # Claim: loss date year matches year_of_loss column
+        dol = pd.to_datetime(self.clm["date_of_loss"])
+        yol = self.clm["year_of_loss"]
+        np.testing.assert_array_equal(dol.dt.year.values, yol.values)
+
+    def test_geospatial_bounds_and_flood_zones(self):
+        """Authenticates physical coordinates within US bounds and valid FEMA hazard zones."""
+        lat = self.prop["latitude"].astype(float)
+        lon = self.prop["longitude"].astype(float)
+
+        # US continental coordinates bounds
+        self.assertTrue((lat >= 24.0).all() and (lat <= 50.0).all(), "Latitude outside US bounds")
+        self.assertTrue((lon >= -125.0).all() and (lon <= -66.0).all(), "Longitude outside US bounds")
+
+        # FEMA Flood Zone designations (including legacy moderate/minimal hazard zones B and C)
+        valid_zones = {"A", "AE", "AH", "AO", "A99", "AR", "V", "VE", "X", "D", "B", "C"}
+        prop_zones = set(self.prop["flood_zone"].dropna().unique())
+        self.assertTrue(prop_zones.issubset(valid_zones), f"Invalid FEMA flood zones detected: {prop_zones - valid_zones}")
+
+    def test_actuarial_risk_score_calibration(self):
+        """Authenticates actuarial risk score boundaries and risk ordering."""
+        # Risk scores are bounded in [0, 100]
+        if "assessed_risk_score" in self.prop.columns:
+            scores = self.prop["assessed_risk_score"].dropna()
+            self.assertTrue((scores >= 0).all() and (scores <= 100).all(), "Risk score outside [0, 100]")
+
+            # High hazard zones (VE / AE) must have higher average risk than minimal hazard zones (X)
+            ve_ae_risk = self.prop[self.prop["flood_zone"].isin(["VE", "AE"])]["assessed_risk_score"].mean()
+            x_risk = self.prop[self.prop["flood_zone"] == "X"]["assessed_risk_score"].mean()
+            if pd.notna(ve_ae_risk) and pd.notna(x_risk):
+                self.assertGreater(ve_ae_risk, x_risk, "VE/AE flood zones must carry higher actuarial risk than X zone")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

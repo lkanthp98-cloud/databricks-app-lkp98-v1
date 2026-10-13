@@ -162,8 +162,29 @@ MAIN = [
     "Ask Genie",
 ]
 
+ANALYTICS = [
+    "Property Risk Intelligence",
+    "Customer Risk Profile",
+    "Geospatial Risk Map",
+    "Community & Mitigation",
+    "Inspections & Endorsements",
+    "Financial Loss Ratios",
+    "Catastrophe Simulator",
+    "Actuarial & Risk",
+    "Underwriting Flow",
+    "Agent Performance",
+]
+
 RECORDS = ["Customers", "Properties", "Policies", "Claims", "Renewals"]
-st.session_state.setdefault("page", "Executive Cockpit")
+
+AI_STUDIO = [
+    "Executive Cockpit",
+    "Open LLM Studio",
+    "AlphaEarth GeoAI Embeddings",
+    "ML Risk & Pricing",
+]
+
+st.session_state.setdefault("page", "Overview")
 page = st.session_state["page"]
 
 with st.sidebar:
@@ -171,7 +192,10 @@ with st.sidebar:
                 '<path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>'
                 '<div class="bt2"><b>Property Insurance BI</b></div></div>', unsafe_allow_html=True)
 
-    # --- ONE-CLICK DATA MODE TOGGLE (MOCK vs LIVE) ---
+    # =========================================================================
+    # 1. DATA CONNECTION (AT TOP)
+    # =========================================================================
+    st.markdown('<div class="navlbl">Data Connection</div>', unsafe_allow_html=True)
     c_m1, c_m2 = st.columns(2)
     is_live_mode = (st.session_state.get("data_mode") == "live")
     with c_m1:
@@ -190,42 +214,18 @@ with st.sidebar:
                 st.rerun()
 
     if is_live_mode:
-        st.markdown(f'<div style="font-size:0.75rem; color:#10B981; font-weight:700; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:6px 10px; margin-bottom:12px;">'
+        st.markdown(f'<div style="font-size:0.75rem; color:#10B981; font-weight:700; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:6px 10px; margin-bottom:8px;">'
                     f'🟢 <b>Live Unity Catalog</b><br>'
                     f'<span style="color:#059669; font-weight:600;">{AppConfig.FULL_SCHEMA}</span>'
                     f'</div>', unsafe_allow_html=True)
     else:
-        st.markdown(f'<div style="font-size:0.75rem; color:#D97706; font-weight:700; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:6px 10px; margin-bottom:12px;">'
+        st.markdown(f'<div style="font-size:0.75rem; color:#D97706; font-weight:700; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:6px 10px; margin-bottom:8px;">'
                     f'🟠 <b>Mock Demo Data</b><br>'
                     f'<span style="color:#B45309; font-weight:500;">27 local synthetic tables</span>'
                     f'</div>', unsafe_allow_html=True)
 
-    def nav_item(name):
-        slug = name.lower().replace(" & ", "_").replace(" ", "_")
-        st.button(name, key=("navon_" if name == page else "nav_") + slug, on_click=goto, args=(name,), kwargs={"cj_search": "", "cj_cid": None} if name == "Customer 360" else {}, use_container_width=True)
-
-    st.markdown('<div class="navlbl">AI Studio & Executive</div>', unsafe_allow_html=True)
-    for p_ in AI_STUDIO:
-        nav_item(p_)
-    st.markdown('<div class="navlbl">Actuarial & Risk Analytics</div>', unsafe_allow_html=True)
-    for p_ in ANALYTICS:
-        nav_item(p_)
-    st.markdown('<div class="navlbl">Operations & Catalog</div>', unsafe_allow_html=True)
-    for p_ in MAIN:
-        nav_item(p_)
-    st.markdown('<div class="navlbl">Records & Master Data</div>', unsafe_allow_html=True)
-    for p_ in RECORDS:
-        nav_item(p_)
-
-    # Dynamic Unity Catalog & Schema Selector
-    st.markdown('<div class="navlbl">Data Connection</div>', unsafe_allow_html=True)
-    if LIVE:
-        st.markdown(f'<div style="font-size:0.75rem; color:#10B981; font-weight:700; margin-bottom:6px;">🟢 LIVE UNITY CATALOG<br><span style="color:#6B7280; font-weight:400;">{AppConfig.FULL_SCHEMA}</span></div>', unsafe_allow_html=True)
-    else:
-        st.markdown(f'<div style="font-size:0.75rem; color:#F59E0B; font-weight:700; margin-bottom:6px;">🟠 BUILT-IN DEMO DATA<br><span style="color:#6B7280; font-weight:400;">Connect warehouse to query live</span></div>', unsafe_allow_html=True)
-
     with st.expander("⚙️ Connect Catalog / Warehouse", expanded=False):
-        st.caption("Connect to your Databricks SQL Warehouse & Unity Catalog.")
+        st.caption("Configure Databricks SQL Warehouse & Unity Catalog.")
         whs = AppConfig.list_available_warehouses()
         active_wh = AppConfig.get_warehouse_id()
         if whs:
@@ -248,22 +248,55 @@ with st.sidebar:
                 AppConfig.DATABRICKS_WAREHOUSE_ID = new_wh.strip()
             AppConfig.update_schema(new_cat, new_sch)
             data.T = f"{new_cat}.{new_sch}"
-            st.session_state["force_demo"] = False
+            st.session_state["data_mode"] = "live"
             with data._lock:
                 data._store.clear()
-            st.success(f"Connected to {new_cat}.{new_sch} via warehouse {new_wh[:8] if new_wh else 'default'}!")
+            st.success(f"Connected to {new_cat}.{new_sch}!")
             st.rerun()
 
         if not LIVE and st.button("⚡ Force Retry Live Connect", key="btn_force_live", use_container_width=True):
-            st.session_state["force_demo"] = False
+            st.session_state["data_mode"] = "live"
             with data._lock:
                 data._store.clear()
             st.rerun()
 
+    # Filter by State
     st.markdown('<div class="navlbl">Filter</div>', unsafe_allow_html=True)
     sel_states = st.multiselect("State", sorted(P_ALL.state.dropna().unique()), placeholder="All states", label_visibility="collapsed")
     if LIVE:
         st.button("↻  Refresh data", key="refresh_data", on_click=lambda: data.load_core(use_genie=True, force=True), use_container_width=True)
+
+    def nav_item(name):
+        slug = name.lower().replace(" & ", "_").replace(" ", "_")
+        st.button(name, key=("navon_" if name == page else "nav_") + slug, on_click=goto, args=(name,), kwargs={"cj_search": "", "cj_cid": None} if name == "Customer 360" else {}, use_container_width=True)
+
+    # =========================================================================
+    # 2. OPERATIONS & OVERVIEW
+    # =========================================================================
+    st.markdown('<div class="navlbl">Operations & Portfolio</div>', unsafe_allow_html=True)
+    for p_ in MAIN:
+        nav_item(p_)
+
+    # =========================================================================
+    # 3. ACTUARIAL & HAZARD RISK ANALYTICS
+    # =========================================================================
+    st.markdown('<div class="navlbl">Actuarial & Risk Analytics</div>', unsafe_allow_html=True)
+    for p_ in ANALYTICS:
+        nav_item(p_)
+
+    # =========================================================================
+    # 4. MASTER DATA & RECORDS
+    # =========================================================================
+    st.markdown('<div class="navlbl">Records & Master Data</div>', unsafe_allow_html=True)
+    for p_ in RECORDS:
+        nav_item(p_)
+
+    # =========================================================================
+    # 5. AI STUDIO & EXECUTIVE (LAST)
+    # =========================================================================
+    st.markdown('<div class="navlbl">AI Studio & Executive</div>', unsafe_allow_html=True)
+    for p_ in AI_STUDIO:
+        nav_item(p_)
 
 # ------------------------------------------------------------------ state filter
 P = P_ALL[P_ALL.state.isin(sel_states)] if sel_states else P_ALL
