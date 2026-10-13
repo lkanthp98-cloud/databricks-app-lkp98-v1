@@ -218,7 +218,7 @@ def test_connection():
     print("=" * 60)
 
     if not config.IS_LIVE and not config.DATABRICKS_HOST:
-        print("[INFO] Running in Demo Mode (offline mock data).")
+        print("[INFO] Databricks host is not configured.")
         print("       To connect to Databricks locally, copy .env.example to .env and set credentials.")
         return
 

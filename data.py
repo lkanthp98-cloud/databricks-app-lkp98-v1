@@ -285,9 +285,7 @@ def _fresh(name):
 def derive_profiles(po_df: pd.DataFrame, cl_df: pd.DataFrame, pr_df: pd.DataFrame = None):
     """Synthesizes customer_profile and property_profile from gold_policy_report and gold_claim_report."""
     if po_df.empty:
-        import mock_gold
-        mg = mock_gold.get()
-        return mg.get("customer_profile", pd.DataFrame()), mg.get("property_profile", pd.DataFrame())
+        return pd.DataFrame(), pd.DataFrame()
 
     po = po_df.copy()
     cl = cl_df.copy() if not cl_df.empty else pd.DataFrame(columns=["policy_id", "paid"])
@@ -415,22 +413,15 @@ def _load_one(name):
             if not note:
                 note = f"Genie error: {ex}"
 
-    # 3. Fallback to mock data with helpful note
+    # 3. Handle unpopulated or missing table
     if df is None:
-        import mock_gold
-        mg = mock_gold.get()
-        if name in mg:
-            df = mg[name]
-        elif table in mg:
-            df = mg[table]
-        else:
-            df = pd.DataFrame()
-        sql = "(demo data fallback)"
+        df = pd.DataFrame(columns=[c for c, _ in cols]) if cols else pd.DataFrame()
+        sql = "(not connected or table not found)"
         if not note:
             if not AppConfig.HAS_SQL_WAREHOUSE and not AppConfig.GENIE_SPACE_ID:
-                note = "Running offline. To query live data, connect a SQL Warehouse or Genie Space."
+                note = "Databricks SQL Warehouse or Genie Space not configured."
             else:
-                note = f"Table {target_schema}.{table} not found. Using fallback data."
+                note = f"Table {target_schema}.{table} not found in Unity Catalog."
 
     e = dict(ts=time.time(), df=df, sql=sql, seconds=sec, note=note, table=table)
     with _lock:
@@ -439,12 +430,7 @@ def _load_one(name):
 
 
 def load_core(use_genie=None, force=False):
-    """Loads all Gold tables and profiles. Parallel querying, rate-limited, cached."""
-    use_live = AppConfig.IS_LIVE if use_genie is None else (use_genie and AppConfig.IS_LIVE)
-    if not use_live:
-        import mock_gold
-        mg = mock_gold.get()
-        return {k: dict(df=v, sql="(demo data)", seconds=0.0, note="", table=SPEC.get(k, (k, []))[0]) for k, v in mg.items()}
+    """Loads all Gold tables and profiles directly from Databricks Unity Catalog."""
     if force:
         with _lock:
             _store.clear()
@@ -456,13 +442,16 @@ def load_core(use_genie=None, force=False):
         res = {n: f.result() for n, f in futs.items()}
 
     # Synthesize customer/property profiles if missing or empty
-    if "gold_policy_report" in res and ("customer_profile" not in res or res["customer_profile"]["df"].empty):
+    if "gold_policy_report" in res and not res["gold_policy_report"]["df"].empty:
         po_df = res["gold_policy_report"]["df"]
         cl_df = res.get("gold_claim_report", {}).get("df", pd.DataFrame())
         pr_df = res.get("gold_property_risk", {}).get("df", None)
         c_df, p_df = derive_profiles(po_df, cl_df, pr_df)
         res["customer_profile"] = dict(ts=time.time(), df=c_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_customer_profile")
         res["property_profile"] = dict(ts=time.time(), df=p_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_property_profile")
+    else:
+        res["customer_profile"] = dict(ts=time.time(), df=pd.DataFrame(), sql="", seconds=0.0, note="", table="gold_customer_profile")
+        res["property_profile"] = dict(ts=time.time(), df=pd.DataFrame(), sql="", seconds=0.0, note="", table="gold_property_profile")
 
     res["policy_report"] = res.get("gold_policy_report", res.get("policy_report"))
     res["claim_report"] = res.get("gold_claim_report", res.get("claim_report"))
@@ -470,19 +459,19 @@ def load_core(use_genie=None, force=False):
 
 
 def load_disasters(use_genie=None):
-    use_genie = live() if use_genie is None else (use_genie and live())
-    if not use_genie:
-        import mock_gold
-        return mock_gold.disasters()
     e = _fresh("disasters")
     if e:
         return e["df"]
-    ans = _genie().ask(DISASTER_Q)
-    if ans.df is None:
-        raise RuntimeError(ans.text or "Genie did not return a table")
-    df = coerce(ans.df, [("incident_type", "s"), ("claims", "i"), ("paid", "n")])
-    _store["disasters"] = dict(ts=time.time(), df=df)
-    return df
+    if AppConfig.GENIE_SPACE_ID:
+        try:
+            ans = _genie().ask(DISASTER_Q)
+            if ans.df is not None:
+                df = coerce(ans.df, [("incident_type", "s"), ("claims", "i"), ("paid", "n")])
+                _store["disasters"] = dict(ts=time.time(), df=df)
+                return df
+        except Exception:
+            pass
+    return pd.DataFrame(columns=["incident_type", "claims", "paid"])
 
 
 def diagnose():

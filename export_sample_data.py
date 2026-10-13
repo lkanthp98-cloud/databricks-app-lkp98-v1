@@ -9,7 +9,6 @@ Use this script to:
 import os
 from pathlib import Path
 import pandas as pd
-import mock_gold
 import data
 from config import AppConfig
 
@@ -19,15 +18,7 @@ def export_samples(output_dir: str = "sample_data"):
     out_path = Path(output_dir)
     out_path.mkdir(exist_ok=True, parents=True)
     
-    datasets = mock_gold.get()
-    print(f"Generating realistic sample data for {len(TABLES)} Gold tables into '{output_dir}/'...")
-    
-    for t in TABLES:
-        if t in datasets:
-            df = datasets[t]
-            csv_file = out_path / f"{t}.csv"
-            df.to_csv(csv_file, index=False)
-            print(f"  -> Exported {t:<35}: {len(df):>4} rows -> {csv_file}")
+    print(f"Reading sample datasets for {len(TABLES)} tables from '{output_dir}/'...")
 
     # Generate SQL DDL and seed script
     sql_file = out_path / "seed_unity_catalog.sql"

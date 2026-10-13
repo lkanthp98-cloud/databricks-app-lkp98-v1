@@ -15,50 +15,37 @@ from ui import (AV_COLORS, AMBER, BAND_COL, DEEP, INK, MID, MUTED, PURPLE, RED, 
 st.set_page_config(page_title="Insurance Dashboard", page_icon="🔮", layout="wide")
 ui.inject_css()
 
-# ------------------------------------------------------------------ data source mode
-if "data_mode" not in st.session_state:
-    st.session_state["data_mode"] = "live" if (AppConfig.IS_DATABRICKS_APP or data.live()) else "mock"
-
-LIVE = (st.session_state["data_mode"] == "live")
+# ------------------------------------------------------------------ live databricks data loader
+LIVE = True
 
 try:
-    with st.spinner("Connecting to Databricks & querying live tables…" if LIVE else "Loading demo portfolio…"):
-        SRC = data.load_core(use_genie=LIVE)
+    with st.spinner(f"Connecting to Databricks & querying tables from {AppConfig.FULL_SCHEMA}…"):
+        SRC = data.load_core()
 except Exception as e:
     st.error(f"Could not load tables from Unity Catalog ({AppConfig.FULL_SCHEMA}): {e}")
     if any(k in str(e) for k in ("PERMISSION_DENIED", "No access to", "USE CATALOG", "USE SCHEMA")):
         who = data.whoami()
         st.warning("This is a Unity Catalog permission problem. Run this in Databricks SQL to grant access:" + (f"\n\nApp identity: `{who}`" if who else ""))
         st.code(data.grant_sql(who), language="sql")
-    c1, c2 = st.columns(2)
-    if c1.button("🟠 Fallback to Mock Data", key="err_fallback_mock"):
-        st.session_state["data_mode"] = "mock"
-        st.rerun()
-    if c2.button("↻ Retry Live Query", key="err_retry_live"):
+    if st.button("↻ Retry Live Query", key="err_retry_live"):
         with data._lock:
             data._store.clear()
         st.rerun()
-    SRC = data.load_core(use_genie=False)
-PO_ALL = SRC["gold_policy_report"]["df"]
-CL_ALL = SRC["gold_claim_report"]["df"]
-PROP_RISK_ALL = SRC["gold_property_risk"]["df"]
-GEO_RISK_ALL = SRC["gold_risk_by_geography"]["df"]
-LR_STATE_YEAR_ALL = SRC["gold_loss_ratio_by_state_year"]["df"]
-DIS_CLAIMS_ALL = SRC["gold_claims_by_disaster"]["df"]
-MIT_ALL = SRC["gold_mitigation_vs_claims_by_state"]["df"]
+    SRC = data.load_core()
+
+PO_ALL = SRC.get("gold_policy_report", {}).get("df", pd.DataFrame())
+CL_ALL = SRC.get("gold_claim_report", {}).get("df", pd.DataFrame())
+PROP_RISK_ALL = SRC.get("gold_property_risk", {}).get("df", pd.DataFrame())
+GEO_RISK_ALL = SRC.get("gold_risk_by_geography", {}).get("df", pd.DataFrame())
+LR_STATE_YEAR_ALL = SRC.get("gold_loss_ratio_by_state_year", {}).get("df", pd.DataFrame())
+DIS_CLAIMS_ALL = SRC.get("gold_claims_by_disaster", {}).get("df", pd.DataFrame())
+MIT_ALL = SRC.get("gold_mitigation_vs_claims_by_state", {}).get("df", pd.DataFrame())
 
 # In-memory operational entities derived from gold_policy_report and gold_claim_report
 C_ALL = SRC.get("customer_profile", {}).get("df", pd.DataFrame())
 P_ALL = SRC.get("property_profile", {}).get("df", pd.DataFrame())
 
-for _k in data.CORE:
-    if SRC.get(_k, {}).get("note"):
-        st.warning(f"{SRC[_k]['table']}: {SRC[_k]['note']}")
-if LIVE:
-    AS_OF = pd.Timestamp(AppConfig.AS_OF_DATE or pd.Timestamp.today().normalize())
-else:
-    import mock_gold
-    AS_OF = mock_gold.AS_OF
+AS_OF = pd.Timestamp(AppConfig.AS_OF_DATE or pd.Timestamp.today().normalize())
 TODAY = AS_OF
 
 # ------------------------------------------------------------------ navigation helpers
@@ -196,35 +183,20 @@ with st.sidebar:
     # 1. DATA CONNECTION (AT TOP)
     # =========================================================================
     st.markdown('<div class="navlbl">Data Connection</div>', unsafe_allow_html=True)
-    c_m1, c_m2 = st.columns(2)
-    is_live_mode = (st.session_state.get("data_mode") == "live")
-    with c_m1:
-        if st.button("🟠 Mock", key="btn_mode_mock", type="secondary" if is_live_mode else "primary", use_container_width=True, help="Switch to fast offline synthetic demo dataset"):
-            if st.session_state.get("data_mode") != "mock":
-                st.session_state["data_mode"] = "mock"
-                with data._lock:
-                    data._store.clear()
-                st.rerun()
-    with c_m2:
-        if st.button("🟢 Live", key="btn_mode_live", type="primary" if is_live_mode else "secondary", use_container_width=True, help="Query live Databricks Unity Catalog & SQL Warehouse"):
-            if st.session_state.get("data_mode") != "live":
-                st.session_state["data_mode"] = "live"
-                with data._lock:
-                    data._store.clear()
-                st.rerun()
-
-    if is_live_mode:
+    is_connected = AppConfig.IS_LIVE and (len(PO_ALL) > 0 or len(P_ALL) > 0)
+    if is_connected:
         st.markdown(f'<div style="font-size:0.75rem; color:#10B981; font-weight:700; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:6px 10px; margin-bottom:8px;">'
                     f'🟢 <b>Live Unity Catalog</b><br>'
-                    f'<span style="color:#059669; font-weight:600;">{AppConfig.FULL_SCHEMA}</span>'
+                    f'<span style="color:#059669; font-weight:600;">{AppConfig.FULL_SCHEMA}</span><br>'
+                    f'<span style="font-size:0.72rem; color:#6B7280; font-weight:500;">Warehouse: {AppConfig.get_warehouse_id()[:8] if AppConfig.get_warehouse_id() else "Auto-Discovered"}</span>'
                     f'</div>', unsafe_allow_html=True)
     else:
-        st.markdown(f'<div style="font-size:0.75rem; color:#D97706; font-weight:700; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:6px 10px; margin-bottom:8px;">'
-                    f'🟠 <b>Mock Demo Data</b><br>'
-                    f'<span style="color:#B45309; font-weight:500;">27 local synthetic tables</span>'
+        st.markdown(f'<div style="font-size:0.75rem; color:#EF4444; font-weight:700; background:rgba(239,68,68,0.10); border:1px solid rgba(239,68,68,0.3); border-radius:8px; padding:6px 10px; margin-bottom:8px;">'
+                    f'🔴 <b>Databricks Not Connected</b><br>'
+                    f'<span style="font-size:0.72rem; color:#991B1B; font-weight:500;">Configure warehouse or catalog below</span>'
                     f'</div>', unsafe_allow_html=True)
 
-    with st.expander("⚙️ Connect Catalog / Warehouse", expanded=False):
+    with st.expander("⚙️ Connect Catalog / Warehouse", expanded=(not is_connected)):
         st.caption("Configure Databricks SQL Warehouse & Unity Catalog.")
         whs = AppConfig.list_available_warehouses()
         active_wh = AppConfig.get_warehouse_id()
@@ -243,28 +215,26 @@ with st.sidebar:
         sch_idx = schemas.index(AppConfig.GOLD_SCHEMA) if AppConfig.GOLD_SCHEMA in schemas else 0
         new_sch = st.selectbox("Schema", schemas, index=sch_idx, key="dyn_sch")
 
-        if st.button("Connect & Query Live", key="apply_schema", use_container_width=True, type="primary"):
+        if st.button("Connect & Query Tables", key="apply_schema", use_container_width=True, type="primary"):
             if new_wh:
                 AppConfig.DATABRICKS_WAREHOUSE_ID = new_wh.strip()
             AppConfig.update_schema(new_cat, new_sch)
             data.T = f"{new_cat}.{new_sch}"
-            st.session_state["data_mode"] = "live"
             with data._lock:
                 data._store.clear()
             st.success(f"Connected to {new_cat}.{new_sch}!")
             st.rerun()
 
-        if not LIVE and st.button("⚡ Force Retry Live Connect", key="btn_force_live", use_container_width=True):
-            st.session_state["data_mode"] = "live"
+        if st.button("↻ Force Refresh Data", key="btn_force_live", use_container_width=True):
             with data._lock:
                 data._store.clear()
             st.rerun()
 
     # Filter by State
     st.markdown('<div class="navlbl">Filter</div>', unsafe_allow_html=True)
-    sel_states = st.multiselect("State", sorted(P_ALL.state.dropna().unique()), placeholder="All states", label_visibility="collapsed")
-    if LIVE:
-        st.button("↻  Refresh data", key="refresh_data", on_click=lambda: data.load_core(use_genie=True, force=True), use_container_width=True)
+    avail_states = sorted(P_ALL["state"].dropna().unique()) if ("state" in P_ALL.columns and not P_ALL.empty) else []
+    sel_states = st.multiselect("State", avail_states, placeholder="All states", label_visibility="collapsed")
+    st.button("↻  Refresh data", key="refresh_data", on_click=lambda: data.load_core(use_genie=True, force=True), use_container_width=True)
 
     def nav_item(name):
         slug = name.lower().replace(" & ", "_").replace(" ", "_")
@@ -299,16 +269,40 @@ with st.sidebar:
         nav_item(p_)
 
 # ------------------------------------------------------------------ state filter
-P = P_ALL[P_ALL.state.isin(sel_states)] if sel_states else P_ALL
-cust_ids = set(P.customer_id)
-C = C_ALL[C_ALL.customer_id.isin(cust_ids)]
-PO = PO_ALL[PO_ALL.state.isin(sel_states)] if sel_states else PO_ALL
-CL = CL_ALL[CL_ALL.state.isin(sel_states)] if sel_states else CL_ALL
-CL = CL.assign(paid=CL.amount_paid_on_building_claim.fillna(0) + CL.amount_paid_on_contents_claim.fillna(0) + CL.amount_paid_on_icc_claim.fillna(0))
-PO = PO.assign(coverage=PO.total_building_insurance_coverage.fillna(0) + PO.total_contents_insurance_coverage.fillna(0))
-ACT = P[P.active_policy_id.notna()].assign(coverage=lambda d: d.active_building_coverage.fillna(0) + d.active_contents_coverage.fillna(0))
-ACT = ACT.assign(days=(ACT.policy_expiration_date - AS_OF).dt.days)
-SFHA = lambda s: s.fillna("").astype(str).str[:1].isin(["A", "V"])
+P = P_ALL[P_ALL["state"].isin(sel_states)] if (sel_states and "state" in P_ALL.columns and not P_ALL.empty) else P_ALL
+cust_ids = set(P["customer_id"]) if ("customer_id" in P.columns and not P.empty) else set()
+C = C_ALL[C_ALL["customer_id"].isin(cust_ids)] if ("customer_id" in C_ALL.columns and cust_ids and not C_ALL.empty) else C_ALL
+PO = PO_ALL[PO_ALL["state"].isin(sel_states)] if (sel_states and "state" in PO_ALL.columns and not PO_ALL.empty) else PO_ALL
+CL = CL_ALL[CL_ALL["state"].isin(sel_states)] if (sel_states and "state" in CL_ALL.columns and not CL_ALL.empty) else CL_ALL
+
+if not CL.empty and all(c in CL.columns for c in ("amount_paid_on_building_claim", "amount_paid_on_contents_claim", "amount_paid_on_icc_claim")):
+    CL = CL.assign(paid=CL.amount_paid_on_building_claim.fillna(0) + CL.amount_paid_on_contents_claim.fillna(0) + CL.amount_paid_on_icc_claim.fillna(0))
+elif not CL.empty:
+    CL = CL.assign(paid=0.0)
+else:
+    CL = pd.DataFrame(columns=["claim_id", "policy_id", "state", "paid"])
+
+if not PO.empty and all(c in PO.columns for c in ("total_building_insurance_coverage", "total_contents_insurance_coverage")):
+    PO = PO.assign(coverage=PO.total_building_insurance_coverage.fillna(0) + PO.total_contents_insurance_coverage.fillna(0))
+elif not PO.empty:
+    PO = PO.assign(coverage=0.0)
+else:
+    PO = pd.DataFrame(columns=["policy_id", "state", "coverage", "total_insurance_premium"])
+
+if not P.empty and "active_policy_id" in P.columns:
+    ACT = P[P.active_policy_id.notna()]
+    if not ACT.empty:
+        ACT = ACT.assign(coverage=lambda d: d.get("active_building_coverage", 0).fillna(0) + d.get("active_contents_coverage", 0).fillna(0))
+        if "policy_expiration_date" in ACT.columns:
+            ACT = ACT.assign(days=(pd.to_datetime(ACT.policy_expiration_date) - AS_OF).dt.days)
+        else:
+            ACT = ACT.assign(days=0)
+    else:
+        ACT = pd.DataFrame(columns=["property_id", "coverage", "days"])
+else:
+    ACT = pd.DataFrame(columns=["property_id", "coverage", "days"])
+
+SFHA = lambda s: s.fillna("").astype(str).str[:1].isin(["A", "V"]) if hasattr(s, "fillna") else False
 
 # Extract Unity Catalog Gold tables from SRC
 PROP_RISK_ALL = SRC.get("gold_property_risk", {}).get("df", pd.DataFrame())
@@ -328,20 +322,35 @@ def empty(msg="No data for this selection."):
 
 
 # Mode notification banner
-if LIVE:
+if len(P_ALL) > 0 or len(PO_ALL) > 0:
     st.markdown(f'''
     <div style="display:flex; justify-content:space-between; align-items:center; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:10px; padding:7px 14px; margin-bottom:12px; font-size:0.83rem; color:#065F46;">
-        <div>🟢 <b>Connected to Live Databricks Lakehouse:</b> <code>{AppConfig.FULL_SCHEMA}</code> ({len(P_ALL):,} properties · {len(PO_ALL):,} policies)</div>
+        <div>🟢 <b>Connected to Databricks Lakehouse:</b> <code>{AppConfig.FULL_SCHEMA}</code> ({len(P_ALL):,} properties · {len(PO_ALL):,} policies)</div>
         <div style="font-size:0.78rem; color:#047857;">SQL Warehouse: <b>{AppConfig.get_warehouse_id()[:8] if AppConfig.get_warehouse_id() else 'Auto-Discovered'}</b></div>
     </div>
     ''', unsafe_allow_html=True)
 else:
     st.markdown(f'''
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; padding:7px 14px; margin-bottom:12px; font-size:0.83rem; color:#92400E;">
-        <div>🟠 <b>Viewing Built-in Mock / Demo Data:</b> 27 synthetic Unity Catalog tables</div>
-        <div><span style="font-size:0.8rem; color:#B45309;">Click <b>🟢 Live</b> in the sidebar to query your Databricks Lakehouse</span></div>
+    <div style="background:white; border:1px solid #E2E8F0; border-radius:12px; padding:28px 32px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05); margin-top:12px; margin-bottom:24px;">
+        <div style="font-size:1.25rem; font-weight:700; color:#1E293B; margin-bottom:8px;">
+            🚀 Ready to Connect to Databricks Unity Catalog
+        </div>
+        <p style="font-size:0.92rem; color:#475569; line-height:1.6; margin-bottom:16px;">
+            Mock data has been completely removed from this application. It connects strictly to live tables in your Databricks Lakehouse.
+        </p>
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px 20px; font-size:0.88rem; color:#334155; margin-bottom:18px;">
+            <b>To connect your workspace:</b><br>
+            1. In the sidebar under <b>⚙️ Connect Catalog / Warehouse</b>, specify your <b>SQL Warehouse ID</b>, <b>Catalog</b>, and <b>Schema</b>.<br>
+            2. Click <b>Connect & Query Tables</b>.<br>
+            3. Ensure your Databricks App or identity has permissions:
+            <pre style="background:#1E293B; color:#E2E8F0; padding:10px 14px; border-radius:6px; margin-top:8px; font-size:0.82rem;">GRANT USE CATALOG ON CATALOG {AppConfig.GOLD_CATALOG};\nGRANT USE SCHEMA, SELECT ON SCHEMA {AppConfig.FULL_SCHEMA} TO `&lt;app_identity&gt;`;</pre>
+        </div>
+        <div style="font-size:0.84rem; color:#64748B;">
+            Tip: You can seed sample Gold tables into your catalog using <code>sample_data/seed_unity_catalog.sql</code> in the Databricks SQL Query Editor.
+        </div>
     </div>
     ''', unsafe_allow_html=True)
+    st.stop()
 
 # =====================================================================
 # BUSINESS & DATA ANALYTICS SUITE
@@ -1238,12 +1247,8 @@ elif page == "Data Catalog":
     tbl_name, cols_spec = data.SPEC.get(sel_tbl, (sel_tbl, []))
     full_path = f"{AppConfig.GOLD_CATALOG}.{AppConfig.GOLD_SCHEMA}.{tbl_name}"
     
-    # Retrieve dataset from SRC or mock_gold
+    # Retrieve dataset from SRC
     tbl_df = SRC.get(sel_tbl, {}).get("df", pd.DataFrame())
-    if tbl_df.empty:
-        import mock_gold
-        mg = mock_gold.get()
-        tbl_df = mg.get(sel_tbl, pd.DataFrame())
 
     with c2:
         with st.container(border=True):
