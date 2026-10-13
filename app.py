@@ -15,32 +15,30 @@ from ui import (AV_COLORS, AMBER, BAND_COL, DEEP, INK, MID, MUTED, PURPLE, RED, 
 st.set_page_config(page_title="Insurance Dashboard", page_icon="🔮", layout="wide")
 ui.inject_css()
 
-# ------------------------------------------------------------------ data
-LIVE = data.live() and not st.session_state.get("force_demo", False)
+# ------------------------------------------------------------------ data source mode
+if "data_mode" not in st.session_state:
+    st.session_state["data_mode"] = "live" if (AppConfig.IS_DATABRICKS_APP or data.live()) else "mock"
+
+LIVE = (st.session_state["data_mode"] == "live")
+
 try:
-    with st.spinner("Loading your portfolio… the first load can take a minute."):
+    with st.spinner("Connecting to Databricks & querying live tables…" if LIVE else "Loading demo portfolio…"):
         SRC = data.load_core(use_genie=LIVE)
 except Exception as e:
-    st.error(f"Could not load the Gold tables from the Genie space: {e}")
+    st.error(f"Could not load tables from Unity Catalog ({AppConfig.FULL_SCHEMA}): {e}")
     if any(k in str(e) for k in ("PERMISSION_DENIED", "No access to", "USE CATALOG", "USE SCHEMA")):
         who = data.whoami()
-        st.warning("This is a Unity Catalog permission problem, not a code problem. The identity the app runs as can use the Genie space but cannot read the tables behind it. "
-                   "Run this in a Databricks SQL editor as the table owner or an admin, then reload:" + (f"\n\nApp identity detected: `{who}`" if who else ""))
+        st.warning("This is a Unity Catalog permission problem. Run this in Databricks SQL to grant access:" + (f"\n\nApp identity: `{who}`" if who else ""))
         st.code(data.grant_sql(who), language="sql")
-        st.caption("Also give the same identity CAN RUN on the Genie space (Share) and CAN USE on its SQL warehouse. Adding the Genie space as an app resource grants the space part automatically.")
-    st.markdown("**Most likely causes, in order:**\n"
-                "1. The four Gold tables are not added to the Genie space (or are named differently from `" + data.T + ".*`).\n"
-                "2. The app's service principal can't query them: it needs CAN RUN on the space, CAN USE on the space's SQL warehouse (which must be running) and USE CATALOG / USE SCHEMA / SELECT on the Gold schema.\n"
-                "3. Genie couldn't turn the question into SQL. Open the space in Databricks, paste `" + data.question("customer_profile") + "` and see what it says.")
     c1, c2 = st.columns(2)
-    c1.button("Use demo data for now", on_click=lambda: st.session_state.update(force_demo=True))
-    if c2.button("Run diagnostics (4 small Genie questions)"):
-        with st.spinner("Asking Genie one small question per table…"):
-            st.session_state["diag"] = data.diagnose()
-    for table, ok_, detail, sql_ in st.session_state.get("diag") or []:
-        (st.success if ok_ else st.error)(f"{table}: {detail}")
-        if sql_:
-            st.code(sql_, language="sql")
+    if c1.button("🟠 Fallback to Mock Data", key="err_fallback_mock"):
+        st.session_state["data_mode"] = "mock"
+        st.rerun()
+    if c2.button("↻ Retry Live Query", key="err_retry_live"):
+        with data._lock:
+            data._store.clear()
+        st.rerun()
+    SRC = data.load_core(use_genie=False)
 PO_ALL = SRC["gold_policy_report"]["df"]
 CL_ALL = SRC["gold_claim_report"]["df"]
 PROP_RISK_ALL = SRC["gold_property_risk"]["df"]
@@ -173,6 +171,35 @@ with st.sidebar:
                 '<path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>'
                 '<div class="bt2"><b>Property Insurance BI</b></div></div>', unsafe_allow_html=True)
 
+    # --- ONE-CLICK DATA MODE TOGGLE (MOCK vs LIVE) ---
+    c_m1, c_m2 = st.columns(2)
+    is_live_mode = (st.session_state.get("data_mode") == "live")
+    with c_m1:
+        if st.button("🟠 Mock", key="btn_mode_mock", type="secondary" if is_live_mode else "primary", use_container_width=True, help="Switch to fast offline synthetic demo dataset"):
+            if st.session_state.get("data_mode") != "mock":
+                st.session_state["data_mode"] = "mock"
+                with data._lock:
+                    data._store.clear()
+                st.rerun()
+    with c_m2:
+        if st.button("🟢 Live", key="btn_mode_live", type="primary" if is_live_mode else "secondary", use_container_width=True, help="Query live Databricks Unity Catalog & SQL Warehouse"):
+            if st.session_state.get("data_mode") != "live":
+                st.session_state["data_mode"] = "live"
+                with data._lock:
+                    data._store.clear()
+                st.rerun()
+
+    if is_live_mode:
+        st.markdown(f'<div style="font-size:0.75rem; color:#10B981; font-weight:700; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:8px; padding:6px 10px; margin-bottom:12px;">'
+                    f'🟢 <b>Live Unity Catalog</b><br>'
+                    f'<span style="color:#059669; font-weight:600;">{AppConfig.FULL_SCHEMA}</span>'
+                    f'</div>', unsafe_allow_html=True)
+    else:
+        st.markdown(f'<div style="font-size:0.75rem; color:#D97706; font-weight:700; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:6px 10px; margin-bottom:12px;">'
+                    f'🟠 <b>Mock Demo Data</b><br>'
+                    f'<span style="color:#B45309; font-weight:500;">27 local synthetic tables</span>'
+                    f'</div>', unsafe_allow_html=True)
+
     def nav_item(name):
         slug = name.lower().replace(" & ", "_").replace(" ", "_")
         st.button(name, key=("navon_" if name == page else "nav_") + slug, on_click=goto, args=(name,), kwargs={"cj_search": "", "cj_cid": None} if name == "Customer 360" else {}, use_container_width=True)
@@ -191,21 +218,46 @@ with st.sidebar:
         nav_item(p_)
 
     # Dynamic Unity Catalog & Schema Selector
-    st.markdown('<div class="navlbl">Unity Catalog</div>', unsafe_allow_html=True)
-    with st.expander("⚙️ Switch Catalog / Schema", expanded=False):
-        st.caption("Dynamically switch to any catalog & schema in your workspace.")
+    st.markdown('<div class="navlbl">Data Connection</div>', unsafe_allow_html=True)
+    if LIVE:
+        st.markdown(f'<div style="font-size:0.75rem; color:#10B981; font-weight:700; margin-bottom:6px;">🟢 LIVE UNITY CATALOG<br><span style="color:#6B7280; font-weight:400;">{AppConfig.FULL_SCHEMA}</span></div>', unsafe_allow_html=True)
+    else:
+        st.markdown(f'<div style="font-size:0.75rem; color:#F59E0B; font-weight:700; margin-bottom:6px;">🟠 BUILT-IN DEMO DATA<br><span style="color:#6B7280; font-weight:400;">Connect warehouse to query live</span></div>', unsafe_allow_html=True)
+
+    with st.expander("⚙️ Connect Catalog / Warehouse", expanded=False):
+        st.caption("Connect to your Databricks SQL Warehouse & Unity Catalog.")
+        whs = AppConfig.list_available_warehouses()
+        active_wh = AppConfig.get_warehouse_id()
+        if whs:
+            wh_map = {wh[0]: f"{wh[1]} ({wh[2]})" for wh in whs}
+            wh_keys = list(wh_map.keys())
+            wh_idx = wh_keys.index(active_wh) if active_wh in wh_keys else 0
+            new_wh = st.selectbox("SQL Warehouse", wh_keys, index=wh_idx, format_func=lambda x: wh_map.get(x, x), key="dyn_wh")
+        else:
+            new_wh = st.text_input("SQL Warehouse ID", value=active_wh, placeholder="e.g. 1a2b3c4d5e6f7g8h", key="dyn_wh_manual")
+
         cats = AppConfig.list_available_catalogs()
         cat_idx = cats.index(AppConfig.GOLD_CATALOG) if AppConfig.GOLD_CATALOG in cats else 0
         new_cat = st.selectbox("Catalog", cats, index=cat_idx, key="dyn_cat")
         schemas = AppConfig.list_available_schemas(new_cat)
         sch_idx = schemas.index(AppConfig.GOLD_SCHEMA) if AppConfig.GOLD_SCHEMA in schemas else 0
         new_sch = st.selectbox("Schema", schemas, index=sch_idx, key="dyn_sch")
-        if st.button("Connect & Reload", key="apply_schema", use_container_width=True):
+
+        if st.button("Connect & Query Live", key="apply_schema", use_container_width=True, type="primary"):
+            if new_wh:
+                AppConfig.DATABRICKS_WAREHOUSE_ID = new_wh.strip()
             AppConfig.update_schema(new_cat, new_sch)
             data.T = f"{new_cat}.{new_sch}"
+            st.session_state["force_demo"] = False
             with data._lock:
                 data._store.clear()
-            st.success(f"Connected to {new_cat}.{new_sch}")
+            st.success(f"Connected to {new_cat}.{new_sch} via warehouse {new_wh[:8] if new_wh else 'default'}!")
+            st.rerun()
+
+        if not LIVE and st.button("⚡ Force Retry Live Connect", key="btn_force_live", use_container_width=True):
+            st.session_state["force_demo"] = False
+            with data._lock:
+                data._store.clear()
             st.rerun()
 
     st.markdown('<div class="navlbl">Filter</div>', unsafe_allow_html=True)
@@ -241,6 +293,22 @@ MIT = MIT_ALL[MIT_ALL.state.isin(sel_states)] if (sel_states and not MIT_ALL.emp
 def empty(msg="No data for this selection."):
     st.info(msg)
 
+
+# Mode notification banner
+if LIVE:
+    st.markdown(f'''
+    <div style="display:flex; justify-content:space-between; align-items:center; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:10px; padding:7px 14px; margin-bottom:12px; font-size:0.83rem; color:#065F46;">
+        <div>🟢 <b>Connected to Live Databricks Lakehouse:</b> <code>{AppConfig.FULL_SCHEMA}</code> ({len(P_ALL):,} properties · {len(PO_ALL):,} policies)</div>
+        <div style="font-size:0.78rem; color:#047857;">SQL Warehouse: <b>{AppConfig.get_warehouse_id()[:8] if AppConfig.get_warehouse_id() else 'Auto-Discovered'}</b></div>
+    </div>
+    ''', unsafe_allow_html=True)
+else:
+    st.markdown(f'''
+    <div style="display:flex; justify-content:space-between; align-items:center; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; padding:7px 14px; margin-bottom:12px; font-size:0.83rem; color:#92400E;">
+        <div>🟠 <b>Viewing Built-in Mock / Demo Data:</b> 27 synthetic Unity Catalog tables</div>
+        <div><span style="font-size:0.8rem; color:#B45309;">Click <b>🟢 Live</b> in the sidebar to query your Databricks Lakehouse</span></div>
+    </div>
+    ''', unsafe_allow_html=True)
 
 # =====================================================================
 # BUSINESS & DATA ANALYTICS SUITE

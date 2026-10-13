@@ -208,15 +208,29 @@ UTILITY_TABLES = ["id_map"]
 
 ALL_TABLES = list(SPEC.keys())
 CORE = list(GOLD_TABLES)
-T = f"{CATALOG}.{SCHEMA}"
+T = AppConfig.FULL_SCHEMA
+
+
+def __getattr__(name: str):
+    if name == "CATALOG":
+        return AppConfig.GOLD_CATALOG
+    if name == "SCHEMA":
+        return AppConfig.GOLD_SCHEMA
+    if name in ("T", "FULL_SCHEMA"):
+        return AppConfig.FULL_SCHEMA
+    if name == "SPACE_ID":
+        return AppConfig.GENIE_SPACE_ID
+    if name == "CACHE_TTL":
+        return AppConfig.CACHE_TTL_SECONDS
+    raise AttributeError(f"module '{__name__}' has no attribute '{name}'")
 
 
 def question(name):
     table, _ = SPEC[name]
-    return f"Show all rows and all columns from {T}.{table}. No filter and no limit."
+    return f"Show all rows and all columns from {AppConfig.FULL_SCHEMA}.{table}. No filter and no limit."
 
 
-DISASTER_Q = (f"For each incident_type in {T}.dim_disaster_declaration, join {T}.fact_nfip_claim on disaster_key and return incident_type, "
+DISASTER_Q = (f"For each incident_type in {AppConfig.FULL_SCHEMA}.dim_disaster_declaration, join {AppConfig.FULL_SCHEMA}.fact_nfip_claim on disaster_key and return incident_type, "
               f"count of claims as claims and the sum of amount_paid_on_building_claim + amount_paid_on_contents_claim + amount_paid_on_icc_claim as paid.")
 
 
@@ -252,14 +266,14 @@ _source = None
 
 
 def live():
-    return bool(SPACE_ID or AppConfig.HAS_SQL_WAREHOUSE)
+    return AppConfig.IS_LIVE
 
 
 def _genie():
     global _source
     if _source is None:
         from genie_client import GenieSource
-        _source = GenieSource(SPACE_ID, client=AppConfig.get_workspace_client())
+        _source = GenieSource(AppConfig.GENIE_SPACE_ID, client=AppConfig.get_workspace_client())
     return _source
 
 
@@ -359,21 +373,36 @@ def _load_one(name):
     sql = ""
     sec = 0.0
     note = ""
+    target_schema = AppConfig.FULL_SCHEMA
 
-    # 1. Try Databricks SQL Warehouse if configured
+    # 1. Try Databricks SQL Warehouse if configured or auto-discovered
     if AppConfig.HAS_SQL_WAREHOUSE:
-        try:
-            t0 = time.time()
-            sql = f"SELECT * FROM {T}.{table}"
-            df_raw = AppConfig.execute_sql(sql)
-            if df_raw is not None and not df_raw.empty:
-                df = coerce(df_raw, cols) if cols else df_raw
-                sec = time.time() - t0
-        except Exception as ex:
-            note = f"Warehouse error: {ex}"
+        candidates = [table]
+        if table.startswith("gold_"):
+            candidates.append(table.replace("gold_", "", 1).replace("_report", ""))
+        elif not table.startswith("gold_"):
+            candidates.append(f"gold_{table}")
+            candidates.append(f"gold_{table}_report")
+
+        last_wh_err = None
+        for tbl_candidate in candidates:
+            try:
+                t0 = time.time()
+                sql = f"SELECT * FROM {target_schema}.{tbl_candidate}"
+                df_raw = AppConfig.execute_sql(sql)
+                if df_raw is not None and not df_raw.empty:
+                    df = coerce(df_raw, cols) if cols else df_raw
+                    sec = time.time() - t0
+                    table = tbl_candidate
+                    last_wh_err = None
+                    break
+            except Exception as ex:
+                last_wh_err = ex
+        if df is None and last_wh_err:
+            note = f"Warehouse error on {table}: {last_wh_err}"
 
     # 2. Try Genie Space if SQL Warehouse not used or did not return table
-    if df is None and SPACE_ID:
+    if df is None and AppConfig.GENIE_SPACE_ID:
         try:
             t0 = time.time()
             ans = _genie().ask(question(name))
@@ -386,7 +415,7 @@ def _load_one(name):
             if not note:
                 note = f"Genie error: {ex}"
 
-    # 3. Fallback to mock data
+    # 3. Fallback to mock data with helpful note
     if df is None:
         import mock_gold
         mg = mock_gold.get()
@@ -396,7 +425,12 @@ def _load_one(name):
             df = mg[table]
         else:
             df = pd.DataFrame()
-        sql = "(demo data)"
+        sql = "(demo data fallback)"
+        if not note:
+            if not AppConfig.HAS_SQL_WAREHOUSE and not AppConfig.GENIE_SPACE_ID:
+                note = "Running offline. To query live data, connect a SQL Warehouse or Genie Space."
+            else:
+                note = f"Table {target_schema}.{table} not found. Using fallback data."
 
     e = dict(ts=time.time(), df=df, sql=sql, seconds=sec, note=note, table=table)
     with _lock:
@@ -406,7 +440,7 @@ def _load_one(name):
 
 def load_core(use_genie=None, force=False):
     """Loads all Gold tables and profiles. Parallel querying, rate-limited, cached."""
-    use_live = (live() or AppConfig.HAS_SQL_WAREHOUSE) if use_genie is None else (use_genie and live())
+    use_live = AppConfig.IS_LIVE if use_genie is None else (use_genie and AppConfig.IS_LIVE)
     if not use_live:
         import mock_gold
         mg = mock_gold.get()

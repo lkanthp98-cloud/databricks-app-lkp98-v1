@@ -100,13 +100,51 @@ class _Config:
 
     @property
     def IS_LIVE(self) -> bool:
-        """True when a Genie Space ID or SQL Warehouse is configured for live querying."""
-        return bool(self.GENIE_SPACE_ID or self.DATABRICKS_WAREHOUSE_ID)
+        """True when a Genie Space ID or SQL Warehouse is configured or auto-discovered for live querying."""
+        return bool(self.GENIE_SPACE_ID or self.get_warehouse_id())
 
     @property
     def HAS_SQL_WAREHOUSE(self) -> bool:
-        """True when a Databricks SQL Warehouse ID is configured."""
-        return bool(self.DATABRICKS_WAREHOUSE_ID)
+        """True when a Databricks SQL Warehouse ID is configured or auto-discovered."""
+        return bool(self.get_warehouse_id())
+
+    def get_warehouse_id(self) -> str:
+        """Returns configured or auto-discovered SQL Warehouse ID."""
+        if self.DATABRICKS_WAREHOUSE_ID:
+            return self.DATABRICKS_WAREHOUSE_ID
+        return self.discover_sql_warehouse()
+
+    def discover_sql_warehouse(self) -> str:
+        """Auto-discovers an active or available SQL Warehouse in the Databricks workspace."""
+        if self.DATABRICKS_WAREHOUSE_ID:
+            return self.DATABRICKS_WAREHOUSE_ID
+        try:
+            w = self.get_workspace_client()
+            warehouses = list(w.warehouses.list())
+            if not warehouses:
+                return ""
+            # Priority 1: A warehouse currently in RUNNING or STARTING state
+            running = [wh for wh in warehouses if str(getattr(wh, "state", "")).upper() in ("RUNNING", "STARTING")]
+            if running:
+                self.DATABRICKS_WAREHOUSE_ID = running[0].id
+                return self.DATABRICKS_WAREHOUSE_ID
+            # Priority 2: Serverless warehouse or first available
+            serverless = [wh for wh in warehouses if getattr(wh, "enable_serverless_compute", False)]
+            if serverless:
+                self.DATABRICKS_WAREHOUSE_ID = serverless[0].id
+                return self.DATABRICKS_WAREHOUSE_ID
+            self.DATABRICKS_WAREHOUSE_ID = warehouses[0].id
+            return self.DATABRICKS_WAREHOUSE_ID
+        except Exception:
+            return ""
+
+    def list_available_warehouses(self) -> list[tuple[str, str, str]]:
+        """Returns list of (id, name, state) for all SQL warehouses in the workspace."""
+        try:
+            w = self.get_workspace_client()
+            return [(wh.id, wh.name, str(getattr(wh, "state", ""))) for wh in w.warehouses.list()]
+        except Exception:
+            return []
 
     def get_workspace_client(self):
         """Returns a configured WorkspaceClient instance.
@@ -130,13 +168,14 @@ class _Config:
         return WorkspaceClient(**kwargs)
 
     def execute_sql(self, sql: str):
-        """Directly executes a SQL statement on the Databricks SQL Warehouse if configured."""
-        if not self.HAS_SQL_WAREHOUSE:
+        """Directly executes a SQL statement on the Databricks SQL Warehouse if configured or auto-discovered."""
+        wh_id = self.get_warehouse_id()
+        if not wh_id:
             return None
         from genie_client import statement_to_df
         w = self.get_workspace_client()
         res = w.statement_execution.execute_statement(
-            warehouse_id=self.DATABRICKS_WAREHOUSE_ID,
+            warehouse_id=wh_id,
             statement=sql,
             wait_timeout="50s",
         )
