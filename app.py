@@ -135,22 +135,35 @@ def header(title, sub=""):
         st.markdown(f'<div class="hdr-right"><div class="chip-d">{_greeting()}</div></div>', unsafe_allow_html=True)
 
 
-ANALYTICS = [
+AI_STUDIO = [
     "Executive Cockpit",
-    "AI Underwriter & LLM Copilot",
+    "Open LLM Studio",
+    "AlphaEarth GeoAI Embeddings",
+    "ML Risk & Pricing",
+]
+
+ANALYTICS = [
     "Property Risk Intelligence",
     "Customer Risk Profile",
+    "Geospatial Risk Map",
     "Community & Mitigation",
     "Inspections & Endorsements",
-    "Geospatial Risk Map",
-    "Underwriting Flow",
-    "ML Risk & Pricing",
-    "Actuarial & Risk",
     "Financial Loss Ratios",
     "Catastrophe Simulator",
+    "Actuarial & Risk",
+    "Underwriting Flow",
     "Agent Performance",
 ]
-MAIN = ["Overview", "Customer 360", "Process Flow", "Portfolio & Geography", "Data Catalog", "Open LLM Studio", "Ask Genie"]
+
+MAIN = [
+    "Overview",
+    "Customer 360",
+    "Process Flow",
+    "Portfolio & Geography",
+    "Data Catalog",
+    "Ask Genie",
+]
+
 RECORDS = ["Customers", "Properties", "Policies", "Claims", "Renewals"]
 st.session_state.setdefault("page", "Executive Cockpit")
 page = st.session_state["page"]
@@ -164,13 +177,16 @@ with st.sidebar:
         slug = name.lower().replace(" & ", "_").replace(" ", "_")
         st.button(name, key=("navon_" if name == page else "nav_") + slug, on_click=goto, args=(name,), kwargs={"cj_search": "", "cj_cid": None} if name == "Customer 360" else {}, use_container_width=True)
 
-    st.markdown('<div class="navlbl">Analytics & ML</div>', unsafe_allow_html=True)
+    st.markdown('<div class="navlbl">AI Studio & Executive</div>', unsafe_allow_html=True)
+    for p_ in AI_STUDIO:
+        nav_item(p_)
+    st.markdown('<div class="navlbl">Actuarial & Risk Analytics</div>', unsafe_allow_html=True)
     for p_ in ANALYTICS:
         nav_item(p_)
-    st.markdown('<div class="navlbl">Operations</div>', unsafe_allow_html=True)
+    st.markdown('<div class="navlbl">Operations & Catalog</div>', unsafe_allow_html=True)
     for p_ in MAIN:
         nav_item(p_)
-    st.markdown('<div class="navlbl">Records</div>', unsafe_allow_html=True)
+    st.markdown('<div class="navlbl">Records & Master Data</div>', unsafe_allow_html=True)
     for p_ in RECORDS:
         nav_item(p_)
 
@@ -233,9 +249,13 @@ if page == "Executive Cockpit":
     header("Executive Cockpit", "Portfolio performance & loss ratio cockpit")
     AV.render_executive_cockpit(C, P, PO, CL, ACT, AS_OF)
 
-elif page == "AI Underwriter & LLM Copilot":
-    header("AI Underwriter & Open LLM Copilot", "Databricks Foundation Models, Llama 3.3, Ollama & automated actuarial memos")
-    AV.render_ai_underwriter_copilot(C, P, CL, PO, SRC)
+elif page in ("Open LLM Studio", "AI Underwriter & LLM Copilot"):
+    from open_llm_frontend import render_open_llm_frontend
+    render_open_llm_frontend(SRC, C, P, PO, CL, ACT)
+
+elif page == "AlphaEarth GeoAI Embeddings":
+    header("AlphaEarth GeoAI Satellite Embeddings", "Google DeepMind 64D Earth Observation embeddings & hazard twins")
+    AV.render_alpha_earth_intelligence(P)
 
 elif page == "Property Risk Intelligence":
     header("Property Risk Intelligence", "Actuarial components, structural matrices, and vulnerability analysis")

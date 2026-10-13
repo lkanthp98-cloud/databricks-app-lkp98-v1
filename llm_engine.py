@@ -132,14 +132,14 @@ class InAppDataRAG:
             if not p_row.empty:
                 r = p_row.iloc[0]
                 snippets.append(
-                    f"PROPERTY RECORD [{pid}]: Address: {r.get('street_address', '')}, {r.get('city', '')}, {r.get('state', '')}, "
+                    f"PROPERTY RECORD [{pid}]: Address: {r.get('address_line', r.get('street_address', ''))}, {r.get('city', '')}, {r.get('state', '')}, "
                     f"Flood Zone: {r.get('flood_zone', 'N/A')}, Elevated: {r.get('elevated', False)}, Vintage: {r.get('construction_date_band', 'N/A')}, "
                     f"Risk Score: {r.get('assessed_risk_score', 'N/A')}, Active Policy: {r.get('active_policy_id', 'None')}."
                 )
                 citations.append({
                     "table": "property",
                     "description": f"Property Assessment ({pid})",
-                    "df": safe_cols(p_row, ["property_id", "street_address", "city", "state", "flood_zone", "assessed_risk_score"])
+                    "df": safe_cols(p_row, ["property_id", "address_line", "street_address", "city", "state", "flood_zone", "assessed_risk_score"])
                 })
 
         # 4. Aggregated Metrics / Domain Queries

@@ -18,3 +18,7 @@ requests>=2.31.0
 
 # Optional Open LLM Client (OpenAI-compatible endpoints / vLLM / LiteLLM)
 openai>=1.10.0
+
+# Google Earth Engine (DeepMind AlphaEarth Satellite Embeddings)
+earthengine-api>=1.7.0
+
