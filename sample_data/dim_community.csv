@@ -1,0 +1,13 @@
+community_key,community_id_number,community_name,state,participation_status,crs_class
+1,COM-48000,Baytown,TX,Regular,7
+2,COM-48001,Galveston,TX,Regular,6
+3,COM-48002,Freeport,TX,Regular,7
+4,COM-48003,Metairie,LA,Regular,8
+5,COM-48004,New Orleans,LA,Regular,8
+6,COM-48005,Miami,FL,Regular,7
+7,COM-48006,Fort Myers,FL,Regular,6
+8,COM-48007,Tampa,FL,Regular,7
+9,COM-48008,Wilmington,NC,Regular,8
+10,COM-48009,Nags Head,NC,Regular,8
+11,COM-48010,Charleston,SC,Regular,7
+12,COM-48011,Myrtle Beach,SC,Regular,6

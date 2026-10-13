@@ -1,0 +1,870 @@
+property_id,community_id,state,state_abbreviation,county,zip_code,city,flood_zone,latitude,longitude,occupancy_type,original_construction_date,primary_residence_indicator,total_losses,nfip_rl,nfip_srl,mitigated_indicator,insured_indicator,synthetic_geo_key,synthetic_zip_key
+PROP-58210,COM-48001,TX,TX,Harris,77520,Baytown,AE,30.865,-96.865,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-60005,COM-48002,LA,LA,Jefferson,70001,Metairie,AE,30.91,-96.91,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-60014,COM-48006,SC,SC,Charleston,29401,Charleston,X,29.01,-95.01,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60015,COM-48000,NC,NC,Dare,27959,Nags Head,AE,33.8,-99.8,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-60016,COM-48004,TX,TX,Harris,77520,Baytown,X,31.42,-97.42,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60023,COM-48002,NC,NC,New Hanover,28401,Wilmington,AE,31.53,-97.53,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60032,COM-48006,LA,LA,Orleans,70112,New Orleans,B,32.33,-98.33,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-60033,COM-48004,FL,FL,Lee,33901,Fort Myers,VE,29.06,-95.06,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-60041,COM-48000,NC,NC,New Hanover,28401,Wilmington,VE,29.16,-95.16,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60050,COM-48007,FL,FL,Miami-Dade,33101,Miami,VE,33.215,-99.215,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60059,COM-48002,SC,SC,Horry,29577,Myrtle Beach,AE,32.65,-98.65,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-60068,COM-48010,FL,FL,Miami-Dade,33101,Miami,AE,30.91,-96.91,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60077,COM-48007,FL,FL,Miami-Dade,33101,Miami,VE,33.115,-99.115,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60078,COM-48001,FL,FL,Hillsborough,33602,Tampa,A,31.885,-97.885,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-60086,COM-48006,FL,FL,Lee,33901,Fort Myers,X,29.85,-95.85,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-60095,COM-48011,TX,TX,Brazoria,77541,Freeport,X,31.315,-97.315,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-60096,COM-48010,TX,TX,Harris,77520,Baytown,AE,31.47,-97.47,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60104,COM-48011,FL,FL,Miami-Dade,33101,Miami,A,32.535,-98.535,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60113,COM-48009,TX,TX,Brazoria,77541,Freeport,AE,30.505,-96.505,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-60122,COM-48004,FL,FL,Miami-Dade,33101,Miami,VE,31.06,-97.06,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60131,COM-48003,SC,SC,Charleston,29401,Charleston,AE,32.115,-98.115,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60140,COM-48006,SC,SC,Charleston,29401,Charleston,AE,31.81,-97.81,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-60149,COM-48005,FL,FL,Miami-Dade,33101,Miami,VE,30.725,-96.725,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60150,COM-48002,TX,TX,Harris,77520,Baytown,AE,33.53,-99.53,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-60158,COM-48004,SC,SC,Charleston,29401,Charleston,AE,30.82,-96.82,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60167,COM-48001,SC,SC,Charleston,29401,Charleston,AE,32.045,-98.045,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60168,COM-48003,TX,TX,Galveston,77550,Galveston,AE,30.155,-96.155,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-60176,COM-48004,FL,FL,Miami-Dade,33101,Miami,A,29.32,-95.32,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60185,COM-48011,FL,FL,Miami-Dade,33101,Miami,VE,32.135,-98.135,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60194,COM-48002,SC,SC,Horry,29577,Myrtle Beach,X,32.15,-98.15,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-60195,COM-48008,TX,TX,Harris,77520,Baytown,AE,32.06,-98.06,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60196,COM-48001,TX,TX,Harris,77520,Baytown,X,32.485,-98.485,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60203,COM-48004,FL,FL,Miami-Dade,33101,Miami,VE,32.18,-98.18,Single Family Residence,2012-08-20,True,3,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60212,COM-48007,LA,LA,Jefferson,70001,Metairie,VE,31.675,-97.675,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60221,COM-48011,SC,SC,Charleston,29401,Charleston,X,30.215,-96.215,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-60222,COM-48009,FL,FL,Miami-Dade,33101,Miami,X,31.165,-97.165,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60223,COM-48009,TX,TX,Harris,77520,Baytown,AE,30.465,-96.465,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60230,COM-48000,LA,LA,Jefferson,70001,Metairie,VE,31.76,-97.76,Single Family Residence,2012-08-20,True,3,True,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60239,COM-48004,TX,TX,Galveston,77550,Galveston,A,30.92,-96.92,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-60248,COM-48006,FL,FL,Lee,33901,Fort Myers,VE,29.05,-95.05,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-60257,COM-48005,TX,TX,Harris,77520,Baytown,X,29.585,-95.585,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60258,COM-48008,NC,NC,Dare,27959,Nags Head,AE,31.52,-97.52,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-60266,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,31.66,-97.66,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60275,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,31.02,-97.02,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60284,COM-48003,NC,NC,New Hanover,28401,Wilmington,X,33.215,-99.215,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60285,COM-48008,FL,FL,Miami-Dade,33101,Miami,VE,33.64,-99.64,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60293,COM-48003,FL,FL,Lee,33901,Fort Myers,AE,29.835,-95.835,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-60302,COM-48008,FL,FL,Miami-Dade,33101,Miami,X,32.38,-98.38,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60311,COM-48002,TX,TX,Harris,77520,Baytown,AE,32.93,-98.93,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60312,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,31.38,-97.38,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60320,COM-48005,LA,LA,Jefferson,70001,Metairie,AE,30.345,-96.345,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60321,COM-48003,SC,SC,Charleston,29401,Charleston,VE,30.675,-96.675,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60329,COM-48000,TX,TX,Harris,77520,Baytown,X,31.9,-97.9,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60338,COM-48003,TX,TX,Harris,77520,Baytown,VE,32.115,-98.115,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60347,COM-48005,FL,FL,Miami-Dade,33101,Miami,X,32.285,-98.285,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60356,COM-48001,LA,LA,Jefferson,70001,Metairie,AE,29.645,-95.645,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60357,COM-48011,FL,FL,Miami-Dade,33101,Miami,X,31.955,-97.955,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60358,COM-48011,SC,SC,Charleston,29401,Charleston,X,32.775,-98.775,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60365,COM-48004,FL,FL,Miami-Dade,33101,Miami,VE,31.22,-97.22,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60366,COM-48006,TX,TX,Brazoria,77541,Freeport,VE,30.69,-96.69,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-60374,COM-48001,FL,FL,Miami-Dade,33101,Miami,A,30.365,-96.365,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60383,COM-48011,SC,SC,Horry,29577,Myrtle Beach,AE,33.635,-99.635,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-60392,COM-48010,TX,TX,Harris,77520,Baytown,AE,30.49,-96.49,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60401,COM-48005,SC,SC,Horry,29577,Myrtle Beach,AE,33.785,-99.785,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-60410,COM-48009,NC,NC,Dare,27959,Nags Head,VE,32.005,-98.005,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-60419,COM-48009,TX,TX,Brazoria,77541,Freeport,AE,31.625,-97.625,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-60428,COM-48004,NC,NC,Dare,27959,Nags Head,VE,31.8,-97.8,Single Family Residence,1995-06-15,True,4,True,True,False,True,GEO-NC-27959,ZIP-27959
+PROP-60437,COM-48000,FL,FL,Miami-Dade,33101,Miami,VE,32.16,-98.16,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-60446,COM-48000,TX,TX,Harris,77520,Baytown,B,33.16,-99.16,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60455,COM-48007,SC,SC,Charleston,29401,Charleston,VE,33.195,-99.195,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60464,COM-48006,LA,LA,Orleans,70112,New Orleans,X,29.23,-95.23,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-60473,COM-48010,FL,FL,Hillsborough,33602,Tampa,X,29.49,-95.49,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-60482,COM-48010,TX,TX,Galveston,77550,Galveston,VE,32.27,-98.27,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-60491,COM-48001,TX,TX,Harris,77520,Baytown,X,32.545,-98.545,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60500,COM-48006,SC,SC,Charleston,29401,Charleston,AE,32.77,-98.77,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60509,COM-48007,TX,TX,Harris,77520,Baytown,X,31.195,-97.195,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-60518,COM-48007,FL,FL,Miami-Dade,33101,Miami,VE,31.215,-97.215,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60519,COM-48001,SC,SC,Horry,29577,Myrtle Beach,VE,29.205,-95.205,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-60520,COM-48009,TX,TX,Brazoria,77541,Freeport,AE,29.105,-95.105,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-60527,COM-48011,TX,TX,Galveston,77550,Galveston,VE,32.655,-98.655,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-60536,COM-48010,TX,TX,Harris,77520,Baytown,AE,33.89,-99.89,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60545,COM-48010,TX,TX,Harris,77520,Baytown,AE,29.69,-95.69,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-60546,COM-48000,TX,TX,Galveston,77550,Galveston,A,32.42,-98.42,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-60554,COM-48008,NC,NC,New Hanover,28401,Wilmington,AE,31.62,-97.62,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60563,COM-48002,TX,TX,Harris,77520,Baytown,AE,31.41,-97.41,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60564,COM-48005,FL,FL,Lee,33901,Fort Myers,AE,31.605,-97.605,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-60572,COM-48004,NC,NC,New Hanover,28401,Wilmington,A,31.96,-97.96,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60581,COM-48004,SC,SC,Charleston,29401,Charleston,X,33.62,-99.62,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-60590,COM-48008,NC,NC,New Hanover,28401,Wilmington,A,33.58,-99.58,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60599,COM-48003,SC,SC,Charleston,29401,Charleston,AE,29.655,-95.655,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60608,COM-48002,SC,SC,Charleston,29401,Charleston,AE,32.23,-98.23,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60617,COM-48003,TX,TX,Galveston,77550,Galveston,VE,32.655,-98.655,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-60626,COM-48007,FL,FL,Hillsborough,33602,Tampa,B,29.655,-95.655,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-60635,COM-48009,LA,LA,Jefferson,70001,Metairie,AE,30.865,-96.865,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60644,COM-48000,TX,TX,Brazoria,77541,Freeport,X,31.68,-97.68,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-60653,COM-48001,TX,TX,Harris,77520,Baytown,AE,29.005,-95.005,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60662,COM-48000,TX,TX,Brazoria,77541,Freeport,AE,29.62,-95.62,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-60671,COM-48002,TX,TX,Brazoria,77541,Freeport,AE,29.89,-95.89,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-60680,COM-48000,TX,TX,Brazoria,77541,Freeport,AE,30.14,-96.14,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-60689,COM-48011,SC,SC,Charleston,29401,Charleston,AE,29.135,-95.135,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60698,COM-48003,FL,FL,Lee,33901,Fort Myers,AE,29.335,-95.335,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-60707,COM-48006,SC,SC,Horry,29577,Myrtle Beach,X,33.13,-99.13,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-60716,COM-48000,TX,TX,Harris,77520,Baytown,AE,33.58,-99.58,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60725,COM-48008,FL,FL,Hillsborough,33602,Tampa,AE,30.5,-96.5,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-60734,COM-48010,SC,SC,Charleston,29401,Charleston,AE,30.75,-96.75,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60735,COM-48000,LA,LA,Orleans,70112,New Orleans,B,29.46,-95.46,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-60743,COM-48002,FL,FL,Miami-Dade,33101,Miami,AE,30.53,-96.53,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60752,COM-48005,LA,LA,Orleans,70112,New Orleans,AE,32.545,-98.545,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-60761,COM-48004,NC,NC,New Hanover,28401,Wilmington,X,30.4,-96.4,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60770,COM-48002,LA,LA,Jefferson,70001,Metairie,X,29.75,-95.75,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60779,COM-48004,TX,TX,Harris,77520,Baytown,AE,32.44,-98.44,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60788,COM-48004,TX,TX,Galveston,77550,Galveston,VE,33.44,-99.44,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-60797,COM-48006,SC,SC,Horry,29577,Myrtle Beach,AE,30.07,-96.07,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-SC-29577,ZIP-29577
+PROP-60798,COM-48009,NC,NC,New Hanover,28401,Wilmington,AE,30.845,-96.845,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-60806,COM-48007,TX,TX,Harris,77520,Baytown,AE,33.575,-99.575,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60815,COM-48004,FL,FL,Hillsborough,33602,Tampa,X,31.32,-97.32,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-60824,COM-48011,NC,NC,New Hanover,28401,Wilmington,X,31.475,-97.475,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-60833,COM-48008,LA,LA,Orleans,70112,New Orleans,AE,30.64,-96.64,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-60834,COM-48001,TX,TX,Galveston,77550,Galveston,X,31.765,-97.765,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-60842,COM-48008,LA,LA,Orleans,70112,New Orleans,A,32.48,-98.48,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-60851,COM-48001,LA,LA,Jefferson,70001,Metairie,X,32.445,-98.445,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60860,COM-48004,FL,FL,Miami-Dade,33101,Miami,B,29.82,-95.82,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60869,COM-48011,FL,FL,Miami-Dade,33101,Miami,VE,30.175,-96.175,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60878,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,30.84,-96.84,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60887,COM-48001,FL,FL,Lee,33901,Fort Myers,VE,29.105,-95.105,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-60896,COM-48002,FL,FL,Hillsborough,33602,Tampa,AE,29.29,-95.29,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-60905,COM-48001,LA,LA,Jefferson,70001,Metairie,AE,32.905,-98.905,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-60914,COM-48004,FL,FL,Miami-Dade,33101,Miami,AE,30.46,-96.46,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-60923,COM-48002,SC,SC,Charleston,29401,Charleston,VE,30.27,-96.27,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-60932,COM-48011,TX,TX,Harris,77520,Baytown,AE,33.975,-99.975,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60941,COM-48010,FL,FL,Hillsborough,33602,Tampa,X,30.27,-96.27,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-60950,COM-48004,LA,LA,Orleans,70112,New Orleans,A,29.76,-95.76,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-60959,COM-48006,TX,TX,Harris,77520,Baytown,AE,30.81,-96.81,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-60968,COM-48000,FL,FL,Lee,33901,Fort Myers,X,29.1,-95.1,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-60977,COM-48009,TX,TX,Harris,77520,Baytown,B,32.645,-98.645,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-60986,COM-48011,NC,NC,New Hanover,28401,Wilmington,VE,32.995,-98.995,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-60995,COM-48007,FL,FL,Miami-Dade,33101,Miami,VE,29.415,-95.415,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61004,COM-48006,TX,TX,Harris,77520,Baytown,AE,32.41,-98.41,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-61005,COM-48005,FL,FL,Miami-Dade,33101,Miami,VE,32.085,-98.085,Single Family Residence,2012-08-20,True,2,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61013,COM-48002,FL,FL,Miami-Dade,33101,Miami,AE,33.73,-99.73,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61022,COM-48008,LA,LA,Orleans,70112,New Orleans,X,33.98,-99.98,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-61023,COM-48008,SC,SC,Horry,29577,Myrtle Beach,A,30.96,-96.96,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-61031,COM-48005,TX,TX,Galveston,77550,Galveston,AE,33.285,-99.285,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61040,COM-48001,TX,TX,Harris,77520,Baytown,X,33.365,-99.365,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61041,COM-48004,NC,NC,Dare,27959,Nags Head,VE,31.88,-97.88,Single Family Residence,1995-06-15,True,3,True,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-61042,COM-48004,TX,TX,Galveston,77550,Galveston,AE,32.72,-98.72,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61049,COM-48002,TX,TX,Harris,77520,Baytown,B,33.21,-99.21,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61058,COM-48005,TX,TX,Harris,77520,Baytown,A,32.505,-98.505,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61059,COM-48009,LA,LA,Jefferson,70001,Metairie,AE,29.845,-95.845,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61067,COM-48004,FL,FL,Hillsborough,33602,Tampa,X,30.64,-96.64,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-61076,COM-48007,TX,TX,Galveston,77550,Galveston,VE,32.595,-98.595,Single Family Residence,1995-06-15,True,2,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-61085,COM-48009,FL,FL,Miami-Dade,33101,Miami,VE,31.565,-97.565,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61094,COM-48000,FL,FL,Lee,33901,Fort Myers,AE,29.68,-95.68,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-61103,COM-48005,LA,LA,Orleans,70112,New Orleans,AE,33.445,-99.445,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-61112,COM-48001,TX,TX,Brazoria,77541,Freeport,VE,30.165,-96.165,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61121,COM-48006,LA,LA,Orleans,70112,New Orleans,A,31.79,-97.79,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-61130,COM-48006,TX,TX,Brazoria,77541,Freeport,AE,32.97,-98.97,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61139,COM-48008,TX,TX,Harris,77520,Baytown,AE,32.14,-98.14,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61148,COM-48001,SC,SC,Horry,29577,Myrtle Beach,AE,29.145,-95.145,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-61157,COM-48004,LA,LA,Jefferson,70001,Metairie,X,30.58,-96.58,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61166,COM-48009,TX,TX,Galveston,77550,Galveston,AE,32.285,-98.285,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61167,COM-48006,LA,LA,Jefferson,70001,Metairie,AE,30.97,-96.97,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61175,COM-48001,TX,TX,Harris,77520,Baytown,AE,32.205,-98.205,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61184,COM-48005,TX,TX,Galveston,77550,Galveston,A,31.725,-97.725,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61193,COM-48009,TX,TX,Galveston,77550,Galveston,AE,30.425,-96.425,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61202,COM-48004,LA,LA,Jefferson,70001,Metairie,AE,31.14,-97.14,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61211,COM-48004,TX,TX,Harris,77520,Baytown,X,30.12,-96.12,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61220,COM-48002,TX,TX,Brazoria,77541,Freeport,AE,32.01,-98.01,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61229,COM-48011,LA,LA,Jefferson,70001,Metairie,AE,29.375,-95.375,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-61238,COM-48008,LA,LA,Orleans,70112,New Orleans,X,32.12,-98.12,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-61247,COM-48000,FL,FL,Miami-Dade,33101,Miami,VE,32.98,-98.98,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61256,COM-48004,NC,NC,New Hanover,28401,Wilmington,X,32.14,-98.14,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-61265,COM-48009,FL,FL,Miami-Dade,33101,Miami,X,29.405,-95.405,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61274,COM-48003,TX,TX,Harris,77520,Baytown,A,29.735,-95.735,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-61283,COM-48000,NC,NC,Dare,27959,Nags Head,AE,30.82,-96.82,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-61284,COM-48006,TX,TX,Galveston,77550,Galveston,A,30.63,-96.63,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61292,COM-48002,TX,TX,Galveston,77550,Galveston,A,33.37,-99.37,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61301,COM-48006,FL,FL,Miami-Dade,33101,Miami,VE,30.53,-96.53,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61310,COM-48005,SC,SC,Charleston,29401,Charleston,AE,31.385,-97.385,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-61319,COM-48003,TX,TX,Galveston,77550,Galveston,VE,30.055,-96.055,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-61328,COM-48006,LA,LA,Orleans,70112,New Orleans,AE,29.03,-95.03,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-61337,COM-48007,FL,FL,Hillsborough,33602,Tampa,AE,29.935,-95.935,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-61346,COM-48005,FL,FL,Hillsborough,33602,Tampa,X,32.425,-98.425,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-61355,COM-48005,LA,LA,Orleans,70112,New Orleans,X,29.025,-95.025,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-61364,COM-48000,FL,FL,Hillsborough,33602,Tampa,X,29.24,-95.24,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-61373,COM-48000,LA,LA,Jefferson,70001,Metairie,A,29.32,-95.32,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61382,COM-48003,TX,TX,Harris,77520,Baytown,AE,33.195,-99.195,Single Family Residence,2012-08-20,True,4,True,True,True,True,GEO-TX-77520,ZIP-77520
+PROP-61391,COM-48008,FL,FL,Hillsborough,33602,Tampa,AE,29.58,-95.58,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-61400,COM-48001,SC,SC,Horry,29577,Myrtle Beach,B,32.585,-98.585,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-SC-29577,ZIP-29577
+PROP-61409,COM-48004,TX,TX,Brazoria,77541,Freeport,X,33.76,-99.76,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61418,COM-48011,FL,FL,Miami-Dade,33101,Miami,X,32.775,-98.775,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61427,COM-48007,FL,FL,Lee,33901,Fort Myers,X,32.555,-98.555,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-61436,COM-48008,LA,LA,Jefferson,70001,Metairie,X,30.42,-96.42,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61445,COM-48005,FL,FL,Hillsborough,33602,Tampa,X,31.185,-97.185,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-61446,COM-48004,LA,LA,Jefferson,70001,Metairie,X,31.7,-97.7,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61454,COM-48009,TX,TX,Galveston,77550,Galveston,VE,33.845,-99.845,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61463,COM-48002,TX,TX,Harris,77520,Baytown,VE,29.93,-95.93,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61472,COM-48000,TX,TX,Galveston,77550,Galveston,A,33.32,-99.32,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61481,COM-48003,NC,NC,Dare,27959,Nags Head,VE,32.475,-98.475,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-61490,COM-48008,NC,NC,Dare,27959,Nags Head,X,30.58,-96.58,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-61491,COM-48001,TX,TX,Brazoria,77541,Freeport,VE,29.365,-95.365,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61499,COM-48009,SC,SC,Horry,29577,Myrtle Beach,A,33.465,-99.465,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-61500,COM-48011,FL,FL,Lee,33901,Fort Myers,VE,31.675,-97.675,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-61501,COM-48009,TX,TX,Brazoria,77541,Freeport,AE,33.785,-99.785,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61508,COM-48006,FL,FL,Miami-Dade,33101,Miami,X,30.15,-96.15,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61517,COM-48006,LA,LA,Jefferson,70001,Metairie,AE,30.35,-96.35,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-61526,COM-48011,FL,FL,Miami-Dade,33101,Miami,X,31.815,-97.815,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61535,COM-48003,NC,NC,New Hanover,28401,Wilmington,X,32.435,-98.435,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-61536,COM-48005,FL,FL,Miami-Dade,33101,Miami,VE,33.185,-99.185,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61544,COM-48008,TX,TX,Harris,77520,Baytown,X,30.2,-96.2,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61553,COM-48006,SC,SC,Horry,29577,Myrtle Beach,AE,30.03,-96.03,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-SC-29577,ZIP-29577
+PROP-61562,COM-48001,SC,SC,Charleston,29401,Charleston,X,33.765,-99.765,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-61571,COM-48002,FL,FL,Lee,33901,Fort Myers,B,31.61,-97.61,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-61580,COM-48006,TX,TX,Brazoria,77541,Freeport,AE,33.39,-99.39,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-61589,COM-48006,FL,FL,Miami-Dade,33101,Miami,AE,30.07,-96.07,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61598,COM-48001,LA,LA,Jefferson,70001,Metairie,X,32.065,-98.065,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-61599,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,30.66,-96.66,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61600,COM-48003,TX,TX,Brazoria,77541,Freeport,X,30.015,-96.015,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61607,COM-48003,FL,FL,Lee,33901,Fort Myers,AE,29.035,-95.035,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-61616,COM-48004,FL,FL,Miami-Dade,33101,Miami,X,29.6,-95.6,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61625,COM-48002,FL,FL,Miami-Dade,33101,Miami,X,29.93,-95.93,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61634,COM-48003,FL,FL,Lee,33901,Fort Myers,A,32.995,-98.995,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-61643,COM-48007,SC,SC,Horry,29577,Myrtle Beach,AE,31.495,-97.495,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-61652,COM-48011,LA,LA,Jefferson,70001,Metairie,X,31.395,-97.395,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61661,COM-48008,TX,TX,Harris,77520,Baytown,AE,31.2,-97.2,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61670,COM-48006,TX,TX,Harris,77520,Baytown,VE,30.39,-96.39,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-61679,COM-48001,TX,TX,Galveston,77550,Galveston,A,31.145,-97.145,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61688,COM-48000,LA,LA,Jefferson,70001,Metairie,AE,32.04,-98.04,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61697,COM-48001,FL,FL,Lee,33901,Fort Myers,VE,32.325,-98.325,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-61706,COM-48001,NC,NC,New Hanover,28401,Wilmington,AE,30.245,-96.245,Single Family Residence,1995-06-15,True,3,True,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-61715,COM-48010,TX,TX,Harris,77520,Baytown,X,30.53,-96.53,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61724,COM-48000,TX,TX,Harris,77520,Baytown,AE,33.32,-99.32,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-61725,COM-48010,SC,SC,Charleston,29401,Charleston,A,33.25,-99.25,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-61733,COM-48009,LA,LA,Orleans,70112,New Orleans,A,29.145,-95.145,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-61742,COM-48002,FL,FL,Miami-Dade,33101,Miami,X,30.67,-96.67,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61751,COM-48004,TX,TX,Brazoria,77541,Freeport,X,31.3,-97.3,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61760,COM-48002,TX,TX,Brazoria,77541,Freeport,AE,30.05,-96.05,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61769,COM-48002,FL,FL,Lee,33901,Fort Myers,VE,32.87,-98.87,Single Family Residence,1995-06-15,True,4,True,True,True,True,GEO-FL-33901,ZIP-33901
+PROP-61778,COM-48007,TX,TX,Brazoria,77541,Freeport,B,29.875,-95.875,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61787,COM-48003,FL,FL,Miami-Dade,33101,Miami,AE,30.115,-96.115,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61796,COM-48004,TX,TX,Brazoria,77541,Freeport,B,32.44,-98.44,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-61797,COM-48003,NC,NC,New Hanover,28401,Wilmington,AE,29.315,-95.315,Single Family Residence,2012-08-20,True,3,True,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-61805,COM-48003,LA,LA,Jefferson,70001,Metairie,AE,29.715,-95.715,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61814,COM-48008,FL,FL,Miami-Dade,33101,Miami,A,31.98,-97.98,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-61823,COM-48011,TX,TX,Harris,77520,Baytown,AE,33.395,-99.395,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61824,COM-48002,TX,TX,Galveston,77550,Galveston,VE,29.47,-95.47,Single Family Residence,2012-08-20,True,2,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61832,COM-48011,FL,FL,Miami-Dade,33101,Miami,AE,31.035,-97.035,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61841,COM-48002,NC,NC,New Hanover,28401,Wilmington,X,29.87,-95.87,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-61850,COM-48003,SC,SC,Horry,29577,Myrtle Beach,VE,33.075,-99.075,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-61859,COM-48002,TX,TX,Galveston,77550,Galveston,X,30.71,-96.71,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61868,COM-48005,LA,LA,Jefferson,70001,Metairie,AE,31.525,-97.525,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61869,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,30.385,-96.385,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61870,COM-48000,NC,NC,Dare,27959,Nags Head,AE,33.3,-99.3,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-61877,COM-48000,TX,TX,Brazoria,77541,Freeport,A,29.08,-95.08,Single Family Residence,2012-08-20,True,3,True,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-61878,COM-48000,NC,NC,Dare,27959,Nags Head,VE,29.82,-95.82,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-61886,COM-48007,FL,FL,Miami-Dade,33101,Miami,VE,32.455,-98.455,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-61895,COM-48002,NC,NC,Dare,27959,Nags Head,VE,33.77,-99.77,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-61904,COM-48008,SC,SC,Charleston,29401,Charleston,X,32.36,-98.36,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-61913,COM-48008,NC,NC,Dare,27959,Nags Head,VE,32.24,-98.24,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-61922,COM-48001,TX,TX,Galveston,77550,Galveston,AE,32.725,-98.725,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-61931,COM-48002,SC,SC,Charleston,29401,Charleston,X,33.89,-99.89,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-61940,COM-48007,TX,TX,Harris,77520,Baytown,AE,29.455,-95.455,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-61941,COM-48011,LA,LA,Jefferson,70001,Metairie,AE,33.935,-99.935,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-61949,COM-48004,TX,TX,Galveston,77550,Galveston,B,30.1,-96.1,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-61958,COM-48002,NC,NC,New Hanover,28401,Wilmington,VE,31.97,-97.97,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-61959,COM-48001,FL,FL,Lee,33901,Fort Myers,B,30.865,-96.865,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-61967,COM-48010,NC,NC,New Hanover,28401,Wilmington,AE,32.25,-98.25,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-61976,COM-48009,NC,NC,New Hanover,28401,Wilmington,B,30.445,-96.445,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-61985,COM-48010,NC,NC,Dare,27959,Nags Head,A,31.21,-97.21,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-61986,COM-48007,NC,NC,New Hanover,28401,Wilmington,X,31.135,-97.135,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-61994,COM-48001,TX,TX,Galveston,77550,Galveston,B,32.545,-98.545,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62003,COM-48002,SC,SC,Horry,29577,Myrtle Beach,AE,32.43,-98.43,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-62012,COM-48001,TX,TX,Harris,77520,Baytown,AE,33.105,-99.105,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62021,COM-48009,FL,FL,Lee,33901,Fort Myers,B,29.825,-95.825,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62030,COM-48003,NC,NC,New Hanover,28401,Wilmington,AE,32.855,-98.855,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62039,COM-48011,LA,LA,Orleans,70112,New Orleans,AE,31.175,-97.175,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-62048,COM-48011,NC,NC,New Hanover,28401,Wilmington,X,31.855,-97.855,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62049,COM-48007,TX,TX,Harris,77520,Baytown,X,30.675,-96.675,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-62050,COM-48006,FL,FL,Hillsborough,33602,Tampa,AE,29.85,-95.85,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-62057,COM-48010,FL,FL,Miami-Dade,33101,Miami,B,29.65,-95.65,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-62066,COM-48008,TX,TX,Brazoria,77541,Freeport,AE,30.68,-96.68,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-62075,COM-48000,FL,FL,Miami-Dade,33101,Miami,VE,29.8,-95.8,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62084,COM-48002,TX,TX,Galveston,77550,Galveston,AE,31.61,-97.61,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-62093,COM-48004,FL,FL,Miami-Dade,33101,Miami,AE,33.0,-99.0,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-62102,COM-48000,SC,SC,Horry,29577,Myrtle Beach,X,32.82,-98.82,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-62111,COM-48010,TX,TX,Galveston,77550,Galveston,VE,32.51,-98.51,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-62120,COM-48001,LA,LA,Jefferson,70001,Metairie,B,30.645,-96.645,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62129,COM-48006,FL,FL,Miami-Dade,33101,Miami,VE,31.91,-97.91,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62138,COM-48011,LA,LA,Orleans,70112,New Orleans,VE,32.255,-98.255,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-62147,COM-48000,TX,TX,Harris,77520,Baytown,AE,30.38,-96.38,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62156,COM-48000,TX,TX,Harris,77520,Baytown,A,31.86,-97.86,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62165,COM-48001,TX,TX,Galveston,77550,Galveston,VE,31.205,-97.205,Single Family Residence,1995-06-15,True,2,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-62174,COM-48009,FL,FL,Miami-Dade,33101,Miami,VE,29.405,-95.405,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-62175,COM-48010,FL,FL,Hillsborough,33602,Tampa,AE,32.45,-98.45,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-62176,COM-48008,TX,TX,Harris,77520,Baytown,AE,33.72,-99.72,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62183,COM-48002,TX,TX,Harris,77520,Baytown,X,30.47,-96.47,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62192,COM-48005,TX,TX,Harris,77520,Baytown,X,32.105,-98.105,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62193,COM-48005,TX,TX,Harris,77520,Baytown,A,29.965,-95.965,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62201,COM-48000,FL,FL,Lee,33901,Fort Myers,X,33.5,-99.5,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62210,COM-48001,TX,TX,Galveston,77550,Galveston,VE,30.525,-96.525,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62219,COM-48010,FL,FL,Miami-Dade,33101,Miami,X,33.43,-99.43,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62220,COM-48000,LA,LA,Jefferson,70001,Metairie,X,31.22,-97.22,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62228,COM-48005,LA,LA,Orleans,70112,New Orleans,AE,29.845,-95.845,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-62237,COM-48003,FL,FL,Miami-Dade,33101,Miami,X,33.435,-99.435,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62246,COM-48009,LA,LA,Orleans,70112,New Orleans,X,29.445,-95.445,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-62255,COM-48005,TX,TX,Harris,77520,Baytown,AE,29.765,-95.765,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62264,COM-48001,FL,FL,Miami-Dade,33101,Miami,X,29.905,-95.905,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62273,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,33.305,-99.305,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62282,COM-48006,FL,FL,Miami-Dade,33101,Miami,X,30.29,-96.29,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62291,COM-48002,TX,TX,Harris,77520,Baytown,AE,31.59,-97.59,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62300,COM-48010,TX,TX,Galveston,77550,Galveston,AE,33.47,-99.47,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-62301,COM-48004,FL,FL,Hillsborough,33602,Tampa,AE,31.96,-97.96,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-62309,COM-48001,TX,TX,Harris,77520,Baytown,VE,29.085,-95.085,Single Family Residence,1995-06-15,True,3,True,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62318,COM-48004,FL,FL,Lee,33901,Fort Myers,X,30.62,-96.62,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62327,COM-48003,FL,FL,Lee,33901,Fort Myers,VE,32.095,-98.095,Single Family Residence,2012-08-20,True,1,False,False,True,False,GEO-FL-33901,ZIP-33901
+PROP-62328,COM-48010,SC,SC,Charleston,29401,Charleston,VE,29.97,-95.97,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-62336,COM-48000,FL,FL,Lee,33901,Fort Myers,AE,30.78,-96.78,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62345,COM-48000,LA,LA,Jefferson,70001,Metairie,VE,32.3,-98.3,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62354,COM-48001,FL,FL,Miami-Dade,33101,Miami,X,29.025,-95.025,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62363,COM-48011,FL,FL,Miami-Dade,33101,Miami,B,31.515,-97.515,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62364,COM-48004,NC,NC,New Hanover,28401,Wilmington,AE,30.1,-96.1,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62372,COM-48006,TX,TX,Galveston,77550,Galveston,VE,31.23,-97.23,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-62381,COM-48009,SC,SC,Charleston,29401,Charleston,VE,31.745,-97.745,Single Family Residence,1995-06-15,True,4,True,True,False,True,GEO-SC-29401,ZIP-29401
+PROP-62390,COM-48002,FL,FL,Lee,33901,Fort Myers,VE,30.65,-96.65,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62399,COM-48003,LA,LA,Jefferson,70001,Metairie,X,29.295,-95.295,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62408,COM-48007,TX,TX,Harris,77520,Baytown,AE,33.595,-99.595,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62409,COM-48009,FL,FL,Lee,33901,Fort Myers,VE,33.365,-99.365,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62417,COM-48007,FL,FL,Miami-Dade,33101,Miami,X,31.675,-97.675,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62418,COM-48011,FL,FL,Lee,33901,Fort Myers,AE,29.455,-95.455,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62426,COM-48009,FL,FL,Hillsborough,33602,Tampa,AE,30.765,-96.765,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-62435,COM-48009,SC,SC,Charleston,29401,Charleston,AE,29.385,-95.385,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-62444,COM-48000,TX,TX,Harris,77520,Baytown,AE,31.06,-97.06,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-62453,COM-48004,LA,LA,Jefferson,70001,Metairie,X,29.2,-95.2,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62462,COM-48001,LA,LA,Jefferson,70001,Metairie,AE,31.365,-97.365,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62471,COM-48011,FL,FL,Miami-Dade,33101,Miami,AE,31.075,-97.075,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62480,COM-48010,TX,TX,Harris,77520,Baytown,X,31.29,-97.29,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62489,COM-48005,LA,LA,Orleans,70112,New Orleans,B,32.065,-98.065,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-62498,COM-48000,LA,LA,Orleans,70112,New Orleans,A,30.14,-96.14,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-62507,COM-48003,TX,TX,Harris,77520,Baytown,VE,29.375,-95.375,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62516,COM-48009,SC,SC,Charleston,29401,Charleston,B,32.645,-98.645,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-62517,COM-48008,FL,FL,Miami-Dade,33101,Miami,VE,29.4,-95.4,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-62525,COM-48004,TX,TX,Harris,77520,Baytown,B,32.82,-98.82,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62534,COM-48003,FL,FL,Lee,33901,Fort Myers,AE,30.875,-96.875,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-62535,COM-48009,TX,TX,Harris,77520,Baytown,X,29.385,-95.385,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62543,COM-48011,SC,SC,Charleston,29401,Charleston,VE,33.775,-99.775,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-62544,COM-48009,TX,TX,Galveston,77550,Galveston,AE,31.305,-97.305,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62552,COM-48002,LA,LA,Jefferson,70001,Metairie,X,30.89,-96.89,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62561,COM-48007,TX,TX,Harris,77520,Baytown,AE,31.775,-97.775,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62570,COM-48001,TX,TX,Harris,77520,Baytown,X,32.545,-98.545,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62571,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,29.78,-95.78,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62579,COM-48002,FL,FL,Hillsborough,33602,Tampa,AE,30.55,-96.55,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-62588,COM-48006,TX,TX,Harris,77520,Baytown,AE,29.01,-95.01,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62597,COM-48004,LA,LA,Jefferson,70001,Metairie,X,31.46,-97.46,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62598,COM-48000,FL,FL,Hillsborough,33602,Tampa,AE,31.06,-97.06,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-62606,COM-48005,FL,FL,Lee,33901,Fort Myers,A,32.865,-98.865,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-62615,COM-48002,TX,TX,Harris,77520,Baytown,X,32.61,-98.61,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-62624,COM-48011,SC,SC,Horry,29577,Myrtle Beach,X,33.275,-99.275,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-62633,COM-48008,TX,TX,Galveston,77550,Galveston,A,31.36,-97.36,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62642,COM-48009,TX,TX,Harris,77520,Baytown,X,33.145,-99.145,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62643,COM-48004,SC,SC,Charleston,29401,Charleston,B,31.3,-97.3,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-62651,COM-48003,NC,NC,New Hanover,28401,Wilmington,AE,30.915,-96.915,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62660,COM-48004,TX,TX,Brazoria,77541,Freeport,X,30.84,-96.84,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-62669,COM-48006,LA,LA,Orleans,70112,New Orleans,AE,31.61,-97.61,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-62670,COM-48010,FL,FL,Hillsborough,33602,Tampa,AE,31.43,-97.43,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-62671,COM-48002,NC,NC,Dare,27959,Nags Head,VE,31.67,-97.67,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-62678,COM-48003,NC,NC,New Hanover,28401,Wilmington,X,32.415,-98.415,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62679,COM-48011,TX,TX,Harris,77520,Baytown,X,31.895,-97.895,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62687,COM-48007,FL,FL,Lee,33901,Fort Myers,VE,31.035,-97.035,Single Family Residence,1995-06-15,True,3,True,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62688,COM-48001,FL,FL,Hillsborough,33602,Tampa,VE,31.485,-97.485,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-62696,COM-48001,TX,TX,Harris,77520,Baytown,X,30.205,-96.205,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62705,COM-48009,TX,TX,Harris,77520,Baytown,VE,30.365,-96.365,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62714,COM-48009,TX,TX,Galveston,77550,Galveston,VE,33.745,-99.745,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62723,COM-48005,NC,NC,New Hanover,28401,Wilmington,X,32.805,-98.805,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62732,COM-48007,FL,FL,Lee,33901,Fort Myers,AE,32.775,-98.775,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-62741,COM-48001,LA,LA,Orleans,70112,New Orleans,AE,33.225,-99.225,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-62750,COM-48001,LA,LA,Jefferson,70001,Metairie,AE,32.645,-98.645,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-62759,COM-48005,TX,TX,Harris,77520,Baytown,AE,30.385,-96.385,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62768,COM-48009,FL,FL,Miami-Dade,33101,Miami,X,32.305,-98.305,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62777,COM-48011,TX,TX,Galveston,77550,Galveston,AE,30.415,-96.415,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62778,COM-48002,SC,SC,Charleston,29401,Charleston,VE,31.55,-97.55,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-62786,COM-48005,LA,LA,Jefferson,70001,Metairie,AE,33.705,-99.705,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-62795,COM-48005,SC,SC,Charleston,29401,Charleston,VE,29.645,-95.645,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-62804,COM-48011,FL,FL,Miami-Dade,33101,Miami,AE,33.455,-99.455,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62813,COM-48006,FL,FL,Hillsborough,33602,Tampa,X,32.59,-98.59,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-62822,COM-48009,TX,TX,Harris,77520,Baytown,AE,30.385,-96.385,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62823,COM-48009,TX,TX,Harris,77520,Baytown,VE,29.165,-95.165,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62831,COM-48009,LA,LA,Orleans,70112,New Orleans,AE,33.405,-99.405,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-62840,COM-48002,TX,TX,Harris,77520,Baytown,AE,29.43,-95.43,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62849,COM-48003,TX,TX,Galveston,77550,Galveston,VE,31.055,-97.055,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62858,COM-48003,FL,FL,Lee,33901,Fort Myers,AE,29.095,-95.095,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-62867,COM-48011,FL,FL,Miami-Dade,33101,Miami,VE,33.135,-99.135,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62876,COM-48000,TX,TX,Galveston,77550,Galveston,A,31.7,-97.7,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62885,COM-48004,TX,TX,Brazoria,77541,Freeport,AE,32.2,-98.2,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-62894,COM-48010,TX,TX,Harris,77520,Baytown,AE,31.45,-97.45,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62903,COM-48010,LA,LA,Jefferson,70001,Metairie,AE,31.21,-97.21,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-62912,COM-48003,FL,FL,Miami-Dade,33101,Miami,X,32.975,-98.975,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-62921,COM-48002,TX,TX,Galveston,77550,Galveston,VE,30.49,-96.49,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-62930,COM-48001,NC,NC,New Hanover,28401,Wilmington,X,30.765,-96.765,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62939,COM-48005,TX,TX,Galveston,77550,Galveston,VE,33.185,-99.185,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62948,COM-48003,TX,TX,Galveston,77550,Galveston,X,32.915,-98.915,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-62957,COM-48009,FL,FL,Miami-Dade,33101,Miami,VE,33.605,-99.605,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-62966,COM-48007,NC,NC,New Hanover,28401,Wilmington,X,32.515,-98.515,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-62975,COM-48004,SC,SC,Horry,29577,Myrtle Beach,A,32.54,-98.54,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-62984,COM-48010,FL,FL,Hillsborough,33602,Tampa,VE,31.89,-97.89,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-62985,COM-48009,TX,TX,Harris,77520,Baytown,A,31.465,-97.465,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-62993,COM-48005,FL,FL,Miami-Dade,33101,Miami,X,29.725,-95.725,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63002,COM-48009,TX,TX,Harris,77520,Baytown,AE,31.425,-97.425,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63011,COM-48003,FL,FL,Lee,33901,Fort Myers,AE,31.635,-97.635,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63020,COM-48000,FL,FL,Miami-Dade,33101,Miami,X,32.62,-98.62,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63029,COM-48005,LA,LA,Orleans,70112,New Orleans,A,30.585,-96.585,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-63030,COM-48007,NC,NC,Dare,27959,Nags Head,B,32.055,-98.055,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-63038,COM-48000,TX,TX,Galveston,77550,Galveston,AE,31.56,-97.56,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63039,COM-48010,SC,SC,Charleston,29401,Charleston,AE,31.03,-97.03,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63047,COM-48010,FL,FL,Lee,33901,Fort Myers,X,31.89,-97.89,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-63056,COM-48006,FL,FL,Miami-Dade,33101,Miami,AE,31.11,-97.11,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63065,COM-48008,TX,TX,Galveston,77550,Galveston,A,31.44,-97.44,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63074,COM-48000,TX,TX,Galveston,77550,Galveston,AE,32.88,-98.88,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-63083,COM-48010,SC,SC,Charleston,29401,Charleston,AE,31.99,-97.99,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63092,COM-48005,TX,TX,Harris,77520,Baytown,AE,31.105,-97.105,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63101,COM-48005,FL,FL,Miami-Dade,33101,Miami,VE,31.765,-97.765,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63102,COM-48001,TX,TX,Harris,77520,Baytown,VE,33.325,-99.325,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63110,COM-48003,FL,FL,Miami-Dade,33101,Miami,B,29.315,-95.315,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63119,COM-48011,NC,NC,New Hanover,28401,Wilmington,AE,32.755,-98.755,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63128,COM-48009,NC,NC,New Hanover,28401,Wilmington,B,32.225,-98.225,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63137,COM-48009,TX,TX,Brazoria,77541,Freeport,AE,33.445,-99.445,Single Family Residence,2012-08-20,True,2,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-63146,COM-48008,TX,TX,Harris,77520,Baytown,B,32.36,-98.36,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63155,COM-48004,NC,NC,New Hanover,28401,Wilmington,AE,31.68,-97.68,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63164,COM-48005,FL,FL,Lee,33901,Fort Myers,VE,32.565,-98.565,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63165,COM-48006,FL,FL,Lee,33901,Fort Myers,X,31.09,-97.09,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-63173,COM-48011,FL,FL,Hillsborough,33602,Tampa,AE,31.655,-97.655,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-63182,COM-48005,FL,FL,Miami-Dade,33101,Miami,X,30.365,-96.365,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63191,COM-48006,TX,TX,Galveston,77550,Galveston,AE,33.87,-99.87,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63192,COM-48009,FL,FL,Lee,33901,Fort Myers,AE,29.345,-95.345,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63200,COM-48011,LA,LA,Jefferson,70001,Metairie,AE,30.235,-96.235,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63201,COM-48001,FL,FL,Miami-Dade,33101,Miami,AE,32.825,-98.825,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63202,COM-48000,NC,NC,New Hanover,28401,Wilmington,VE,29.8,-95.8,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63209,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,29.185,-95.185,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63218,COM-48008,FL,FL,Miami-Dade,33101,Miami,VE,33.1,-99.1,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63219,COM-48001,LA,LA,Jefferson,70001,Metairie,AE,33.625,-99.625,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-63227,COM-48001,SC,SC,Charleston,29401,Charleston,AE,31.185,-97.185,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63228,COM-48009,TX,TX,Brazoria,77541,Freeport,AE,29.705,-95.705,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-63229,COM-48001,SC,SC,Charleston,29401,Charleston,AE,30.625,-96.625,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63236,COM-48009,FL,FL,Hillsborough,33602,Tampa,AE,30.785,-96.785,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-63245,COM-48002,NC,NC,Dare,27959,Nags Head,VE,29.97,-95.97,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-63254,COM-48000,SC,SC,Horry,29577,Myrtle Beach,X,29.66,-95.66,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-SC-29577,ZIP-29577
+PROP-63263,COM-48011,TX,TX,Harris,77520,Baytown,AE,31.935,-97.935,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-63264,COM-48000,TX,TX,Harris,77520,Baytown,B,30.92,-96.92,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63272,COM-48003,NC,NC,New Hanover,28401,Wilmington,B,32.915,-98.915,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-63281,COM-48003,NC,NC,New Hanover,28401,Wilmington,VE,33.035,-99.035,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63290,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,33.04,-99.04,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-63291,COM-48004,FL,FL,Lee,33901,Fort Myers,VE,29.34,-95.34,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63299,COM-48001,SC,SC,Charleston,29401,Charleston,X,31.745,-97.745,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63308,COM-48003,LA,LA,Jefferson,70001,Metairie,AE,30.575,-96.575,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63309,COM-48000,LA,LA,Orleans,70112,New Orleans,AE,32.38,-98.38,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-63317,COM-48009,SC,SC,Horry,29577,Myrtle Beach,VE,29.345,-95.345,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63318,COM-48000,TX,TX,Brazoria,77541,Freeport,A,33.18,-99.18,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-63319,COM-48006,NC,NC,New Hanover,28401,Wilmington,X,29.81,-95.81,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-63326,COM-48007,TX,TX,Galveston,77550,Galveston,A,30.155,-96.155,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63327,COM-48008,FL,FL,Lee,33901,Fort Myers,AE,30.72,-96.72,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63335,COM-48007,SC,SC,Horry,29577,Myrtle Beach,AE,31.675,-97.675,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-SC-29577,ZIP-29577
+PROP-63344,COM-48005,TX,TX,Harris,77520,Baytown,AE,30.565,-96.565,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63345,COM-48009,LA,LA,Jefferson,70001,Metairie,X,30.285,-96.285,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63353,COM-48008,FL,FL,Miami-Dade,33101,Miami,VE,32.84,-98.84,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63362,COM-48002,SC,SC,Charleston,29401,Charleston,AE,29.81,-95.81,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63371,COM-48002,TX,TX,Harris,77520,Baytown,X,30.77,-96.77,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63380,COM-48000,FL,FL,Miami-Dade,33101,Miami,VE,33.22,-99.22,Single Family Residence,1995-06-15,True,2,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63389,COM-48010,NC,NC,Dare,27959,Nags Head,VE,32.71,-98.71,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-63398,COM-48000,NC,NC,Dare,27959,Nags Head,X,31.8,-97.8,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-63407,COM-48006,TX,TX,Harris,77520,Baytown,AE,29.71,-95.71,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63416,COM-48006,FL,FL,Hillsborough,33602,Tampa,VE,30.93,-96.93,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-63425,COM-48006,FL,FL,Miami-Dade,33101,Miami,X,32.47,-98.47,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63434,COM-48010,NC,NC,Dare,27959,Nags Head,AE,32.51,-98.51,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-63435,COM-48003,FL,FL,Lee,33901,Fort Myers,A,32.855,-98.855,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63443,COM-48007,TX,TX,Harris,77520,Baytown,X,32.015,-98.015,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63452,COM-48011,FL,FL,Hillsborough,33602,Tampa,AE,29.235,-95.235,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-63461,COM-48005,SC,SC,Horry,29577,Myrtle Beach,X,32.225,-98.225,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63470,COM-48005,LA,LA,Jefferson,70001,Metairie,AE,32.165,-98.165,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63479,COM-48010,LA,LA,Jefferson,70001,Metairie,AE,31.29,-97.29,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63488,COM-48011,FL,FL,Miami-Dade,33101,Miami,AE,30.135,-96.135,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-63497,COM-48001,LA,LA,Jefferson,70001,Metairie,VE,29.725,-95.725,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-63506,COM-48000,TX,TX,Harris,77520,Baytown,X,33.06,-99.06,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63515,COM-48010,TX,TX,Brazoria,77541,Freeport,X,32.15,-98.15,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-63524,COM-48007,SC,SC,Horry,29577,Myrtle Beach,VE,33.015,-99.015,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63525,COM-48006,FL,FL,Miami-Dade,33101,Miami,VE,32.85,-98.85,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63533,COM-48007,LA,LA,Jefferson,70001,Metairie,A,30.475,-96.475,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63542,COM-48006,FL,FL,Miami-Dade,33101,Miami,AE,31.21,-97.21,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63551,COM-48001,FL,FL,Hillsborough,33602,Tampa,VE,31.285,-97.285,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-63560,COM-48005,NC,NC,New Hanover,28401,Wilmington,X,29.185,-95.185,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63569,COM-48003,TX,TX,Harris,77520,Baytown,X,32.635,-98.635,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-63578,COM-48008,SC,SC,Charleston,29401,Charleston,A,33.04,-99.04,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63587,COM-48000,SC,SC,Horry,29577,Myrtle Beach,AE,31.28,-97.28,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63596,COM-48006,TX,TX,Harris,77520,Baytown,AE,29.93,-95.93,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63605,COM-48007,TX,TX,Harris,77520,Baytown,AE,30.335,-96.335,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63606,COM-48009,FL,FL,Hillsborough,33602,Tampa,A,30.565,-96.565,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-63607,COM-48009,LA,LA,Jefferson,70001,Metairie,AE,32.545,-98.545,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-63614,COM-48005,NC,NC,New Hanover,28401,Wilmington,A,31.305,-97.305,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-63623,COM-48006,FL,FL,Miami-Dade,33101,Miami,VE,32.43,-98.43,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63632,COM-48009,TX,TX,Brazoria,77541,Freeport,X,31.965,-97.965,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-63641,COM-48001,FL,FL,Miami-Dade,33101,Miami,A,32.505,-98.505,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63650,COM-48000,TX,TX,Galveston,77550,Galveston,A,29.3,-95.3,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63659,COM-48002,TX,TX,Harris,77520,Baytown,VE,31.45,-97.45,Single Family Residence,1995-06-15,True,1,False,False,True,False,GEO-TX-77520,ZIP-77520
+PROP-63668,COM-48011,FL,FL,Lee,33901,Fort Myers,B,31.015,-97.015,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63669,COM-48010,NC,NC,Dare,27959,Nags Head,X,29.09,-95.09,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-63677,COM-48006,LA,LA,Orleans,70112,New Orleans,AE,33.49,-99.49,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-63678,COM-48007,FL,FL,Miami-Dade,33101,Miami,X,33.375,-99.375,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63686,COM-48007,NC,NC,New Hanover,28401,Wilmington,X,30.675,-96.675,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63695,COM-48000,SC,SC,Charleston,29401,Charleston,AE,30.36,-96.36,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63704,COM-48000,TX,TX,Harris,77520,Baytown,A,30.54,-96.54,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-63713,COM-48009,FL,FL,Miami-Dade,33101,Miami,X,31.205,-97.205,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63722,COM-48001,FL,FL,Miami-Dade,33101,Miami,VE,33.865,-99.865,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63731,COM-48003,FL,FL,Lee,33901,Fort Myers,AE,30.115,-96.115,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-63740,COM-48006,LA,LA,Jefferson,70001,Metairie,AE,33.03,-99.03,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63749,COM-48011,TX,TX,Galveston,77550,Galveston,A,33.755,-99.755,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-63750,COM-48002,TX,TX,Harris,77520,Baytown,AE,29.27,-95.27,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-63758,COM-48001,TX,TX,Galveston,77550,Galveston,X,33.505,-99.505,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63767,COM-48002,TX,TX,Harris,77520,Baytown,X,33.45,-99.45,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63776,COM-48000,FL,FL,Miami-Dade,33101,Miami,AE,31.66,-97.66,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63785,COM-48009,NC,NC,Dare,27959,Nags Head,VE,33.445,-99.445,Single Family Residence,2012-08-20,True,3,True,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-63794,COM-48007,TX,TX,Harris,77520,Baytown,A,33.955,-99.955,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-63803,COM-48008,FL,FL,Hillsborough,33602,Tampa,AE,32.84,-98.84,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-63804,COM-48009,SC,SC,Charleston,29401,Charleston,AE,30.485,-96.485,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63812,COM-48002,LA,LA,Jefferson,70001,Metairie,AE,30.51,-96.51,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63821,COM-48009,SC,SC,Charleston,29401,Charleston,AE,29.845,-95.845,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-63822,COM-48002,NC,NC,Dare,27959,Nags Head,AE,32.25,-98.25,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-63830,COM-48009,FL,FL,Miami-Dade,33101,Miami,VE,31.305,-97.305,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63831,COM-48010,LA,LA,Orleans,70112,New Orleans,B,30.27,-96.27,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-63839,COM-48003,SC,SC,Horry,29577,Myrtle Beach,A,30.375,-96.375,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63848,COM-48003,SC,SC,Charleston,29401,Charleston,B,30.315,-96.315,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63857,COM-48002,SC,SC,Horry,29577,Myrtle Beach,B,33.49,-99.49,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63866,COM-48003,TX,TX,Galveston,77550,Galveston,VE,32.175,-98.175,Single Family Residence,1995-06-15,True,3,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63875,COM-48008,LA,LA,Orleans,70112,New Orleans,X,30.36,-96.36,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-63884,COM-48009,NC,NC,Dare,27959,Nags Head,X,33.305,-99.305,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-63885,COM-48009,SC,SC,Horry,29577,Myrtle Beach,AE,33.405,-99.405,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63893,COM-48002,FL,FL,Hillsborough,33602,Tampa,X,29.47,-95.47,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-63894,COM-48000,FL,FL,Lee,33901,Fort Myers,A,31.6,-97.6,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-63902,COM-48002,LA,LA,Jefferson,70001,Metairie,X,33.15,-99.15,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-63911,COM-48006,TX,TX,Galveston,77550,Galveston,VE,32.83,-98.83,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-63920,COM-48004,NC,NC,New Hanover,28401,Wilmington,AE,33.26,-99.26,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63929,COM-48009,NC,NC,New Hanover,28401,Wilmington,AE,30.625,-96.625,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-63938,COM-48001,LA,LA,Jefferson,70001,Metairie,X,30.245,-96.245,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63939,COM-48011,LA,LA,Orleans,70112,New Orleans,A,31.275,-97.275,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-63940,COM-48007,SC,SC,Charleston,29401,Charleston,AE,29.495,-95.495,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-63947,COM-48004,SC,SC,Horry,29577,Myrtle Beach,AE,31.3,-97.3,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63956,COM-48003,LA,LA,Jefferson,70001,Metairie,AE,32.535,-98.535,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-63957,COM-48004,TX,TX,Harris,77520,Baytown,X,32.64,-98.64,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-63965,COM-48007,LA,LA,Jefferson,70001,Metairie,AE,31.935,-97.935,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-63974,COM-48007,FL,FL,Miami-Dade,33101,Miami,AE,29.175,-95.175,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-63983,COM-48011,SC,SC,Horry,29577,Myrtle Beach,VE,30.675,-96.675,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-63992,COM-48007,FL,FL,Lee,33901,Fort Myers,AE,32.815,-98.815,Single Family Residence,2012-08-20,True,2,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64001,COM-48004,FL,FL,Hillsborough,33602,Tampa,AE,32.98,-98.98,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64010,COM-48005,FL,FL,Hillsborough,33602,Tampa,AE,29.785,-95.785,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64011,COM-48010,SC,SC,Charleston,29401,Charleston,X,33.73,-99.73,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-64012,COM-48007,FL,FL,Miami-Dade,33101,Miami,X,32.515,-98.515,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64019,COM-48006,LA,LA,Jefferson,70001,Metairie,AE,31.15,-97.15,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64020,COM-48000,SC,SC,Horry,29577,Myrtle Beach,X,32.02,-98.02,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64028,COM-48011,FL,FL,Miami-Dade,33101,Miami,VE,31.935,-97.935,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-64037,COM-48008,TX,TX,Harris,77520,Baytown,AE,30.02,-96.02,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64046,COM-48006,FL,FL,Lee,33901,Fort Myers,VE,30.59,-96.59,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64047,COM-48002,FL,FL,Miami-Dade,33101,Miami,VE,31.07,-97.07,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64055,COM-48009,LA,LA,Jefferson,70001,Metairie,B,29.545,-95.545,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64064,COM-48006,SC,SC,Charleston,29401,Charleston,A,31.01,-97.01,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-64073,COM-48005,LA,LA,Orleans,70112,New Orleans,AE,31.585,-97.585,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64082,COM-48008,FL,FL,Miami-Dade,33101,Miami,X,32.86,-98.86,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64083,COM-48006,LA,LA,Orleans,70112,New Orleans,X,32.97,-98.97,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64091,COM-48008,FL,FL,Miami-Dade,33101,Miami,X,30.62,-96.62,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64100,COM-48011,LA,LA,Orleans,70112,New Orleans,AE,33.855,-99.855,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64109,COM-48011,NC,NC,New Hanover,28401,Wilmington,AE,33.575,-99.575,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-64118,COM-48009,TX,TX,Galveston,77550,Galveston,AE,30.365,-96.365,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-64127,COM-48003,FL,FL,Miami-Dade,33101,Miami,AE,31.635,-97.635,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-64136,COM-48005,FL,FL,Hillsborough,33602,Tampa,X,31.845,-97.845,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64145,COM-48009,NC,NC,New Hanover,28401,Wilmington,X,29.745,-95.745,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-64146,COM-48008,FL,FL,Lee,33901,Fort Myers,B,30.04,-96.04,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64154,COM-48007,TX,TX,Harris,77520,Baytown,AE,29.115,-95.115,Single Family Residence,2012-08-20,True,4,True,True,False,True,GEO-TX-77520,ZIP-77520
+PROP-64163,COM-48004,SC,SC,Horry,29577,Myrtle Beach,AE,31.62,-97.62,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64172,COM-48003,FL,FL,Miami-Dade,33101,Miami,AE,33.635,-99.635,Single Family Residence,2012-08-20,True,2,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64181,COM-48002,LA,LA,Jefferson,70001,Metairie,AE,32.51,-98.51,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64190,COM-48009,TX,TX,Brazoria,77541,Freeport,AE,32.745,-98.745,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-64191,COM-48010,FL,FL,Hillsborough,33602,Tampa,A,30.03,-96.03,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64199,COM-48001,FL,FL,Miami-Dade,33101,Miami,X,29.385,-95.385,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64208,COM-48011,FL,FL,Miami-Dade,33101,Miami,AE,29.775,-95.775,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64217,COM-48007,TX,TX,Galveston,77550,Galveston,VE,30.735,-96.735,Single Family Residence,2012-08-20,True,3,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64218,COM-48008,SC,SC,Charleston,29401,Charleston,AE,30.28,-96.28,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-64226,COM-48001,FL,FL,Lee,33901,Fort Myers,A,32.425,-98.425,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64235,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,30.665,-96.665,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64244,COM-48005,TX,TX,Galveston,77550,Galveston,VE,30.785,-96.785,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-64253,COM-48005,LA,LA,Jefferson,70001,Metairie,A,29.605,-95.605,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64262,COM-48010,TX,TX,Galveston,77550,Galveston,VE,31.37,-97.37,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64271,COM-48002,SC,SC,Horry,29577,Myrtle Beach,AE,31.49,-97.49,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64280,COM-48005,NC,NC,New Hanover,28401,Wilmington,X,31.165,-97.165,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-64289,COM-48003,SC,SC,Charleston,29401,Charleston,X,32.575,-98.575,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-64298,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,33.62,-99.62,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64307,COM-48003,FL,FL,Miami-Dade,33101,Miami,AE,29.655,-95.655,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64308,COM-48009,FL,FL,Miami-Dade,33101,Miami,VE,32.745,-98.745,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64316,COM-48003,TX,TX,Galveston,77550,Galveston,X,31.095,-97.095,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64325,COM-48005,TX,TX,Harris,77520,Baytown,AE,33.025,-99.025,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64334,COM-48005,LA,LA,Jefferson,70001,Metairie,AE,33.405,-99.405,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-64343,COM-48008,LA,LA,Orleans,70112,New Orleans,AE,30.26,-96.26,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64344,COM-48009,FL,FL,Miami-Dade,33101,Miami,X,33.565,-99.565,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64352,COM-48009,NC,NC,Dare,27959,Nags Head,X,29.505,-95.505,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-64361,COM-48006,FL,FL,Hillsborough,33602,Tampa,VE,32.23,-98.23,Single Family Residence,2012-08-20,True,3,True,False,False,False,GEO-FL-33602,ZIP-33602
+PROP-64370,COM-48003,FL,FL,Miami-Dade,33101,Miami,A,33.075,-99.075,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64371,COM-48010,LA,LA,Orleans,70112,New Orleans,X,32.67,-98.67,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64379,COM-48008,TX,TX,Harris,77520,Baytown,B,33.06,-99.06,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64388,COM-48001,SC,SC,Horry,29577,Myrtle Beach,VE,31.645,-97.645,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64397,COM-48004,LA,LA,Jefferson,70001,Metairie,AE,31.52,-97.52,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64406,COM-48001,LA,LA,Orleans,70112,New Orleans,AE,30.745,-96.745,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-64415,COM-48003,FL,FL,Lee,33901,Fort Myers,X,33.895,-99.895,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64416,COM-48005,TX,TX,Harris,77520,Baytown,AE,30.525,-96.525,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-64424,COM-48007,FL,FL,Hillsborough,33602,Tampa,X,30.015,-96.015,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64433,COM-48008,NC,NC,New Hanover,28401,Wilmington,AE,32.46,-98.46,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-64442,COM-48005,NC,NC,New Hanover,28401,Wilmington,AE,32.325,-98.325,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-64451,COM-48009,FL,FL,Lee,33901,Fort Myers,X,32.165,-98.165,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64452,COM-48006,SC,SC,Horry,29577,Myrtle Beach,VE,33.83,-99.83,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64460,COM-48004,TX,TX,Galveston,77550,Galveston,AE,30.0,-96.0,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64469,COM-48007,SC,SC,Charleston,29401,Charleston,VE,33.395,-99.395,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-64478,COM-48008,TX,TX,Harris,77520,Baytown,AE,29.56,-95.56,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-64487,COM-48001,FL,FL,Miami-Dade,33101,Miami,VE,30.825,-96.825,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64488,COM-48002,LA,LA,Orleans,70112,New Orleans,B,29.67,-95.67,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64489,COM-48002,TX,TX,Brazoria,77541,Freeport,AE,31.33,-97.33,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-64496,COM-48005,TX,TX,Harris,77520,Baytown,X,30.365,-96.365,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64505,COM-48001,SC,SC,Horry,29577,Myrtle Beach,VE,29.505,-95.505,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64514,COM-48002,FL,FL,Miami-Dade,33101,Miami,AE,32.31,-98.31,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64523,COM-48002,LA,LA,Orleans,70112,New Orleans,A,31.97,-97.97,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64532,COM-48008,TX,TX,Galveston,77550,Galveston,VE,33.54,-99.54,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64541,COM-48008,TX,TX,Brazoria,77541,Freeport,B,31.16,-97.16,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-64550,COM-48008,TX,TX,Brazoria,77541,Freeport,A,33.38,-99.38,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-64551,COM-48004,SC,SC,Charleston,29401,Charleston,B,33.3,-99.3,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-64559,COM-48001,TX,TX,Harris,77520,Baytown,X,31.225,-97.225,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64568,COM-48003,LA,LA,Jefferson,70001,Metairie,AE,30.815,-96.815,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64569,COM-48011,NC,NC,Dare,27959,Nags Head,VE,32.215,-98.215,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-64577,COM-48005,NC,NC,Dare,27959,Nags Head,VE,30.785,-96.785,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-64578,COM-48010,TX,TX,Harris,77520,Baytown,A,32.33,-98.33,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64586,COM-48006,FL,FL,Miami-Dade,33101,Miami,VE,33.15,-99.15,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64595,COM-48006,LA,LA,Jefferson,70001,Metairie,AE,33.59,-99.59,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-64596,COM-48000,FL,FL,Hillsborough,33602,Tampa,X,32.54,-98.54,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64604,COM-48000,TX,TX,Galveston,77550,Galveston,AE,31.8,-97.8,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64613,COM-48007,LA,LA,Jefferson,70001,Metairie,AE,30.615,-96.615,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64622,COM-48011,FL,FL,Lee,33901,Fort Myers,X,31.635,-97.635,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-64631,COM-48002,FL,FL,Lee,33901,Fort Myers,VE,29.57,-95.57,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-64632,COM-48002,LA,LA,Jefferson,70001,Metairie,AE,33.95,-99.95,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64633,COM-48009,FL,FL,Miami-Dade,33101,Miami,AE,32.125,-98.125,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-64640,COM-48007,FL,FL,Hillsborough,33602,Tampa,AE,32.395,-98.395,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64641,COM-48005,TX,TX,Harris,77520,Baytown,AE,32.205,-98.205,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64649,COM-48007,TX,TX,Harris,77520,Baytown,AE,32.295,-98.295,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64650,COM-48004,NC,NC,New Hanover,28401,Wilmington,X,33.1,-99.1,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-64658,COM-48004,LA,LA,Jefferson,70001,Metairie,X,32.32,-98.32,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64659,COM-48007,TX,TX,Harris,77520,Baytown,X,29.775,-95.775,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64667,COM-48008,NC,NC,New Hanover,28401,Wilmington,AE,33.2,-99.2,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-64676,COM-48011,FL,FL,Lee,33901,Fort Myers,X,32.155,-98.155,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64685,COM-48011,FL,FL,Hillsborough,33602,Tampa,X,29.415,-95.415,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64686,COM-48001,FL,FL,Miami-Dade,33101,Miami,VE,29.405,-95.405,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64694,COM-48011,TX,TX,Galveston,77550,Galveston,A,33.295,-99.295,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64695,COM-48002,TX,TX,Harris,77520,Baytown,A,30.05,-96.05,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64703,COM-48006,TX,TX,Galveston,77550,Galveston,VE,30.39,-96.39,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64704,COM-48009,FL,FL,Miami-Dade,33101,Miami,A,31.285,-97.285,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64712,COM-48007,FL,FL,Hillsborough,33602,Tampa,VE,33.875,-99.875,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64721,COM-48002,NC,NC,Dare,27959,Nags Head,AE,31.15,-97.15,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-64730,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,33.825,-99.825,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64739,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,32.205,-98.205,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-64740,COM-48010,SC,SC,Horry,29577,Myrtle Beach,A,29.27,-95.27,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64741,COM-48006,TX,TX,Galveston,77550,Galveston,VE,31.69,-97.69,Single Family Residence,2012-08-20,True,2,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-64748,COM-48002,TX,TX,Brazoria,77541,Freeport,VE,33.19,-99.19,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-64757,COM-48004,LA,LA,Orleans,70112,New Orleans,AE,29.0,-95.0,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64766,COM-48003,TX,TX,Galveston,77550,Galveston,A,31.955,-97.955,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-64775,COM-48006,TX,TX,Harris,77520,Baytown,X,33.63,-99.63,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64776,COM-48011,LA,LA,Jefferson,70001,Metairie,X,32.535,-98.535,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64784,COM-48006,FL,FL,Miami-Dade,33101,Miami,AE,32.23,-98.23,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64785,COM-48001,FL,FL,Lee,33901,Fort Myers,A,30.845,-96.845,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64793,COM-48001,LA,LA,Orleans,70112,New Orleans,B,33.425,-99.425,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64802,COM-48003,LA,LA,Jefferson,70001,Metairie,A,31.195,-97.195,Single Family Residence,1995-06-15,True,3,True,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64803,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,31.865,-97.865,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64811,COM-48001,TX,TX,Harris,77520,Baytown,AE,29.685,-95.685,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64812,COM-48003,FL,FL,Lee,33901,Fort Myers,X,31.055,-97.055,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-64820,COM-48010,FL,FL,Hillsborough,33602,Tampa,X,33.85,-99.85,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64829,COM-48011,LA,LA,Orleans,70112,New Orleans,AE,29.575,-95.575,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64838,COM-48002,FL,FL,Lee,33901,Fort Myers,X,33.55,-99.55,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-64839,COM-48007,NC,NC,Dare,27959,Nags Head,A,31.815,-97.815,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-64847,COM-48007,FL,FL,Hillsborough,33602,Tampa,X,33.555,-99.555,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64856,COM-48006,FL,FL,Lee,33901,Fort Myers,AE,31.13,-97.13,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64865,COM-48005,FL,FL,Hillsborough,33602,Tampa,A,32.865,-98.865,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64874,COM-48004,TX,TX,Harris,77520,Baytown,AE,29.56,-95.56,Single Family Residence,2012-08-20,True,2,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64883,COM-48004,FL,FL,Miami-Dade,33101,Miami,AE,32.4,-98.4,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64884,COM-48003,LA,LA,Orleans,70112,New Orleans,X,33.435,-99.435,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-64892,COM-48001,TX,TX,Harris,77520,Baytown,X,30.785,-96.785,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64901,COM-48008,NC,NC,New Hanover,28401,Wilmington,AE,31.14,-97.14,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-64902,COM-48011,FL,FL,Miami-Dade,33101,Miami,VE,33.335,-99.335,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64910,COM-48008,FL,FL,Miami-Dade,33101,Miami,AE,32.06,-98.06,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64911,COM-48010,TX,TX,Harris,77520,Baytown,X,29.41,-95.41,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-64919,COM-48001,LA,LA,Jefferson,70001,Metairie,VE,33.905,-99.905,Single Family Residence,1995-06-15,True,5,True,True,False,True,GEO-LA-70001,ZIP-70001
+PROP-64928,COM-48007,FL,FL,Lee,33901,Fort Myers,AE,30.955,-96.955,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64937,COM-48009,FL,FL,Hillsborough,33602,Tampa,VE,31.525,-97.525,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-64946,COM-48000,SC,SC,Horry,29577,Myrtle Beach,AE,33.94,-99.94,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-64955,COM-48002,FL,FL,Miami-Dade,33101,Miami,VE,31.29,-97.29,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-64964,COM-48011,FL,FL,Lee,33901,Fort Myers,X,31.175,-97.175,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-64973,COM-48002,LA,LA,Jefferson,70001,Metairie,VE,32.77,-98.77,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-64982,COM-48003,FL,FL,Lee,33901,Fort Myers,A,32.615,-98.615,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-64983,COM-48008,SC,SC,Charleston,29401,Charleston,VE,29.32,-95.32,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-64991,COM-48000,FL,FL,Miami-Dade,33101,Miami,B,32.8,-98.8,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65000,COM-48007,FL,FL,Miami-Dade,33101,Miami,A,33.075,-99.075,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65009,COM-48007,TX,TX,Brazoria,77541,Freeport,VE,33.115,-99.115,Single Family Residence,1995-06-15,True,3,True,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-65018,COM-48002,SC,SC,Charleston,29401,Charleston,AE,33.43,-99.43,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65027,COM-48005,LA,LA,Jefferson,70001,Metairie,X,33.365,-99.365,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65036,COM-48007,TX,TX,Galveston,77550,Galveston,X,33.655,-99.655,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65045,COM-48004,TX,TX,Harris,77520,Baytown,AE,33.06,-99.06,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65054,COM-48001,FL,FL,Lee,33901,Fort Myers,A,29.185,-95.185,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65063,COM-48009,FL,FL,Hillsborough,33602,Tampa,AE,29.545,-95.545,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-65072,COM-48003,TX,TX,Harris,77520,Baytown,AE,32.135,-98.135,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65081,COM-48004,SC,SC,Charleston,29401,Charleston,X,30.08,-96.08,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65090,COM-48009,TX,TX,Harris,77520,Baytown,AE,29.565,-95.565,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-65099,COM-48009,TX,TX,Harris,77520,Baytown,X,33.325,-99.325,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65108,COM-48003,SC,SC,Charleston,29401,Charleston,AE,29.315,-95.315,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65117,COM-48005,NC,NC,New Hanover,28401,Wilmington,X,32.265,-98.265,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-65126,COM-48010,SC,SC,Charleston,29401,Charleston,AE,30.31,-96.31,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65135,COM-48010,TX,TX,Brazoria,77541,Freeport,B,29.51,-95.51,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-65144,COM-48004,FL,FL,Miami-Dade,33101,Miami,A,32.76,-98.76,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65153,COM-48009,LA,LA,Jefferson,70001,Metairie,A,30.345,-96.345,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-65154,COM-48003,TX,TX,Harris,77520,Baytown,AE,29.835,-95.835,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65162,COM-48007,FL,FL,Miami-Dade,33101,Miami,AE,29.435,-95.435,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65163,COM-48001,SC,SC,Charleston,29401,Charleston,X,30.745,-96.745,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-65171,COM-48006,FL,FL,Hillsborough,33602,Tampa,AE,30.27,-96.27,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-65180,COM-48004,FL,FL,Hillsborough,33602,Tampa,AE,31.96,-97.96,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-65189,COM-48004,FL,FL,Hillsborough,33602,Tampa,AE,29.46,-95.46,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-65198,COM-48006,NC,NC,Dare,27959,Nags Head,AE,33.91,-99.91,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-65207,COM-48002,TX,TX,Brazoria,77541,Freeport,X,33.89,-99.89,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-65216,COM-48003,TX,TX,Harris,77520,Baytown,VE,32.995,-98.995,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65225,COM-48009,NC,NC,New Hanover,28401,Wilmington,A,31.825,-97.825,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-65234,COM-48000,LA,LA,Jefferson,70001,Metairie,AE,29.04,-95.04,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65243,COM-48004,NC,NC,Dare,27959,Nags Head,X,32.02,-98.02,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-65252,COM-48004,LA,LA,Jefferson,70001,Metairie,B,32.3,-98.3,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65261,COM-48011,NC,NC,Dare,27959,Nags Head,AE,32.195,-98.195,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-65270,COM-48011,LA,LA,Jefferson,70001,Metairie,X,29.775,-95.775,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-65279,COM-48008,TX,TX,Harris,77520,Baytown,AE,32.98,-98.98,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65288,COM-48010,FL,FL,Lee,33901,Fort Myers,X,31.59,-97.59,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65297,COM-48009,LA,LA,Orleans,70112,New Orleans,AE,33.145,-99.145,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-65298,COM-48002,NC,NC,Dare,27959,Nags Head,VE,29.67,-95.67,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-65306,COM-48007,TX,TX,Brazoria,77541,Freeport,AE,32.975,-98.975,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-65315,COM-48000,TX,TX,Brazoria,77541,Freeport,AE,33.88,-99.88,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-65316,COM-48008,TX,TX,Brazoria,77541,Freeport,AE,33.96,-99.96,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-65324,COM-48006,FL,FL,Miami-Dade,33101,Miami,VE,29.91,-95.91,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65333,COM-48008,SC,SC,Charleston,29401,Charleston,AE,29.38,-95.38,Single Family Residence,2012-08-20,True,3,True,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-65342,COM-48011,TX,TX,Galveston,77550,Galveston,AE,33.635,-99.635,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-65351,COM-48010,NC,NC,Dare,27959,Nags Head,X,32.71,-98.71,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-65360,COM-48005,TX,TX,Brazoria,77541,Freeport,VE,30.125,-96.125,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-65369,COM-48009,FL,FL,Miami-Dade,33101,Miami,AE,32.765,-98.765,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65378,COM-48002,SC,SC,Charleston,29401,Charleston,AE,30.89,-96.89,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-65387,COM-48005,FL,FL,Miami-Dade,33101,Miami,VE,30.665,-96.665,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65396,COM-48003,TX,TX,Galveston,77550,Galveston,VE,31.675,-97.675,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77550,ZIP-77550
+PROP-65397,COM-48006,NC,NC,New Hanover,28401,Wilmington,VE,30.09,-96.09,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-65405,COM-48002,SC,SC,Charleston,29401,Charleston,AE,33.85,-99.85,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65414,COM-48010,LA,LA,Jefferson,70001,Metairie,X,32.65,-98.65,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65423,COM-48000,FL,FL,Miami-Dade,33101,Miami,VE,30.16,-96.16,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65432,COM-48011,NC,NC,New Hanover,28401,Wilmington,VE,29.415,-95.415,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-NC-28401,ZIP-28401
+PROP-65441,COM-48001,FL,FL,Miami-Dade,33101,Miami,AE,31.025,-97.025,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65442,COM-48011,FL,FL,Miami-Dade,33101,Miami,VE,30.955,-96.955,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-65450,COM-48010,LA,LA,Jefferson,70001,Metairie,B,33.57,-99.57,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65459,COM-48002,TX,TX,Harris,77520,Baytown,AE,32.07,-98.07,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65468,COM-48007,SC,SC,Charleston,29401,Charleston,VE,29.695,-95.695,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65477,COM-48006,FL,FL,Lee,33901,Fort Myers,X,33.49,-99.49,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65486,COM-48003,TX,TX,Brazoria,77541,Freeport,X,29.735,-95.735,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-65495,COM-48001,LA,LA,Orleans,70112,New Orleans,A,33.005,-99.005,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-65504,COM-48008,LA,LA,Jefferson,70001,Metairie,AE,31.22,-97.22,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65513,COM-48009,FL,FL,Lee,33901,Fort Myers,AE,31.225,-97.225,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65522,COM-48001,TX,TX,Brazoria,77541,Freeport,VE,29.485,-95.485,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-65531,COM-48009,LA,LA,Jefferson,70001,Metairie,A,29.605,-95.605,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65540,COM-48001,SC,SC,Charleston,29401,Charleston,X,33.645,-99.645,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65549,COM-48001,TX,TX,Galveston,77550,Galveston,VE,29.005,-95.005,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65550,COM-48009,FL,FL,Miami-Dade,33101,Miami,VE,30.765,-96.765,Single Family Residence,1995-06-15,True,2,True,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-65558,COM-48011,LA,LA,Orleans,70112,New Orleans,X,33.655,-99.655,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-65559,COM-48002,TX,TX,Galveston,77550,Galveston,VE,29.17,-95.17,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65567,COM-48010,TX,TX,Galveston,77550,Galveston,AE,33.65,-99.65,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65568,COM-48003,FL,FL,Miami-Dade,33101,Miami,B,33.355,-99.355,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65576,COM-48011,SC,SC,Horry,29577,Myrtle Beach,AE,30.295,-96.295,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-65585,COM-48011,SC,SC,Charleston,29401,Charleston,A,29.995,-95.995,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-65594,COM-48010,LA,LA,Orleans,70112,New Orleans,A,31.09,-97.09,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-LA-70112,ZIP-70112
+PROP-65603,COM-48005,TX,TX,Galveston,77550,Galveston,AE,33.185,-99.185,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65612,COM-48003,TX,TX,Harris,77520,Baytown,AE,30.795,-96.795,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65621,COM-48007,FL,FL,Miami-Dade,33101,Miami,AE,29.035,-95.035,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65622,COM-48001,FL,FL,Miami-Dade,33101,Miami,X,33.945,-99.945,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65623,COM-48004,FL,FL,Hillsborough,33602,Tampa,AE,33.7,-99.7,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-65630,COM-48010,NC,NC,Dare,27959,Nags Head,AE,32.17,-98.17,Single Family Residence,2012-08-20,True,2,True,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-65639,COM-48011,SC,SC,Charleston,29401,Charleston,VE,31.355,-97.355,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-SC-29401,ZIP-29401
+PROP-65640,COM-48009,NC,NC,New Hanover,28401,Wilmington,X,30.365,-96.365,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-65648,COM-48009,NC,NC,New Hanover,28401,Wilmington,A,30.185,-96.185,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-65657,COM-48009,FL,FL,Lee,33901,Fort Myers,AE,31.265,-97.265,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-FL-33901,ZIP-33901
+PROP-65666,COM-48001,LA,LA,Orleans,70112,New Orleans,AE,29.565,-95.565,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-65675,COM-48007,FL,FL,Miami-Dade,33101,Miami,AE,33.335,-99.335,Single Family Residence,1995-06-15,True,2,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65676,COM-48001,SC,SC,Horry,29577,Myrtle Beach,X,33.465,-99.465,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-65684,COM-48009,FL,FL,Miami-Dade,33101,Miami,X,31.345,-97.345,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-65693,COM-48005,FL,FL,Miami-Dade,33101,Miami,AE,30.545,-96.545,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65702,COM-48000,FL,FL,Lee,33901,Fort Myers,AE,32.14,-98.14,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65711,COM-48009,SC,SC,Horry,29577,Myrtle Beach,VE,32.365,-98.365,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-SC-29577,ZIP-29577
+PROP-65720,COM-48009,TX,TX,Harris,77520,Baytown,X,30.145,-96.145,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-65721,COM-48001,FL,FL,Hillsborough,33602,Tampa,VE,33.645,-99.645,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-65729,COM-48001,NC,NC,Dare,27959,Nags Head,AE,29.465,-95.465,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-65738,COM-48006,TX,TX,Harris,77520,Baytown,X,29.09,-95.09,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65739,COM-48003,NC,NC,Dare,27959,Nags Head,X,29.775,-95.775,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-65747,COM-48011,TX,TX,Galveston,77550,Galveston,VE,29.095,-95.095,Single Family Residence,2012-08-20,True,3,True,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65756,COM-48006,TX,TX,Brazoria,77541,Freeport,AE,33.75,-99.75,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-65765,COM-48006,LA,LA,Jefferson,70001,Metairie,X,30.85,-96.85,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65766,COM-48011,FL,FL,Hillsborough,33602,Tampa,X,33.915,-99.915,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-65774,COM-48007,FL,FL,Lee,33901,Fort Myers,X,33.935,-99.935,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65775,COM-48003,LA,LA,Orleans,70112,New Orleans,VE,30.275,-96.275,Single Family Residence,1995-06-15,True,2,True,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-65783,COM-48010,SC,SC,Charleston,29401,Charleston,AE,29.17,-95.17,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65792,COM-48001,TX,TX,Harris,77520,Baytown,X,29.065,-95.065,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-TX-77520,ZIP-77520
+PROP-65801,COM-48002,FL,FL,Lee,33901,Fort Myers,B,30.53,-96.53,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65810,COM-48006,FL,FL,Hillsborough,33602,Tampa,X,30.47,-96.47,Single Family Residence,1995-06-15,True,4,True,True,False,True,GEO-FL-33602,ZIP-33602
+PROP-65819,COM-48008,LA,LA,Orleans,70112,New Orleans,A,33.2,-99.2,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-65820,COM-48008,NC,NC,New Hanover,28401,Wilmington,X,29.64,-95.64,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-65821,COM-48002,FL,FL,Lee,33901,Fort Myers,X,29.95,-95.95,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65828,COM-48011,TX,TX,Galveston,77550,Galveston,VE,33.395,-99.395,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65829,COM-48000,LA,LA,Jefferson,70001,Metairie,X,31.74,-97.74,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65837,COM-48004,TX,TX,Brazoria,77541,Freeport,X,32.34,-98.34,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77541,ZIP-77541
+PROP-65846,COM-48007,TX,TX,Brazoria,77541,Freeport,AE,31.655,-97.655,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-65855,COM-48008,LA,LA,Jefferson,70001,Metairie,B,33.58,-99.58,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65864,COM-48003,FL,FL,Hillsborough,33602,Tampa,AE,29.715,-95.715,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-65873,COM-48006,LA,LA,Orleans,70112,New Orleans,B,32.19,-98.19,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-65882,COM-48002,TX,TX,Galveston,77550,Galveston,X,29.01,-95.01,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65891,COM-48011,FL,FL,Miami-Dade,33101,Miami,AE,33.175,-99.175,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65892,COM-48010,FL,FL,Lee,33901,Fort Myers,B,33.37,-99.37,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65893,COM-48006,TX,TX,Galveston,77550,Galveston,AE,33.89,-99.89,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65900,COM-48008,FL,FL,Hillsborough,33602,Tampa,A,31.08,-97.08,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-65909,COM-48011,SC,SC,Charleston,29401,Charleston,X,31.675,-97.675,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-65918,COM-48001,TX,TX,Harris,77520,Baytown,X,33.325,-99.325,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-65927,COM-48008,LA,LA,Orleans,70112,New Orleans,AE,29.28,-95.28,Single Family Residence,1995-06-15,True,2,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-65936,COM-48001,FL,FL,Lee,33901,Fort Myers,X,33.145,-99.145,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65945,COM-48010,TX,TX,Galveston,77550,Galveston,AE,29.57,-95.57,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-65954,COM-48005,LA,LA,Jefferson,70001,Metairie,AE,29.465,-95.465,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65963,COM-48007,FL,FL,Lee,33901,Fort Myers,VE,32.075,-98.075,Single Family Residence,1995-06-15,True,2,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65972,COM-48002,FL,FL,Lee,33901,Fort Myers,AE,32.43,-98.43,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-65981,COM-48000,NC,NC,Dare,27959,Nags Head,AE,33.6,-99.6,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-65990,COM-48005,LA,LA,Jefferson,70001,Metairie,A,30.205,-96.205,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-65991,COM-48009,FL,FL,Miami-Dade,33101,Miami,AE,31.445,-97.445,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-65999,COM-48007,FL,FL,Miami-Dade,33101,Miami,AE,30.395,-96.395,Single Family Residence,1995-06-15,True,1,False,False,True,True,GEO-FL-33101,ZIP-33101
+PROP-66000,COM-48004,LA,LA,Jefferson,70001,Metairie,X,31.06,-97.06,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-66008,COM-48010,LA,LA,Jefferson,70001,Metairie,A,30.89,-96.89,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-LA-70001,ZIP-70001
+PROP-66017,COM-48002,TX,TX,Harris,77520,Baytown,X,31.19,-97.19,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-66026,COM-48001,FL,FL,Miami-Dade,33101,Miami,VE,30.025,-96.025,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-66035,COM-48000,LA,LA,Jefferson,70001,Metairie,AE,33.76,-99.76,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-66044,COM-48003,FL,FL,Lee,33901,Fort Myers,X,33.175,-99.175,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-66053,COM-48008,FL,FL,Miami-Dade,33101,Miami,X,33.34,-99.34,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-66062,COM-48007,TX,TX,Harris,77520,Baytown,AE,32.955,-98.955,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-66071,COM-48008,FL,FL,Hillsborough,33602,Tampa,AE,30.68,-96.68,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-66080,COM-48001,FL,FL,Hillsborough,33602,Tampa,AE,29.245,-95.245,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-66089,COM-48003,FL,FL,Lee,33901,Fort Myers,B,30.335,-96.335,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-66098,COM-48007,LA,LA,Jefferson,70001,Metairie,X,29.695,-95.695,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-66107,COM-48010,FL,FL,Hillsborough,33602,Tampa,AE,33.19,-99.19,Single Family Residence,2012-08-20,True,1,False,False,True,True,GEO-FL-33602,ZIP-33602
+PROP-66116,COM-48006,LA,LA,Orleans,70112,New Orleans,AE,30.79,-96.79,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-66125,COM-48005,TX,TX,Brazoria,77541,Freeport,B,32.885,-98.885,Single Family Residence,2012-08-20,True,0,False,False,True,True,GEO-TX-77541,ZIP-77541
+PROP-66134,COM-48003,FL,FL,Hillsborough,33602,Tampa,B,31.115,-97.115,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-66143,COM-48011,FL,FL,Miami-Dade,33101,Miami,X,32.455,-98.455,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-66152,COM-48002,TX,TX,Harris,77520,Baytown,AE,29.65,-95.65,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-66161,COM-48001,TX,TX,Galveston,77550,Galveston,VE,32.025,-98.025,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-66170,COM-48002,TX,TX,Galveston,77550,Galveston,AE,33.39,-99.39,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-66179,COM-48002,TX,TX,Harris,77520,Baytown,X,32.85,-98.85,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-66180,COM-48004,NC,NC,New Hanover,28401,Wilmington,AE,29.04,-95.04,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-28401,ZIP-28401
+PROP-66188,COM-48011,FL,FL,Lee,33901,Fort Myers,X,31.735,-97.735,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33901,ZIP-33901
+PROP-66197,COM-48011,SC,SC,Charleston,29401,Charleston,A,30.355,-96.355,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-SC-29401,ZIP-29401
+PROP-66206,COM-48007,NC,NC,Dare,27959,Nags Head,AE,33.855,-99.855,Single Family Residence,2012-08-20,True,2,True,False,True,True,GEO-NC-27959,ZIP-27959
+PROP-66215,COM-48006,LA,LA,Jefferson,70001,Metairie,X,32.43,-98.43,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-66224,COM-48008,TX,TX,Harris,77520,Baytown,X,30.68,-96.68,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-66233,COM-48011,FL,FL,Hillsborough,33602,Tampa,X,33.555,-99.555,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-FL-33602,ZIP-33602
+PROP-66242,COM-48011,TX,TX,Harris,77520,Baytown,X,32.695,-98.695,Single Family Residence,1995-06-15,True,1,False,False,False,True,GEO-TX-77520,ZIP-77520
+PROP-66251,COM-48004,LA,LA,Orleans,70112,New Orleans,AE,32.74,-98.74,Single Family Residence,2012-08-20,True,1,False,False,False,True,GEO-LA-70112,ZIP-70112
+PROP-66260,COM-48004,FL,FL,Miami-Dade,33101,Miami,VE,30.4,-96.4,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-66269,COM-48008,LA,LA,Jefferson,70001,Metairie,X,33.1,-99.1,Single Family Residence,1995-06-15,True,0,False,False,False,True,GEO-LA-70001,ZIP-70001
+PROP-66278,COM-48000,TX,TX,Galveston,77550,Galveston,X,31.98,-97.98,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-TX-77550,ZIP-77550
+PROP-66279,COM-48011,FL,FL,Miami-Dade,33101,Miami,AE,30.635,-96.635,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-FL-33101,ZIP-33101
+PROP-66287,COM-48009,NC,NC,Dare,27959,Nags Head,X,33.125,-99.125,Single Family Residence,2012-08-20,True,0,False,False,False,True,GEO-NC-27959,ZIP-27959
+PROP-66296,COM-48009,SC,SC,Horry,29577,Myrtle Beach,X,32.805,-98.805,Single Family Residence,1995-06-15,True,0,False,False,True,True,GEO-SC-29577,ZIP-29577

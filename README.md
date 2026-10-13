@@ -1,60 +1,100 @@
-# Insurance Dashboard (Databricks Apps, Streamlit) on a Genie space
+# Insurance Business & Data Analytics Application (Databricks Apps)
 
-Same lavender / navy / violet design as before, rebuilt on the Gold tables from `Synthetic_Data_To_Gold`, read through a **Genie space you attach manually**.
-With no space attached the app runs on built-in demo data in the **same columns**, so you can check the UI first.
+An enterprise-grade Property & Flood Insurance Analytics and Machine Learning application designed for **Databricks Apps**, powered by Unity Catalog and Databricks SQL Warehouses.
 
-## Set up
-1. In the Genie space, add these tables (they live in `synthetic.gold2` by default): `gold_customer_profile`, `gold_property_profile`, `gold_policy_report`, `gold_claim_report`
-   (optional, for the disaster chart: `fact_nfip_claim`, `dim_disaster_declaration`).
-2. Create the app (Compute -> Apps -> Custom), upload this folder. Under **Resources** add the Genie space with key `genie-space`
-   (or set `GENIE_SPACE_ID` to the id after `/rooms/` in the Genie URL).
-3. Give the app's **service principal**: CAN RUN on the Genie space, CAN USE on the space's SQL warehouse, and USE CATALOG / USE SCHEMA / SELECT on the Gold schema.
-4. Deploy. First load takes about a minute (four Genie questions); results are cached for an hour and shared by all users. "Refresh data" at the bottom of the sidebar re-asks.
-5. If your catalog/schema differ, change `GOLD_CATALOG` / `GOLD_SCHEMA` in `app.yaml`.
+Developed following the principle: **"Build Here (Local Test & Verification) $\rightarrow$ Deploy at Databricks Apps"**. The developer only needs to provide warehouse ID, catalog, schema, and read access; all visual analytics, geospatial maps, and predictive ML models operate autonomously.
 
-## How the data is read (and why)
-- Genie allows about **5 questions per minute per workspace** and returns **at most 5,000 rows** per result. So the app asks **4 wide questions once**
-  (one per Gold table), caches them, and paces requests (max 4 per minute, leaving one for the "Ask Genie" page). Charts are computed in the app, not per-chart Genie calls.
-- Each question names the table and its columns and asks for raw rows. On-screen source details were removed on purpose; the error screen and "Run diagnostics" still show the SQL when something fails. If Genie returns a different shape the app
-  stops with a clear message (missing columns, text-only answer). If a table has more than 5,000 rows the app warns that the result is truncated.
-- **Ask Genie** page: free-form questions with the SQL and result table.
+---
 
-## Which Gold table feeds which step
-| Step | Source |
-|---|---|
-| 1 Customer | gold_customer_profile |
-| 2-4 Property, location, exposure & risk | gold_property_profile |
-| 5 Quote, 6 Underwriting decision, 8 Endorsements | **not in Gold.** Shown as "not in Gold" with the nearest honest proxy (pricing and risk on file) |
-| 7 Policy bind | gold_property_profile + gold_policy_report |
-| 9 Claim | gold_claim_report + gold_property_profile (date of loss only, no FNOL / reserve / close dates) |
-| 10 Loss history, 11 Mitigation | gold_property_profile |
-| 12 Renewal | gold_customer_profile / gold_property_profile (due dates, pending flag) |
+## 🏛️ Unity Catalog Gold Architecture (`insurance_dev_gold.gold_schema`)
 
-## Run locally (demo data)
-`pip install -r requirements.txt && streamlit run app.py`
+The application natively consumes the following 7 tables from your Unity Catalog schema:
 
-## Troubleshooting: "PERMISSION_DENIED ... No access to 'synthetic.gold2.*'"
-Unity Catalog permission, not code. The app runs as its **service principal**; it needs (run as the table owner or an admin; the principal is the app's application id,
-shown on Compute -> Apps -> your app -> Authorization, and printed on the app's error screen):
-```sql
-GRANT USE CATALOG ON CATALOG synthetic TO `<application-id>`;
-GRANT USE SCHEMA, SELECT ON SCHEMA synthetic.gold2 TO `<application-id>`;
+| Table Name | Primary Columns & Actuarial Metrics | Dashboard & Analytics Usage |
+|---|---|---|
+| **`gold_claim_report`** | `claim_id`, `claim_id_uuid`, `policy_id`, `state`, `community_name`, `date_of_loss`, `year_of_loss`, `amount_paid_on_building_claim`, `amount_paid_on_contents_claim`, `amount_paid_on_icc_claim`, `total_building_insurance_coverage`, `total_contents_insurance_coverage` | Claims severity breakdown, payout distributions, and claim lifecycle tracking. |
+| **`gold_policy_report`** | `policy_id`, `policy_id_uuid`, `state`, `county_code`, `community_name`, `policy_effective_date`, `policy_termination_date`, `total_building_insurance_coverage`, `total_contents_insurance_coverage`, `total_insurance_premium` | Gross Written Premium (GWP), in-force exposure, and expiration/renewal monitoring. |
+| **`gold_property_risk`** | `state`, `zone_group`, `construction_date_band`, `elevated`, `region`, `policy_count`, `claim_count`, `claims_paid`, `premium`, `coverage_total`, `loss_ratio`, `claim_frequency`, `avg_claim_paid`, `declared_disasters`, `hma_projects`, `loss_component`, `hazard_component`, `property_component`, `protection_component`, `credibility`, `risk_score`, `risk_band`, `top_driver`, `window_start_year`, `window_end_year` | Actuarial Risk & Hazard Profiling, component decomposition (hazard, loss, property, protection credits), and top risk driver analysis. |
+| **`gold_risk_by_geography`** | `state`, `region`, `policy_count`, `claim_count`, `claims_paid`, `premium`, `declared_disasters`, `hma_projects`, `high_risk_segments`, `segments`, `risk_score`, `loss_ratio`, `risk_band` | Geospatial state choropleth maps and regional portfolio risk intelligence. |
+| **`gold_loss_ratio_by_state_year`** | `state`, `year`, `total_premium`, `claim_count`, `total_paid`, `loss_ratio`, `data_status` | Multi-year historical loss ratio trajectories (2021–2026) and profitability benchmarking. |
+| **`gold_claims_by_disaster`** | `disaster_number`, `fema_declaration_string`, `declaration_title`, `incident_type`, `claim_count`, `total_paid` | Historical FEMA disaster benchmarks (Hurricanes Ian, Ida, Laura, tropical storms) and Catastrophe stress-testing. |
+| **`gold_mitigation_vs_claims_by_state`** | `state`, `total_mitigation_spend`, `total_claims_paid` | FEMA / HMA hazard mitigation grant investments vs cumulative claims paid, and loss abatement ROI. |
+
+---
+
+## 🚀 Application Modules & Features
+
+1. **Executive Cockpit**: Net loss ratios, in-force active premium, capital exposure, and 60-day renewal watchlist.
+2. **Geospatial Risk Map**: Interactive US State choropleth and coastal hazard bubble maps with dynamic intensity metrics.
+3. **Underwriting Flow**: Plotly Sankey diagram tracing policyholders across flood zones, build types, claims, and renewals.
+4. **ML Risk & Pricing**: Dual Random Forest models (`RandomForestClassifier` for claim probability, `RandomForestRegressor` for expected loss severity) with an interactive **What-If Underwriting Simulator**.
+5. **Actuarial & Hazard Risk**: Actuarial component breakdown (`hazard_component`, `loss_component`, `property_component`, `protection_component`, `credibility`) and top risk drivers.
+6. **Financial Loss Ratios**: State underwriting profitability matrix, multi-year trajectories, and claim payout components.
+7. **Catastrophe Simulator**: Weather shock and hurricane landfall simulator evaluating capital reserves and reinsurance triggers.
+8. **Agent & Sales Performance**: Agent production volume, premium written, and loss ratio rankings.
+9. **Dynamic Catalog & Schema Switcher**: Built-in sidebar expander (`⚙️ Switch Catalog / Schema`) allowing live connection switching across any Unity Catalog or schema at runtime.
+
+---
+
+## 💻 Local Development ("Build Here")
+
+Run 100% offline without needing active Databricks credentials:
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run application locally (offline demo gold data)
+streamlit run app.py
 ```
-plus CAN RUN on the Genie space and CAN USE on its SQL warehouse. Schema-level SELECT covers every table in the space, including the dim_/fact_ tables.
 
-## Troubleshooting: "Genie request failed ... MessageStatus.FAILED"
-The app now prints Genie's own reason (for example `TABLES_MISSING_EXCEPTION`). Then:
-1. Open the Genie space in Databricks and paste: `Show all rows and all columns from synthetic.gold2.gold_customer_profile. No filter and no limit.` If that fails there too, the problem is in the space (tables not added, wrong catalog/schema name, warehouse stopped), not the app.
-2. If it works in the space UI but not in the app, it is the app's service principal: CAN RUN on the space, CAN USE on the warehouse, USE CATALOG / USE SCHEMA / SELECT on the Gold schema.
-3. On the error screen click **Run diagnostics** (one tiny question per table) to see which table fails, or **Use demo data for now** to keep working.
-4. If Genie adds a `LIMIT` to the SQL the app warns that the table may be incomplete. Add a space instruction such as "When asked for all rows, do not add a LIMIT."
+To test against your Databricks workspace locally:
+```bash
+# Copy environment configuration
+cp .env.example .env
 
-## Navigation
-Sidebar: Dashboard (Overview, Process Flow, Customer 360, Portfolio & Geography, Ask Genie) and Records (Customers, Properties, Policies, Claims, Renewals).
-Every Overview tile and card opens its list (Properties tile -> property list, Open claims -> open claims, Renewals -> renewals due in 60 days, ...).
-Lists have search, filters, CSV export and "select a row to open that customer's journey". The header search box searches customers, properties, policies and claims at once.
-Needs Streamlit 1.35+ (row selection, segmented control with fallback).
+# Configure .env with your credentials:
+# DATABRICKS_HOST=https://<your-workspace>.cloud.databricks.com
+# DATABRICKS_TOKEN=<your-pat-token>
+# DATABRICKS_WAREHOUSE_ID=<your-sql-warehouse-id>
+# GOLD_CATALOG=insurance_dev_gold
+# GOLD_SCHEMA=gold_schema
 
-## Customer 360
-Opening the page shows a customer directory (cards with properties, policies, premium and flags such as "Renews in 40d" or "Open claims"), with quick views, sorting and the header search.
-Click a card to open that customer's full 360 view; "← All customers" returns to the directory.
+# Validate connectivity
+python config.py
+
+# Launch app connected to Databricks
+streamlit run app.py
+```
+
+---
+
+## ☁️ Deployment to Databricks Apps ("Run on Databricks")
+
+1. In Databricks, navigate to **Compute** $\rightarrow$ **Apps** $\rightarrow$ **Create App**.
+2. Upload this folder to the app directory.
+3. Verify `app.yaml`:
+   ```yaml
+   command: [
+     "streamlit",
+     "run",
+     "app.py",
+     "--server.port", "8000",
+     "--server.address", "0.0.0.0",
+     "--server.headless", "true"
+   ]
+   env:
+     - name: "GOLD_CATALOG"
+       value: "insurance_dev_gold"
+     - name: "GOLD_SCHEMA"
+       value: "gold_schema"
+     - name: "DATABRICKS_WAREHOUSE_ID"
+       value: "<your-sql-warehouse-id>"
+   ```
+4. **Grant Permissions to the App Service Principal**:
+   Run the following in a Databricks SQL Editor (replace `<app-service-principal-id>` with the application ID shown in the app details):
+   ```sql
+   GRANT USE CATALOG ON CATALOG insurance_dev_gold TO `<app-service-principal-id>`;
+   GRANT USE SCHEMA, SELECT ON SCHEMA insurance_dev_gold.gold_schema TO `<app-service-principal-id>`;
+   ```
+   *(If using a SQL Warehouse, also grant `CAN USE` on the SQL Warehouse).*
+5. Click **Deploy**. The app auto-detects the Databricks App runtime and loads directly from `insurance_dev_gold.gold_schema`.

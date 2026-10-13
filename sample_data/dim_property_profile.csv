@@ -1,0 +1,8 @@
+property_profile_key,occupancy_type,flood_zone,construction_date_band,primary_residence_indicator,elevated_building_indicator,condominium_indicator
+1,Single Family Residence,VE,Pre-FIRM,True,False,False
+2,Single Family Residence,VE,Post-FIRM,True,True,False
+3,Single Family Residence,AE,Pre-FIRM,True,False,False
+4,Single Family Residence,AE,Post-FIRM,True,True,False
+5,Single Family Residence,A,Post-FIRM,True,False,False
+6,Single Family Residence,X,Post-FIRM,True,False,False
+7,Single Family Residence,B,Post-FIRM,True,False,False

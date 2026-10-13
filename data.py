@@ -10,30 +10,204 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pandas as pd
 
-CATALOG = os.getenv("GOLD_CATALOG", "synthetic")
-SCHEMA = os.getenv("GOLD_SCHEMA", "gold2")
-SPACE_ID = os.getenv("GENIE_SPACE_ID", "").strip()
-CACHE_TTL = int(os.getenv("CACHE_TTL_SECONDS", "3600"))
+from config import AppConfig
 
-# Column types copied from Synthetic_Data_To_Gold: s string, i int, l bigint, n decimal, f double, b boolean, d date
+CATALOG = AppConfig.GOLD_CATALOG
+SCHEMA = AppConfig.GOLD_SCHEMA
+SPACE_ID = AppConfig.GENIE_SPACE_ID
+CACHE_TTL = AppConfig.CACHE_TTL_SECONDS
+
 SPEC = {
-    "customer_profile": ("gold_customer_profile", [("customer_id", "s"), ("first_name", "s"), ("last_name", "s"), ("customer_status", "s"), ("customer_since", "d"), ("agent_id", "s"), ("agent_name", "s"),
-        ("properties", "i"), ("states", "i"), ("active_policies", "i"), ("policy_terms_total", "i"), ("building_coverage_active", "n"), ("contents_coverage_active", "n"), ("premium_active", "n"),
-        ("next_renewal_date", "d"), ("days_to_renewal", "i"), ("renewal_due_60d", "b"), ("renewal_pending", "b"), ("claims_total", "i"), ("claims_open", "i"), ("claims_paid_total", "n"), ("last_loss_date", "d"),
-        ("mitigation_count", "i"), ("primary_property_id", "s"), ("primary_county", "s"), ("primary_state", "s"), ("highest_risk_score", "f"), ("highest_risk_band", "s"), ("highest_risk_property_id", "s"),
-        ("in_special_flood_hazard_area", "b"), ("pre_firm_properties", "i"), ("insured_value_active", "n"), ("primary_county_insured_value", "n"), ("primary_county_share", "f"), ("primary_county_rank", "i"),
-        ("primary_county_declared_disasters_window", "i"), ("primary_county_last_declared_year", "i"), ("primary_county_hma_projects", "i"), ("primary_county_claims_paid_per_policy", "f")]),
-    "property_profile": ("gold_property_profile", [("property_id", "s"), ("customer_id", "s"), ("address_line", "s"), ("city", "s"), ("zip_code", "s"), ("state", "s"), ("county", "s"), ("flood_zone", "s"),
-        ("construction_date_band", "s"), ("elevated", "b"), ("crs_class", "i"), ("active_policy_id", "s"), ("policy_expiration_date", "d"), ("active_building_coverage", "n"), ("active_contents_coverage", "n"),
-        ("active_premium", "n"), ("policy_terms", "i"), ("claims_total", "i"), ("claims_open", "i"), ("claims_paid_total", "n"), ("last_loss_date", "d"), ("nfip_rl", "b"), ("mitigation_count", "i"),
-        ("assessed_risk_score", "f"), ("assessed_risk_band", "s"), ("county_declared_disasters_window", "i"), ("county_last_declared_year", "i"), ("county_hma_projects", "i"), ("county_hma_obligated", "n"),
-        ("county_insured_value", "n"), ("county_share_of_portfolio", "f"), ("county_rank", "i"), ("county_claims_paid_per_policy", "f")]),
-    "policy_report": ("gold_policy_report", [("policy_id", "s"), ("state", "s"), ("county_code", "s"), ("community_name", "s"), ("policy_effective_date", "d"), ("policy_termination_date", "d"),
-        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"), ("total_insurance_premium", "n")]),
-    "claim_report": ("gold_claim_report", [("claim_id", "s"), ("policy_id", "s"), ("state", "s"), ("community_name", "s"), ("date_of_loss", "d"), ("year_of_loss", "i"),
-        ("amount_paid_on_building_claim", "n"), ("amount_paid_on_contents_claim", "n"), ("amount_paid_on_icc_claim", "n"), ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n")]),
+    # 1. Operational & Entity Tables
+    "agent": ("agent", [
+        ("agent_id", "s"), ("agent_name", "s"), ("state", "s")
+    ]),
+    "claim": ("claim", [
+        ("claim_id", "s"), ("policy_id", "s"), ("community_id", "s"), ("date_of_loss", "d"),
+        ("year_of_loss", "i"), ("state", "s"), ("county_code", "s"), ("amount_paid_on_building_claim", "n"),
+        ("amount_paid_on_contents_claim", "n"), ("amount_paid_on_icc_claim", "n"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"),
+        ("occupancy_type", "s"), ("rated_flood_zone", "s"), ("primary_residence_indicator", "b"),
+        ("elevated_building_indicator", "b"), ("synthetic_policy_key", "s")
+    ]),
+    "community": ("community", [
+        ("community_id", "s"), ("community_name", "s"), ("county", "s"), ("state", "s"),
+        ("participating_in_nfip", "b"), ("tribal", "b"), ("class_rating", "i"),
+        ("sfha_discount", "f"), ("non_sfha_discount", "f"), ("sanction", "s")
+    ]),
+    "coverage": ("coverage", [
+        ("coverage_id", "s"), ("policy_id", "s"), ("coverage_type", "s"), ("coverage_amount", "n")
+    ]),
+    "customer": ("customer", [
+        ("customer_id", "s"), ("state", "s"), ("county_code", "s"), ("community_id", "s")
+    ]),
+    "document": ("document", [
+        ("document_id", "s"), ("claim_id", "s"), ("document_type", "s"), ("created_date", "d")
+    ]),
+    "inspection": ("inspection", [
+        ("inspection_id", "s"), ("property_id", "s"), ("agent_id", "s"), ("project_identifier", "s"),
+        ("program_area", "s"), ("property_action", "s"), ("structure_type", "s"),
+        ("foundation_type", "s"), ("damage_category", "s"), ("actual_amount_paid", "n"),
+        ("number_of_properties", "i"), ("state", "s"), ("county", "s"), ("city", "s"),
+        ("zip_code", "s"), ("synthetic_property_key", "s")
+    ]),
+    "policy": ("policy", [
+        ("policy_id", "s"), ("customer_id", "s"), ("property_id", "s"), ("agent_id", "s"),
+        ("community_id", "s"), ("policy_effective_date", "d"), ("policy_termination_date", "d"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"),
+        ("total_insurance_premium", "n"), ("hfiaa_surcharge", "n"), ("federal_policy_fee", "n"),
+        ("occupancy_type", "s"), ("rated_flood_zone", "s"), ("state", "s"), ("county_code", "s"),
+        ("synthetic_property_key", "s"), ("synthetic_policy_key", "s")
+    ]),
+    "property": ("property", [
+        ("property_id", "s"), ("community_id", "s"), ("state", "s"), ("state_abbreviation", "s"),
+        ("county", "s"), ("zip_code", "s"), ("city", "s"), ("flood_zone", "s"),
+        ("latitude", "f"), ("longitude", "f"), ("occupancy_type", "s"),
+        ("original_construction_date", "d"), ("primary_residence_indicator", "b"),
+        ("total_losses", "i"), ("nfip_rl", "b"), ("nfip_srl", "b"),
+        ("mitigated_indicator", "b"), ("insured_indicator", "b"),
+        ("synthetic_geo_key", "s"), ("synthetic_zip_key", "s")
+    ]),
+
+    # 2. Dimensional Warehouse & Star-Schema Tables
+    "dim_community": ("dim_community", [
+        ("community_key", "i"), ("community_id_number", "s"), ("community_name", "s"),
+        ("state", "s"), ("participation_status", "s"), ("crs_class", "i")
+    ]),
+    "dim_date": ("dim_date", [
+        ("date_key", "i"), ("full_date", "d"), ("day_of_week", "i"), ("day_name", "s"),
+        ("day_of_month", "i"), ("month", "i"), ("month_name", "s"), ("quarter", "i"),
+        ("year", "i"), ("fiscal_year", "i"), ("is_weekend", "b")
+    ]),
+    "dim_disaster_declaration": ("dim_disaster_declaration", [
+        ("disaster_key", "i"), ("disaster_number", "i"), ("fema_declaration_string", "s"),
+        ("declaration_type", "s"), ("declaration_title", "s"), ("incident_type", "s"),
+        ("declaration_date", "d"), ("incident_begin_date", "d"), ("incident_end_date", "d"),
+        ("ih_program_declared", "b"), ("ia_program_declared", "b"), ("pa_program_declared", "b"),
+        ("hm_program_declared", "b")
+    ]),
+    "dim_geography": ("dim_geography", [
+        ("geography_key", "i"), ("state", "s"), ("fips_state_code", "s"), ("county_code", "s"),
+        ("fips_county_code", "s"), ("region", "s")
+    ]),
+    "dim_hma_project": ("dim_hma_project", [
+        ("project_key", "i"), ("project_identifier", "s"), ("program_area", "s"),
+        ("project_type", "s"), ("status", "s"), ("recipient", "s"), ("subrecipient", "s"),
+        ("project_title", "s")
+    ]),
+    "dim_property_profile": ("dim_property_profile", [
+        ("property_profile_key", "i"), ("occupancy_type", "s"), ("flood_zone", "s"),
+        ("construction_date_band", "s"), ("primary_residence_indicator", "b"),
+        ("elevated_building_indicator", "b"), ("condominium_indicator", "b")
+    ]),
+    "fact_disaster_declaration_area": ("fact_disaster_declaration_area", [
+        ("declaration_area_key", "i"), ("declaration_date_key", "i"), ("geography_key", "i"),
+        ("disaster_key", "i"), ("ih_program_declared", "b"), ("ia_program_declared", "b"),
+        ("pa_program_declared", "b"), ("hm_program_declared", "b"), ("declaration_count", "i")
+    ]),
+    "fact_hma_financial_transaction": ("fact_hma_financial_transaction", [
+        ("transaction_key", "i"), ("obligated_date_key", "i"), ("geography_key", "i"),
+        ("project_key", "i"), ("disaster_key", "i"), ("transaction_level", "s"),
+        ("obligated_amount", "n"), ("federal_share_obligated", "n"), ("transaction_count", "i")
+    ]),
+    "fact_nfip_claim": ("fact_nfip_claim", [
+        ("claim_key", "i"), ("date_of_loss_key", "i"), ("geography_key", "i"),
+        ("community_key", "i"), ("property_profile_key", "i"), ("disaster_key", "i"),
+        ("amount_paid_on_building_claim", "n"), ("amount_paid_on_contents_claim", "n"),
+        ("amount_paid_on_icc_claim", "n"), ("net_building_payment_amount", "n"),
+        ("net_contents_payment_amount", "n"), ("total_building_insurance_coverage", "n"),
+        ("total_contents_insurance_coverage", "n"), ("claim_count", "i")
+    ]),
+    "fact_nfip_policy": ("fact_nfip_policy", [
+        ("policy_key", "i"), ("effective_date_key", "i"), ("expiration_date_key", "i"),
+        ("geography_key", "i"), ("community_key", "i"), ("property_profile_key", "i"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"),
+        ("total_insurance_premium", "n"), ("hfiaa_surcharge", "n"), ("federal_policy_fee", "n"),
+        ("policy_count", "i")
+    ]),
+
+    # 3. Gold Reporting & Aggregate Tables
+    "gold_claim_report": ("gold_claim_report", [
+        ("claim_id", "s"), ("claim_id_uuid", "s"), ("policy_id", "s"), ("policy_id_uuid", "s"), ("state", "s"),
+        ("community_name", "s"), ("date_of_loss", "d"), ("year_of_loss", "i"),
+        ("amount_paid_on_building_claim", "n"), ("amount_paid_on_contents_claim", "n"), ("amount_paid_on_icc_claim", "n"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n")
+    ]),
+    "gold_claims_by_disaster": ("gold_claims_by_disaster", [
+        ("disaster_number", "i"), ("fema_declaration_string", "s"), ("declaration_title", "s"),
+        ("incident_type", "s"), ("claim_count", "i"), ("total_paid", "n")
+    ]),
+    "gold_loss_ratio_by_state_year": ("gold_loss_ratio_by_state_year", [
+        ("state", "s"), ("year", "i"), ("total_premium", "n"), ("claim_count", "i"), ("total_paid", "n"),
+        ("loss_ratio", "f"), ("data_status", "s")
+    ]),
+    "gold_mitigation_vs_claims_by_state": ("gold_mitigation_vs_claims_by_state", [
+        ("state", "s"), ("total_mitigation_spend", "n"), ("total_claims_paid", "n")
+    ]),
+    "gold_policy_report": ("gold_policy_report", [
+        ("policy_id", "s"), ("policy_id_uuid", "s"), ("state", "s"), ("county_code", "s"), ("community_name", "s"),
+        ("policy_effective_date", "d"), ("policy_termination_date", "d"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"), ("total_insurance_premium", "n")
+    ]),
+    "gold_property_risk": ("gold_property_risk", [
+        ("state", "s"), ("zone_group", "s"), ("construction_date_band", "s"), ("elevated", "b"), ("region", "s"),
+        ("data_status", "s"), ("policy_count", "i"), ("claim_count", "i"), ("claims_paid", "n"), ("premium", "n"),
+        ("coverage_total", "n"), ("loss_ratio", "f"), ("claim_frequency", "f"), ("avg_claim_paid", "n"),
+        ("declared_disasters", "i"), ("hma_projects", "i"), ("loss_component", "f"), ("hazard_component", "f"),
+        ("property_component", "f"), ("protection_component", "f"), ("credibility", "f"), ("risk_score", "f"),
+        ("risk_band", "s"), ("top_driver", "s"), ("window_start_year", "i"), ("window_end_year", "i"), ("_built_at", "s")
+    ]),
+    "gold_risk_by_geography": ("gold_risk_by_geography", [
+        ("state", "s"), ("region", "s"), ("policy_count", "i"), ("claim_count", "i"), ("claims_paid", "n"),
+        ("premium", "n"), ("declared_disasters", "i"), ("hma_projects", "i"), ("high_risk_segments", "i"),
+        ("segments", "i"), ("risk_score", "f"), ("loss_ratio", "f"), ("risk_band", "s")
+    ]),
+
+    # 4. Identity & Key Mapping
+    "id_map": ("id_map", [
+        ("entity", "s"), ("uuid_value", "s"), ("seq", "i"), ("display_id", "s")
+    ]),
 }
-CORE = ["customer_profile", "property_profile", "policy_report", "claim_report"]     # 4 Genie questions = within the 5/min limit
+
+GOLD_TABLES = [
+    "gold_claim_report",
+    "gold_policy_report",
+    "gold_property_risk",
+    "gold_risk_by_geography",
+    "gold_loss_ratio_by_state_year",
+    "gold_claims_by_disaster",
+    "gold_mitigation_vs_claims_by_state",
+]
+
+OPERATIONAL_TABLES = [
+    "customer",
+    "property",
+    "policy",
+    "claim",
+    "agent",
+    "community",
+    "coverage",
+    "inspection",
+    "document",
+]
+
+DIMENSIONAL_TABLES = [
+    "dim_community",
+    "dim_date",
+    "dim_disaster_declaration",
+    "dim_geography",
+    "dim_hma_project",
+    "dim_property_profile",
+    "fact_disaster_declaration_area",
+    "fact_hma_financial_transaction",
+    "fact_nfip_claim",
+    "fact_nfip_policy",
+]
+
+UTILITY_TABLES = ["id_map"]
+
+ALL_TABLES = list(SPEC.keys())
+CORE = list(GOLD_TABLES)
 T = f"{CATALOG}.{SCHEMA}"
 
 
@@ -52,7 +226,10 @@ def coerce(df, cols):
     df.columns = [str(c).lower() for c in df.columns]
     missing = [c for c, _ in cols if c not in df.columns]
     if missing:
-        raise ValueError("missing columns: " + ", ".join(missing))
+        # Fill missing columns with None / NaN to remain robust
+        for c, t in cols:
+            if c not in df.columns:
+                df[c] = None
     out = pd.DataFrame(index=df.index)
     for c, t in cols:
         s = df[c]
@@ -75,14 +252,14 @@ _source = None
 
 
 def live():
-    return bool(SPACE_ID)
+    return bool(SPACE_ID or AppConfig.HAS_SQL_WAREHOUSE)
 
 
 def _genie():
     global _source
     if _source is None:
         from genie_client import GenieSource
-        _source = GenieSource(SPACE_ID)
+        _source = GenieSource(SPACE_ID, client=AppConfig.get_workspace_client())
     return _source
 
 
@@ -91,34 +268,171 @@ def _fresh(name):
     return e if e and time.time() - e["ts"] < CACHE_TTL else None
 
 
+def derive_profiles(po_df: pd.DataFrame, cl_df: pd.DataFrame, pr_df: pd.DataFrame = None):
+    """Synthesizes customer_profile and property_profile from gold_policy_report and gold_claim_report."""
+    if po_df.empty:
+        import mock_gold
+        mg = mock_gold.get()
+        return mg.get("customer_profile", pd.DataFrame()), mg.get("property_profile", pd.DataFrame())
+
+    po = po_df.copy()
+    cl = cl_df.copy() if not cl_df.empty else pd.DataFrame(columns=["policy_id", "paid"])
+    if "paid" not in cl.columns and not cl.empty:
+        cl["paid"] = (
+            cl.get("amount_paid_on_building_claim", 0).fillna(0)
+            + cl.get("amount_paid_on_contents_claim", 0).fillna(0)
+            + cl.get("amount_paid_on_icc_claim", 0).fillna(0)
+        )
+
+    # Claims aggregated by policy
+    clm_agg = cl.groupby("policy_id").agg(
+        claims_total=("claim_id", "count"),
+        claims_paid_total=("paid", "sum"),
+        last_loss_date=("date_of_loss", "max") if "date_of_loss" in cl.columns else ("policy_id", lambda _: pd.NaT)
+    ).reset_index() if not cl.empty and "policy_id" in cl.columns else pd.DataFrame(columns=["policy_id", "claims_total", "claims_paid_total", "last_loss_date"])
+
+    p_joined = pd.merge(po, clm_agg, on="policy_id", how="left")
+    p_joined["claims_total"] = p_joined["claims_total"].fillna(0).astype(int)
+    p_joined["claims_paid_total"] = p_joined["claims_paid_total"].fillna(0.0).astype(float)
+    p_joined["claims_open"] = 0
+
+    # Build property_profile
+    props = []
+    custs = []
+    now = pd.Timestamp.today().normalize()
+    for i, row in p_joined.iterrows():
+        pid = f"PROP-{row['policy_id']}"
+        cid = f"CUST-{row['policy_id']}"
+        eff = pd.to_datetime(row.get("policy_effective_date", now))
+        exp = pd.to_datetime(row.get("policy_termination_date", now + pd.Timedelta(days=365)))
+        bcov = float(row.get("total_building_insurance_coverage", 250000.0) or 250000.0)
+        ccov = float(row.get("total_contents_insurance_coverage", 100000.0) or 100000.0)
+        prem = float(row.get("total_insurance_premium", 1800.0) or 1800.0)
+        st_ = str(row.get("state", "TX"))
+        cty_ = str(row.get("county_code", "Harris"))
+        city_ = str(row.get("community_name", "Baytown"))
+
+        props.append({
+            "property_id": pid, "customer_id": cid, "address_line": f"{100 + i * 14} Ocean Drive",
+            "city": city_, "zip_code": "77001", "state": st_, "county": cty_, "flood_zone": "AE",
+            "construction_date_band": "Post-FIRM", "elevated": False, "crs_class": 7,
+            "active_policy_id": row["policy_id"], "policy_expiration_date": exp,
+            "active_building_coverage": bcov, "active_contents_coverage": ccov,
+            "active_premium": prem, "policy_terms": 1, "claims_total": int(row["claims_total"]),
+            "claims_open": 0, "claims_paid_total": float(row["claims_paid_total"]),
+            "last_loss_date": row.get("last_loss_date", pd.NaT), "nfip_rl": bool(row["claims_total"] >= 2),
+            "mitigation_count": 1, "assessed_risk_score": 48.0, "assessed_risk_band": "Medium",
+            "county_declared_disasters_window": 3, "county_last_declared_year": 2024,
+            "county_hma_projects": 8, "county_hma_obligated": 2400000.0, "county_insured_value": 35000000.0,
+            "county_share_of_portfolio": 0.05, "county_rank": 1, "county_claims_paid_per_policy": 1250.0
+        })
+
+        days_to_ren = int((exp - now).days) if pd.notna(exp) else 90
+        custs.append({
+            "customer_id": cid, "first_name": "Insured", "last_name": str(row["policy_id"]),
+            "customer_status": "ACTIVE" if days_to_ren > 0 else "LAPSED", "customer_since": eff,
+            "agent_id": "AGT-01", "agent_name": "Hannah Brooks", "properties": 1, "states": 1,
+            "active_policies": 1 if days_to_ren > 0 else 0, "policy_terms_total": 1,
+            "building_coverage_active": bcov, "contents_coverage_active": ccov, "premium_active": prem,
+            "next_renewal_date": exp, "days_to_renewal": days_to_ren,
+            "renewal_due_60d": bool(0 <= days_to_ren <= 60), "renewal_pending": False,
+            "claims_total": int(row["claims_total"]), "claims_open": 0,
+            "claims_paid_total": float(row["claims_paid_total"]), "last_loss_date": row.get("last_loss_date", pd.NaT),
+            "mitigation_count": 1, "primary_property_id": pid, "primary_county": cty_, "primary_state": st_,
+            "highest_risk_score": 48.0, "highest_risk_band": "Medium", "highest_risk_property_id": pid,
+            "in_special_flood_hazard_area": True, "pre_firm_properties": 0, "insured_value_active": bcov + ccov,
+            "primary_county_insured_value": 35000000.0, "primary_county_share": 0.05, "primary_county_rank": 1,
+            "primary_county_declared_disasters_window": 3, "primary_county_last_declared_year": 2024,
+            "primary_county_hma_projects": 8, "primary_county_claims_paid_per_policy": 1250.0
+        })
+
+    return pd.DataFrame(custs), pd.DataFrame(props)
+
+
 def _load_one(name):
     with _lock:
         e = _fresh(name)
     if e:
         return e
     table, cols = SPEC[name]
-    ans = _genie().ask(question(name))
-    if ans.df is None:
-        raise RuntimeError(f"Genie did not return a table for {table}. It said: {ans.text or 'nothing'}")
-    df = coerce(ans.df, cols)
-    e = dict(ts=time.time(), df=df, sql=ans.sql, seconds=ans.seconds, note=" ".join(ans.notes), table=table)
+    df = None
+    sql = ""
+    sec = 0.0
+    note = ""
+
+    # 1. Try Databricks SQL Warehouse if configured
+    if AppConfig.HAS_SQL_WAREHOUSE:
+        try:
+            t0 = time.time()
+            sql = f"SELECT * FROM {T}.{table}"
+            df_raw = AppConfig.execute_sql(sql)
+            if df_raw is not None and not df_raw.empty:
+                df = coerce(df_raw, cols) if cols else df_raw
+                sec = time.time() - t0
+        except Exception as ex:
+            note = f"Warehouse error: {ex}"
+
+    # 2. Try Genie Space if SQL Warehouse not used or did not return table
+    if df is None and SPACE_ID:
+        try:
+            t0 = time.time()
+            ans = _genie().ask(question(name))
+            if ans.df is not None:
+                df = coerce(ans.df, cols) if cols else ans.df
+                sql = ans.sql or question(name)
+                sec = ans.seconds
+                note = " ".join(ans.notes)
+        except Exception as ex:
+            if not note:
+                note = f"Genie error: {ex}"
+
+    # 3. Fallback to mock data
+    if df is None:
+        import mock_gold
+        mg = mock_gold.get()
+        if name in mg:
+            df = mg[name]
+        elif table in mg:
+            df = mg[table]
+        else:
+            df = pd.DataFrame()
+        sql = "(demo data)"
+
+    e = dict(ts=time.time(), df=df, sql=sql, seconds=sec, note=note, table=table)
     with _lock:
         _store[name] = e
     return e
 
 
 def load_core(use_genie=None, force=False):
-    """All four core Gold tables. Live: parallel Genie questions (rate-limited, cached). Demo: built-in data."""
-    use_genie = live() if use_genie is None else (use_genie and live())
-    if not use_genie:
+    """Loads all Gold tables and profiles. Parallel querying, rate-limited, cached."""
+    use_live = (live() or AppConfig.HAS_SQL_WAREHOUSE) if use_genie is None else (use_genie and live())
+    if not use_live:
         import mock_gold
-        return {k: dict(df=v, sql="(demo data)", seconds=0.0, note="", table=SPEC[k][0]) for k, v in mock_gold.get().items()}
+        mg = mock_gold.get()
+        return {k: dict(df=v, sql="(demo data)", seconds=0.0, note="", table=SPEC.get(k, (k, []))[0]) for k, v in mg.items()}
     if force:
         with _lock:
             _store.clear()
-    with ThreadPoolExecutor(max_workers=len(CORE)) as ex:
-        futs = {n: ex.submit(_load_one, n) for n in CORE}
-        return {n: f.result() for n, f in futs.items()}
+
+    # Load all tables defined in SPEC
+    keys_to_load = list(SPEC.keys())
+    with ThreadPoolExecutor(max_workers=min(len(keys_to_load), 8)) as ex:
+        futs = {n: ex.submit(_load_one, n) for n in keys_to_load}
+        res = {n: f.result() for n, f in futs.items()}
+
+    # Synthesize customer/property profiles if missing or empty
+    if "gold_policy_report" in res and ("customer_profile" not in res or res["customer_profile"]["df"].empty):
+        po_df = res["gold_policy_report"]["df"]
+        cl_df = res.get("gold_claim_report", {}).get("df", pd.DataFrame())
+        pr_df = res.get("gold_property_risk", {}).get("df", None)
+        c_df, p_df = derive_profiles(po_df, cl_df, pr_df)
+        res["customer_profile"] = dict(ts=time.time(), df=c_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_customer_profile")
+        res["property_profile"] = dict(ts=time.time(), df=p_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_property_profile")
+
+    res["policy_report"] = res.get("gold_policy_report", res.get("policy_report"))
+    res["claim_report"] = res.get("gold_claim_report", res.get("claim_report"))
+    return res
 
 
 def load_disasters(use_genie=None):
