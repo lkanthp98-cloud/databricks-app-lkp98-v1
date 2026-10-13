@@ -11,7 +11,7 @@ import pandas as pd
 import streamlit as st
 
 from config import AppConfig
-from llm_engine import copilot, InAppDataRAG, OPEN_LLM_MODELS
+from llm_engine import copilot, InAppDataRAG, OPEN_LLM_MODELS, get_available_models
 from ui import AMBER, BAND_COL, DEEP, INK, MID, MUTED, PURPLE, RED, SOFT, fig_style, n, pct, usd
 
 
@@ -62,8 +62,9 @@ def render_open_llm_frontend(
     with st.container(border=True):
         c1, c2, c3, c4 = st.columns([3, 2, 2, 1.5])
         with c1:
-            model_options = [m[0] for m in OPEN_LLM_MODELS]
-            model_labels = {m[0]: m[1] for m in OPEN_LLM_MODELS}
+            models_list = get_available_models()
+            model_options = [m[0] for m in models_list]
+            model_labels = {m[0]: m[1] for m in models_list}
             selected_model = st.selectbox(
                 "Active Open Source LLM Architecture",
                 options=model_options,

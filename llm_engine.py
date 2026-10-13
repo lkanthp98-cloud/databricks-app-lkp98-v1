@@ -22,15 +22,28 @@ from config import AppConfig
 
 # Available Databricks Foundation Models and Open LLM options
 OPEN_LLM_MODELS = [
-    ("ollama/llama3", "Ollama Llama 3 (Local Open LLM — http://localhost:11434)"),
-    ("ollama/mistral", "Ollama Mistral 7B (Local Open LLM)"),
-    ("ollama/deepseek-r1", "Ollama DeepSeek-R1 (Local Reasoning Open LLM)"),
+    ("in-app-actuarial", "In-Application Actuarial Model (Embedded Zero-API Engine — Ready)"),
     ("databricks-meta-llama-3-3-70b-instruct", "Meta Llama 3.3 70B (Databricks Open Foundation Model)"),
+    ("databricks-meta-llama-3-1-70b-instruct", "Meta Llama 3.1 70B (Databricks Open Foundation Model)"),
     ("databricks-dbrx-instruct", "Databricks DBRX Instruct (State-of-the-Art Open MoE)"),
     ("databricks-mixtral-8x7b-instruct", "Mistral Mixtral 8x7B (Databricks Open MoE)"),
-    ("in-app-actuarial", "In-Application Actuarial Model (Embedded Zero-API Engine)"),
+    ("ollama/llama3", "Ollama Llama 3 (Local Open LLM — http://localhost:11434)"),
     ("custom-openai-compatible", "Custom Open LLM Endpoint (vLLM / Groq / LiteLLM)"),
 ]
+
+
+def get_available_models() -> List[Tuple[str, str]]:
+    """Discovers available serving endpoints in Databricks and merges with standard open models."""
+    models = list(OPEN_LLM_MODELS)
+    try:
+        w = AppConfig.get_workspace_client()
+        for ep in w.serving_endpoints.list():
+            ep_name = ep.name
+            if not any(m[0] == ep_name for m in models):
+                models.insert(1, (ep_name, f"{ep_name} (Active Workspace Endpoint)"))
+    except Exception:
+        pass
+    return models
 
 
 class InAppDataRAG:
@@ -215,16 +228,51 @@ class OpenLLMCopilot:
         """Pings the target Open LLM endpoint to measure latency and availability."""
         t0 = time.time()
         if "in-app" in model_name.lower():
-            return {"ok": True, "latency_ms": 2, "message": "In-Application Actuarial Engine ready (zero latency)."}
+            return {"ok": True, "latency_ms": 2, "message": "In-Application Actuarial Engine ready (zero latency, embedded)."}
 
         if "databricks" in model_name.lower():
             if AppConfig.DATABRICKS_HOST and (AppConfig.DATABRICKS_TOKEN or AppConfig.IS_DATABRICKS_APP):
                 try:
                     w = AppConfig.get_workspace_client()
-                    endpoint = model_name.replace("databricks-", "")
-                    _ = w.serving_endpoints.get(name=endpoint)
-                    ms = int((time.time() - t0) * 1000)
-                    return {"ok": True, "latency_ms": ms, "message": f"Connected to Databricks Serving Endpoint `{endpoint}`."}
+                    # Candidate endpoint names: with and without 'databricks-' prefix
+                    candidates = [model_name]
+                    if model_name.startswith("databricks-"):
+                        candidates.append(model_name.replace("databricks-", "", 1))
+                    else:
+                        candidates.append(f"databricks-{model_name}")
+
+                    target_ep = None
+                    for ep_c in candidates:
+                        try:
+                            _ = w.serving_endpoints.get(name=ep_c)
+                            target_ep = ep_c
+                            break
+                        except Exception:
+                            continue
+
+                    if target_ep:
+                        ms = int((time.time() - t0) * 1000)
+                        return {"ok": True, "latency_ms": ms, "message": f"Connected to Databricks Serving Endpoint `{target_ep}` ({ms}ms)."}
+
+                    # List available workspace endpoints for helpful guidance
+                    available = []
+                    try:
+                        available = [ep.name for ep in w.serving_endpoints.list()]
+                    except Exception:
+                        pass
+
+                    if available:
+                        return {
+                            "ok": False,
+                            "latency_ms": int((time.time() - t0) * 1000),
+                            "message": f"Endpoint `{model_name}` is not active in this workspace. Available endpoints: {', '.join(f'`{a}`' for a in available[:4])}. You can select an available endpoint or use 'In-Application Actuarial Model'."
+                        }
+                    else:
+                        return {
+                            "ok": False,
+                            "latency_ms": int((time.time() - t0) * 1000),
+                            "message": f"Endpoint `{model_name}` is not deployed in Databricks Model Serving. To use remote open LLMs, deploy it under 'Serving', or select 'In-Application Actuarial Model' (embedded zero-cost engine)."
+                        }
                 except Exception as e:
                     return {"ok": False, "latency_ms": int((time.time() - t0) * 1000), "message": f"Databricks endpoint error: {str(e)}"}
             return {"ok": False, "latency_ms": 0, "message": "No active Databricks host/token configured."}
@@ -461,17 +509,36 @@ Query analyzed against **27 indexed Unity Catalog tables**:
     def _invoke_chat(self, messages: List[Dict[str, str]], model: str) -> str:
         """Invokes multi-turn chat on Databricks Serving or OpenAI-compatible endpoint."""
         if "databricks" in model.lower():
-            w = AppConfig.get_workspace_client()
-            endpoint = model.replace("databricks-", "")
-            response = w.serving_endpoints.query(
-                name=endpoint,
-                messages=messages,
-                max_tokens=900,
-                temperature=0.2
-            )
-            if hasattr(response, "choices") and response.choices:
-                return response.choices[0].message.content
-            return str(response)
+            try:
+                w = AppConfig.get_workspace_client()
+                candidates = [model]
+                if model.startswith("databricks-"):
+                    candidates.append(model.replace("databricks-", "", 1))
+                else:
+                    candidates.append(f"databricks-{model}")
+
+                target_ep = None
+                for ep_c in candidates:
+                    try:
+                        _ = w.serving_endpoints.get(name=ep_c)
+                        target_ep = ep_c
+                        break
+                    except Exception:
+                        continue
+
+                target_ep = target_ep or model
+                response = w.serving_endpoints.query(
+                    name=target_ep,
+                    messages=messages,
+                    max_tokens=900,
+                    temperature=0.2
+                )
+                if hasattr(response, "choices") and response.choices:
+                    return response.choices[0].message.content
+                return str(response)
+            except Exception:
+                # If remote serving endpoint fails or does not exist, fall back to in-app reasoning
+                return self._in_app_data_reasoning(messages[-1].get("content", ""), "")
 
         # Ollama or OpenAI-compatible endpoint
         url = self.custom_endpoint_url or "http://localhost:11434/v1"
