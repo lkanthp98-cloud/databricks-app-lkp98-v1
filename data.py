@@ -18,12 +18,131 @@ SPACE_ID = AppConfig.GENIE_SPACE_ID
 CACHE_TTL = AppConfig.CACHE_TTL_SECONDS
 
 SPEC = {
-    # Exact tables from insurance_dev_gold.gold_schema
+    # 1. Operational & Entity Tables
+    "agent": ("agent", [
+        ("agent_id", "s"), ("agent_name", "s"), ("state", "s")
+    ]),
+    "claim": ("claim", [
+        ("claim_id", "s"), ("policy_id", "s"), ("community_id", "s"), ("date_of_loss", "d"),
+        ("year_of_loss", "i"), ("state", "s"), ("county_code", "s"), ("amount_paid_on_building_claim", "n"),
+        ("amount_paid_on_contents_claim", "n"), ("amount_paid_on_icc_claim", "n"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"),
+        ("occupancy_type", "s"), ("rated_flood_zone", "s"), ("primary_residence_indicator", "b"),
+        ("elevated_building_indicator", "b"), ("synthetic_policy_key", "s")
+    ]),
+    "community": ("community", [
+        ("community_id", "s"), ("community_name", "s"), ("county", "s"), ("state", "s"),
+        ("participating_in_nfip", "b"), ("tribal", "b"), ("class_rating", "i"),
+        ("sfha_discount", "f"), ("non_sfha_discount", "f"), ("sanction", "s")
+    ]),
+    "coverage": ("coverage", [
+        ("coverage_id", "s"), ("policy_id", "s"), ("coverage_type", "s"), ("coverage_amount", "n")
+    ]),
+    "customer": ("customer", [
+        ("customer_id", "s"), ("state", "s"), ("county_code", "s"), ("community_id", "s")
+    ]),
+    "document": ("document", [
+        ("document_id", "s"), ("claim_id", "s"), ("document_type", "s"), ("created_date", "d")
+    ]),
+    "inspection": ("inspection", [
+        ("inspection_id", "s"), ("property_id", "s"), ("agent_id", "s"), ("project_identifier", "s"),
+        ("program_area", "s"), ("property_action", "s"), ("structure_type", "s"),
+        ("foundation_type", "s"), ("damage_category", "s"), ("actual_amount_paid", "n"),
+        ("number_of_properties", "i"), ("state", "s"), ("county", "s"), ("city", "s"),
+        ("zip_code", "s"), ("synthetic_property_key", "s")
+    ]),
+    "policy": ("policy", [
+        ("policy_id", "s"), ("customer_id", "s"), ("property_id", "s"), ("agent_id", "s"),
+        ("community_id", "s"), ("policy_effective_date", "d"), ("policy_termination_date", "d"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"),
+        ("total_insurance_premium", "n"), ("hfiaa_surcharge", "n"), ("federal_policy_fee", "n"),
+        ("occupancy_type", "s"), ("rated_flood_zone", "s"), ("state", "s"), ("county_code", "s"),
+        ("synthetic_property_key", "s"), ("synthetic_policy_key", "s")
+    ]),
+    "property": ("property", [
+        ("property_id", "s"), ("community_id", "s"), ("state", "s"), ("state_abbreviation", "s"),
+        ("county", "s"), ("zip_code", "s"), ("city", "s"), ("flood_zone", "s"),
+        ("latitude", "f"), ("longitude", "f"), ("occupancy_type", "s"),
+        ("original_construction_date", "d"), ("primary_residence_indicator", "b"),
+        ("total_losses", "i"), ("nfip_rl", "b"), ("nfip_srl", "b"),
+        ("mitigated_indicator", "b"), ("insured_indicator", "b"),
+        ("synthetic_geo_key", "s"), ("synthetic_zip_key", "s")
+    ]),
+
+    # 2. Dimensional Warehouse & Star-Schema Tables
+    "dim_community": ("dim_community", [
+        ("community_key", "i"), ("community_id_number", "s"), ("community_name", "s"),
+        ("state", "s"), ("participation_status", "s"), ("crs_class", "i")
+    ]),
+    "dim_date": ("dim_date", [
+        ("date_key", "i"), ("full_date", "d"), ("day_of_week", "i"), ("day_name", "s"),
+        ("day_of_month", "i"), ("month", "i"), ("month_name", "s"), ("quarter", "i"),
+        ("year", "i"), ("fiscal_year", "i"), ("is_weekend", "b")
+    ]),
+    "dim_disaster_declaration": ("dim_disaster_declaration", [
+        ("disaster_key", "i"), ("disaster_number", "i"), ("fema_declaration_string", "s"),
+        ("declaration_type", "s"), ("declaration_title", "s"), ("incident_type", "s"),
+        ("declaration_date", "d"), ("incident_begin_date", "d"), ("incident_end_date", "d"),
+        ("ih_program_declared", "b"), ("ia_program_declared", "b"), ("pa_program_declared", "b"),
+        ("hm_program_declared", "b")
+    ]),
+    "dim_geography": ("dim_geography", [
+        ("geography_key", "i"), ("state", "s"), ("fips_state_code", "s"), ("county_code", "s"),
+        ("fips_county_code", "s"), ("region", "s")
+    ]),
+    "dim_hma_project": ("dim_hma_project", [
+        ("project_key", "i"), ("project_identifier", "s"), ("program_area", "s"),
+        ("project_type", "s"), ("status", "s"), ("recipient", "s"), ("subrecipient", "s"),
+        ("project_title", "s")
+    ]),
+    "dim_property_profile": ("dim_property_profile", [
+        ("property_profile_key", "i"), ("occupancy_type", "s"), ("flood_zone", "s"),
+        ("construction_date_band", "s"), ("primary_residence_indicator", "b"),
+        ("elevated_building_indicator", "b"), ("condominium_indicator", "b")
+    ]),
+    "fact_disaster_declaration_area": ("fact_disaster_declaration_area", [
+        ("declaration_area_key", "i"), ("declaration_date_key", "i"), ("geography_key", "i"),
+        ("disaster_key", "i"), ("ih_program_declared", "b"), ("ia_program_declared", "b"),
+        ("pa_program_declared", "b"), ("hm_program_declared", "b"), ("declaration_count", "i")
+    ]),
+    "fact_hma_financial_transaction": ("fact_hma_financial_transaction", [
+        ("transaction_key", "i"), ("obligated_date_key", "i"), ("geography_key", "i"),
+        ("project_key", "i"), ("disaster_key", "i"), ("transaction_level", "s"),
+        ("obligated_amount", "n"), ("federal_share_obligated", "n"), ("transaction_count", "i")
+    ]),
+    "fact_nfip_claim": ("fact_nfip_claim", [
+        ("claim_key", "i"), ("date_of_loss_key", "i"), ("geography_key", "i"),
+        ("community_key", "i"), ("property_profile_key", "i"), ("disaster_key", "i"),
+        ("amount_paid_on_building_claim", "n"), ("amount_paid_on_contents_claim", "n"),
+        ("amount_paid_on_icc_claim", "n"), ("net_building_payment_amount", "n"),
+        ("net_contents_payment_amount", "n"), ("total_building_insurance_coverage", "n"),
+        ("total_contents_insurance_coverage", "n"), ("claim_count", "i")
+    ]),
+    "fact_nfip_policy": ("fact_nfip_policy", [
+        ("policy_key", "i"), ("effective_date_key", "i"), ("expiration_date_key", "i"),
+        ("geography_key", "i"), ("community_key", "i"), ("property_profile_key", "i"),
+        ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n"),
+        ("total_insurance_premium", "n"), ("hfiaa_surcharge", "n"), ("federal_policy_fee", "n"),
+        ("policy_count", "i")
+    ]),
+
+    # 3. Gold Reporting & Aggregate Tables
     "gold_claim_report": ("gold_claim_report", [
         ("claim_id", "s"), ("claim_id_uuid", "s"), ("policy_id", "s"), ("policy_id_uuid", "s"), ("state", "s"),
         ("community_name", "s"), ("date_of_loss", "d"), ("year_of_loss", "i"),
         ("amount_paid_on_building_claim", "n"), ("amount_paid_on_contents_claim", "n"), ("amount_paid_on_icc_claim", "n"),
         ("total_building_insurance_coverage", "n"), ("total_contents_insurance_coverage", "n")
+    ]),
+    "gold_claims_by_disaster": ("gold_claims_by_disaster", [
+        ("disaster_number", "i"), ("fema_declaration_string", "s"), ("declaration_title", "s"),
+        ("incident_type", "s"), ("claim_count", "i"), ("total_paid", "n")
+    ]),
+    "gold_loss_ratio_by_state_year": ("gold_loss_ratio_by_state_year", [
+        ("state", "s"), ("year", "i"), ("total_premium", "n"), ("claim_count", "i"), ("total_paid", "n"),
+        ("loss_ratio", "f"), ("data_status", "s")
+    ]),
+    "gold_mitigation_vs_claims_by_state": ("gold_mitigation_vs_claims_by_state", [
+        ("state", "s"), ("total_mitigation_spend", "n"), ("total_claims_paid", "n")
     ]),
     "gold_policy_report": ("gold_policy_report", [
         ("policy_id", "s"), ("policy_id_uuid", "s"), ("state", "s"), ("county_code", "s"), ("community_name", "s"),
@@ -43,18 +162,13 @@ SPEC = {
         ("premium", "n"), ("declared_disasters", "i"), ("hma_projects", "i"), ("high_risk_segments", "i"),
         ("segments", "i"), ("risk_score", "f"), ("loss_ratio", "f"), ("risk_band", "s")
     ]),
-    "gold_loss_ratio_by_state_year": ("gold_loss_ratio_by_state_year", [
-        ("state", "s"), ("year", "i"), ("total_premium", "n"), ("claim_count", "i"), ("total_paid", "n"),
-        ("loss_ratio", "f"), ("data_status", "s")
-    ]),
-    "gold_claims_by_disaster": ("gold_claims_by_disaster", [
-        ("disaster_number", "i"), ("fema_declaration_string", "s"), ("declaration_title", "s"),
-        ("incident_type", "s"), ("claim_count", "i"), ("total_paid", "n")
-    ]),
-    "gold_mitigation_vs_claims_by_state": ("gold_mitigation_vs_claims_by_state", [
-        ("state", "s"), ("total_mitigation_spend", "n"), ("total_claims_paid", "n")
+
+    # 4. Identity & Key Mapping
+    "id_map": ("id_map", [
+        ("entity", "s"), ("uuid_value", "s"), ("seq", "i"), ("display_id", "s")
     ]),
 }
+
 GOLD_TABLES = [
     "gold_claim_report",
     "gold_policy_report",
@@ -64,6 +178,35 @@ GOLD_TABLES = [
     "gold_claims_by_disaster",
     "gold_mitigation_vs_claims_by_state",
 ]
+
+OPERATIONAL_TABLES = [
+    "customer",
+    "property",
+    "policy",
+    "claim",
+    "agent",
+    "community",
+    "coverage",
+    "inspection",
+    "document",
+]
+
+DIMENSIONAL_TABLES = [
+    "dim_community",
+    "dim_date",
+    "dim_disaster_declaration",
+    "dim_geography",
+    "dim_hma_project",
+    "dim_property_profile",
+    "fact_disaster_declaration_area",
+    "fact_hma_financial_transaction",
+    "fact_nfip_claim",
+    "fact_nfip_policy",
+]
+
+UTILITY_TABLES = ["id_map"]
+
+ALL_TABLES = list(SPEC.keys())
 CORE = list(GOLD_TABLES)
 T = f"{CATALOG}.{SCHEMA}"
 

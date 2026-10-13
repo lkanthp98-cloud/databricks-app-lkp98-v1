@@ -1,8 +1,20 @@
+# Core Web Application Framework
 streamlit>=1.40
-pandas
-numpy
-plotly
-databricks-sdk>=0.40
-requests
-pyarrow
-scikit-learn
+
+# Data Science & DataFrames
+pandas>=2.0.0
+numpy>=1.24.0
+pyarrow>=14.0.0
+
+# Interactive Visualizations & Mapping
+plotly>=5.18.0
+
+# Machine Learning Predictive Models & Actuarial Regression
+scikit-learn>=1.3.0
+
+# Databricks Lakehouse, SQL Warehouses & Foundation Model Serving
+databricks-sdk>=0.40.0
+requests>=2.31.0
+
+# Optional Open LLM Client (OpenAI-compatible endpoints / vLLM / LiteLLM)
+openai>=1.10.0

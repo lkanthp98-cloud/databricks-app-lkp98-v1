@@ -1,0 +1,13 @@
+geography_key,state,fips_state_code,county_code,fips_county_code,region
+1,TX,40,48000,48000,Gulf Coast
+2,TX,41,48001,48001,Gulf Coast
+3,TX,42,48002,48002,Gulf Coast
+4,LA,43,48003,48003,Gulf Coast
+5,LA,44,48004,48004,Gulf Coast
+6,FL,45,48005,48005,South Atlantic
+7,FL,46,48006,48006,South Atlantic
+8,FL,47,48007,48007,South Atlantic
+9,NC,48,48008,48008,South Atlantic
+10,NC,49,48009,48009,South Atlantic
+11,SC,410,48010,48010,South Atlantic
+12,SC,411,48011,48011,South Atlantic

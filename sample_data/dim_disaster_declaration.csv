@@ -1,0 +1,7 @@
+disaster_key,disaster_number,fema_declaration_string,declaration_type,declaration_title,incident_type,declaration_date,incident_begin_date,incident_end_date,ih_program_declared,ia_program_declared,pa_program_declared,hm_program_declared
+1,4520,DR-4520-TX,Major Disaster,Hurricane Laura,Hurricane,2020-08-15,2020-08-10,2020-08-20,True,True,True,True
+2,4611,DR-4611-LA,Major Disaster,Hurricane Ida,Hurricane,2021-08-15,2021-08-10,2021-08-20,True,True,True,True
+3,4673,DR-4673-FL,Major Disaster,Hurricane Ian,Hurricane,2022-08-15,2022-08-10,2022-08-20,True,True,True,True
+4,4712,DR-4712-NC,Major Disaster,Tropical Storm Debby,Tropical Storm,2023-08-15,2023-08-10,2023-08-20,True,True,True,True
+5,4735,DR-4735-SC,Major Disaster,Coastal Surge and Flooding,Flood,2024-08-15,2024-08-10,2024-08-20,True,True,True,True
+6,4789,DR-4789-TX,Major Disaster,Gulf Coast Severe Storms,Severe Storm,2025-08-15,2025-08-10,2025-08-20,True,True,True,True

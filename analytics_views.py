@@ -737,6 +737,43 @@ def render_geospatial_map(P: pd.DataFrame, ACT: pd.DataFrame, PO: pd.DataFrame, 
             fig_style(fig2, 360)
             st.plotly_chart(fig2, use_container_width=True)
 
+    # 3. High-Resolution Property-Level Hazard Geo Map
+    with st.container(border=True):
+        st.markdown('<div class="ct">Property Hazard Geo Pins & Coastal Hotspots (<code>property</code>)</div>', unsafe_allow_html=True)
+        st.caption("Pinpoint geographic inspection of insured structures, flood hazard zones, and assessed vulnerability ratings.")
+        
+        map_p = P[P["latitude"].notna() & P["longitude"].notna()].copy() if "latitude" in P.columns and "longitude" in P.columns else pd.DataFrame()
+        if not map_p.empty:
+            pf1, pf2 = st.columns([3, 1])
+            with pf2:
+                pin_color = st.selectbox("Color Pins By", ["assessed_risk_band", "flood_zone", "construction_date_band"], key="pin_col_by")
+            
+            fig3 = px.scatter_geo(
+                map_p.head(1000),
+                lat="latitude",
+                lon="longitude",
+                scope="usa",
+                color=pin_color,
+                color_discrete_map=BAND_COL if pin_color == "assessed_risk_band" else ZONE_COL,
+                hover_name="address_line",
+                hover_data={
+                    "city": True, "state": True, "flood_zone": True,
+                    "assessed_risk_score": ":.0f", "active_premium": ":$,.0f",
+                    "latitude": False, "longitude": False
+                },
+                title="Geospatial Property Distribution (Coastal Hazard Footprint)"
+            )
+            fig3.update_traces(marker=dict(size=7, opacity=0.85))
+            fig3.update_layout(
+                margin=dict(l=0, r=0, t=10, b=0),
+                geo=dict(bgcolor="rgba(0,0,0,0)", lakecolor="#E6ECFC", fitbounds="locations")
+            )
+            fig_style(fig3, 400)
+            st.plotly_chart(fig3, use_container_width=True)
+            st.caption(f"Visualising {min(len(map_p), 1000):,} geolocated properties across active underwriting territories.")
+        else:
+            st.info("No property latitude/longitude coordinates available.")
+
 
 # ==============================================================================
 # 8. Interactive Flow & Sankey Linkage Diagram
@@ -1277,5 +1314,553 @@ def render_customer_risk_profile(C: pd.DataFrame, P: pd.DataFrame, PO: pd.DataFr
             * **Special Flood Hazard:** `{'Yes (Zone A/V)' if cust.get('in_special_flood_hazard_area') else 'No (Zone B/X)'}`.
             * **Mitigation Credits:** `{cust.get('mitigation_count', 0)} active measures verified`.
             """)
+
+
+# ==============================================================================
+# 12. Community Resilience & Hazard Mitigation Intelligence
+# ==============================================================================
+
+def render_community_mitigation_intelligence(
+    community_df: pd.DataFrame,
+    dim_comm_df: pd.DataFrame,
+    hma_project_df: pd.DataFrame,
+    hma_txn_df: pd.DataFrame,
+    disaster_df: pd.DataFrame,
+    mitigation_state_df: pd.DataFrame
+):
+    """Deep-dive into NFIP Community Resilience, CRS Ratings, and Federal HMA Mitigation."""
+    st.markdown("### Community Resilience & Hazard Mitigation Intelligence")
+    st.markdown("Analyze NFIP participating community discounts, CRS rating classes, FEMA HMA federal grants, and disaster declarations.")
+
+    # Fallback to mock data if empty
+    if community_df is None or community_df.empty:
+        import mock_gold
+        mg = mock_gold.get()
+        community_df = mg.get("community", pd.DataFrame())
+        dim_comm_df = mg.get("dim_community", pd.DataFrame())
+        hma_project_df = mg.get("dim_hma_project", pd.DataFrame())
+        hma_txn_df = mg.get("fact_hma_financial_transaction", pd.DataFrame())
+        disaster_df = mg.get("dim_disaster_declaration", pd.DataFrame())
+        mitigation_state_df = mg.get("gold_mitigation_vs_claims_by_state", pd.DataFrame())
+
+    # 1. Executive Metric Header
+    tot_comm = len(community_df)
+    nfip_part = float(community_df["participating_in_nfip"].mean() * 100) if "participating_in_nfip" in community_df.columns and tot_comm else 100.0
+    avg_crs = float(community_df["class_rating"].mean()) if "class_rating" in community_df.columns and tot_comm else 7.0
+    avg_disc = float(community_df["sfha_discount"].mean() * 100) if "sfha_discount" in community_df.columns and tot_comm else 15.0
+    tot_hma = float(hma_txn_df["obligated_amount"].sum()) if not hma_txn_df.empty and "obligated_amount" in hma_txn_df.columns else 0.0
+    fed_share = float(hma_txn_df["federal_share_obligated"].sum()) if not hma_txn_df.empty and "federal_share_obligated" in hma_txn_df.columns else 0.0
+    fed_pct = (fed_share / max(tot_hma, 1.0)) * 100
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("NFIP Participating", f"{nfip_part:.0f}%", f"{tot_comm} tracked jurisdictions")
+    m2.metric("Average CRS Rating", f"Class {avg_crs:.1f}", f"Avg {avg_disc:.1f}% SFHA discount")
+    m3.metric("Federal HMA Obligated", usd(tot_hma), f"{fed_pct:.1f}% federal match")
+    m4.metric("Disaster Declarations", f"{len(disaster_df)} events", "FEMA Major Disaster (DR)")
+
+    # 2. CRS Class Rating & Discount Analysis
+    c1, c2 = st.columns([3, 2])
+    with c1:
+        with st.container(border=True):
+            st.markdown('<div class="ct">Community Rating System (CRS) & Discount Matrix</div>', unsafe_allow_html=True)
+            if not community_df.empty and "class_rating" in community_df.columns:
+                crs_counts = community_df.groupby("class_rating", as_index=False).agg(
+                    communities=("community_id", "count"),
+                    avg_sfha_disc=("sfha_discount", "mean"),
+                    avg_non_sfha_disc=("non_sfha_discount", "mean")
+                )
+                crs_counts["avg_sfha_pct"] = (crs_counts["avg_sfha_disc"] * 100).round(1)
+                
+                fig = px.bar(
+                    crs_counts,
+                    x="class_rating",
+                    y="communities",
+                    text="avg_sfha_pct",
+                    title="Communities by CRS Class (Labels = Avg SFHA Premium Discount %)",
+                    color="class_rating",
+                    color_continuous_scale="Purples_r"
+                )
+                fig.update_traces(texttemplate="%{text}% discount", textposition="outside")
+                fig.update_xaxes(title="CRS Class Rating (Class 1 = 45% Discount, Class 10 = 0%)")
+                fig_style(fig, 320)
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No community CRS data available.")
+
+    with c2:
+        with st.container(border=True):
+            st.markdown('<div class="ct">Mitigation Spend vs Claims Paid (State ROI)</div>', unsafe_allow_html=True)
+            if not mitigation_state_df.empty:
+                fig = go.Figure()
+                fig.add_trace(go.Bar(
+                    x=mitigation_state_df["state"],
+                    y=mitigation_state_df["total_mitigation_spend"],
+                    name="Mitigation Spend",
+                    marker_color=PURPLE
+                ))
+                fig.add_trace(go.Bar(
+                    x=mitigation_state_df["state"],
+                    y=mitigation_state_df["total_claims_paid"],
+                    name="Claims Paid",
+                    marker_color=SOFT
+                ))
+                fig.update_layout(barmode="group", title="State Mitigation Investment vs Paid Losses")
+                fig.update_yaxes(tickprefix="$", tickformat="~s")
+                fig_style(fig, 320)
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No mitigation vs claims data available.")
+
+    # 3. HMA Projects & Federal Financial Transactions
+    st.markdown("#### FEMA Hazard Mitigation Assistance (HMA) Projects")
+    h_c1, h_c2 = st.columns([3, 2])
+    with h_c1:
+        if not hma_project_df.empty:
+            st.dataframe(
+                hma_project_df[[
+                    "project_identifier", "project_title", "program_area", "project_type", "status", "recipient"
+                ]],
+                hide_index=True,
+                use_container_width=True,
+                column_config={
+                    "project_identifier": "Project ID",
+                    "project_title": "Project Title",
+                    "program_area": "Program Area",
+                    "project_type": "Mitigation Type",
+                    "status": "Status",
+                    "recipient": "State Recipient"
+                }
+            )
+        else:
+            st.info("No HMA project records available.")
+
+    with h_c2:
+        with st.container(border=True):
+            st.markdown('<div class="ct">Federal Share Obligation Breakdown</div>', unsafe_allow_html=True)
+            if not hma_project_df.empty and "program_area" in hma_project_df.columns:
+                prog_counts = hma_project_df["program_area"].value_counts().reset_index()
+                prog_counts.columns = ["program_area", "count"]
+                fig = px.pie(
+                    prog_counts,
+                    names="program_area",
+                    values="count",
+                    hole=0.55,
+                    title="HMA Projects by Program Area",
+                    color_discrete_sequence=[PURPLE, MID, DEEP, SOFT]
+                )
+                fig_style(fig, 280)
+                st.plotly_chart(fig, use_container_width=True)
+
+    # 4. FEMA Disaster Declarations Detail
+    with st.container(border=True):
+        st.markdown('<div class="ct">Presidential Disaster Declarations (<code>dim_disaster_declaration</code>)</div>', unsafe_allow_html=True)
+        if not disaster_df.empty:
+            st.dataframe(
+                disaster_df[[
+                    "disaster_number", "fema_declaration_string", "declaration_title", "incident_type",
+                    "declaration_date", "ih_program_declared", "ia_program_declared", "pa_program_declared", "hm_program_declared"
+                ]],
+                hide_index=True,
+                use_container_width=True,
+                column_config={
+                    "disaster_number": st.column_config.NumberColumn("Disaster #", format="%d"),
+                    "fema_declaration_string": "FEMA String",
+                    "declaration_title": "Declaration Title",
+                    "incident_type": "Hazard Type",
+                    "declaration_date": st.column_config.DateColumn("Date Declared"),
+                    "ih_program_declared": st.column_config.CheckboxColumn("Indiv. Housing (IH)"),
+                    "ia_program_declared": st.column_config.CheckboxColumn("Indiv. Assist. (IA)"),
+                    "pa_program_declared": st.column_config.CheckboxColumn("Public Assist. (PA)"),
+                    "hm_program_declared": st.column_config.CheckboxColumn("Hazard Mit. (HM)")
+                }
+            )
+
+
+# ==============================================================================
+# 13. Structural Inspections, Foundation Audits & Coverage Endorsements
+# ==============================================================================
+
+def render_inspection_coverage_intelligence(
+    inspection_df: pd.DataFrame,
+    property_df: pd.DataFrame,
+    coverage_df: pd.DataFrame,
+    document_df: pd.DataFrame,
+    claim_df: pd.DataFrame
+):
+    """Deep-dive into structural inspections, foundation audits, policy endorsements, and claims documentation."""
+    st.markdown("### Structural Inspections & Coverage Portfolio Intelligence")
+    st.markdown("Analyze property inspection audits, foundation vulnerabilities, endorsement structures, and document processing velocity.")
+
+    if inspection_df is None or inspection_df.empty:
+        import mock_gold
+        mg = mock_gold.get()
+        inspection_df = mg.get("inspection", pd.DataFrame())
+        property_df = mg.get("property", pd.DataFrame())
+        coverage_df = mg.get("coverage", pd.DataFrame())
+        document_df = mg.get("document", pd.DataFrame())
+        claim_df = mg.get("claim", pd.DataFrame())
+
+    # 1. Executive Metric Header
+    n_insps = len(inspection_df)
+    tot_audit_cost = float(inspection_df["actual_amount_paid"].sum()) if "actual_amount_paid" in inspection_df.columns and n_insps else 0.0
+    slab_pct = float((inspection_df["foundation_type"] == "Slab-on-Grade").mean() * 100) if "foundation_type" in inspection_df.columns and n_insps else 65.0
+    tot_cov_amt = float(coverage_df["coverage_amount"].sum()) if not coverage_df.empty and "coverage_amount" in coverage_df.columns else 0.0
+    n_docs = len(document_df)
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Inspections Completed", f"{n_insps:,}", f"${tot_audit_cost:,.0f} audit spend")
+    m2.metric("Slab-on-Grade Foundation", f"{slab_pct:.1f}%", "Vulnerable to ground-level surge")
+    m3.metric("Endorsement Limits", usd(tot_cov_amt), f"{len(coverage_df):,} coverage lines")
+    m4.metric("Claims Documents Filed", f"{n_docs:,}", "FNOL & Adjuster Reports")
+
+    # 2. Foundation Type & Damage Category Risk Breakdown
+    c1, c2 = st.columns([3, 2])
+    with c1:
+        with st.container(border=True):
+            st.markdown('<div class="ct">Foundation Type vs Structural Damage Risk</div>', unsafe_allow_html=True)
+            if not inspection_df.empty and "foundation_type" in inspection_df.columns:
+                fnd_counts = inspection_df.groupby(["foundation_type", "damage_category"], as_index=False).agg(
+                    inspections=("inspection_id", "count"),
+                    total_cost=("actual_amount_paid", "sum")
+                )
+                fig = px.bar(
+                    fnd_counts,
+                    x="foundation_type",
+                    y="inspections",
+                    color="damage_category",
+                    title="Inspection Distribution by Foundation & Damage Severity",
+                    color_discrete_map={"None": "#38A169", "Minor": AMBER, "Substantial": RED, "Severe": DEEP}
+                )
+                fig_style(fig, 320)
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No inspection foundation data available.")
+
+    with c2:
+        with st.container(border=True):
+            st.markdown('<div class="ct">Coverage Endorsement Allocation</div>', unsafe_allow_html=True)
+            if not coverage_df.empty and "coverage_type" in coverage_df.columns:
+                cov_agg = coverage_df.groupby("coverage_type", as_index=False).agg(
+                    total_amount=("coverage_amount", "sum")
+                )
+                fig = px.pie(
+                    cov_agg,
+                    names="coverage_type",
+                    values="total_amount",
+                    hole=0.6,
+                    title="Endorsement Limits: Building vs Contents vs ICC",
+                    color="coverage_type",
+                    color_discrete_map={"BUILDING": PURPLE, "CONTENTS": MID, "ICC": AMBER}
+                )
+                fig.update_traces(textinfo="percent+label", hovertemplate="%{label}: $%{value:,.0f}<extra></extra>")
+                fig_style(fig, 320)
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No coverage endorsement records available.")
+
+    # 3. Inspection Audit Registry Table
+    st.markdown("#### Structural Property Inspection Registry (<code>inspection</code>)")
+    if not inspection_df.empty:
+        st.dataframe(
+            inspection_df[[
+                "inspection_id", "property_id", "foundation_type", "structure_type", "damage_category",
+                "property_action", "actual_amount_paid", "city", "state", "zip_code"
+            ]],
+            hide_index=True,
+            use_container_width=True,
+            column_config={
+                "inspection_id": "Audit ID",
+                "property_id": "Property ID",
+                "foundation_type": "Foundation",
+                "structure_type": "Structure Type",
+                "damage_category": "Damage Level",
+                "property_action": "Inspection Action",
+                "actual_amount_paid": st.column_config.NumberColumn("Inspection Cost", format="$%d"),
+                "city": "City",
+                "state": "State",
+                "zip_code": "ZIP"
+            }
+        )
+
+    # 4. Claims Document Velocity & Adjuster Pipeline
+    with st.container(border=True):
+        st.markdown('<div class="ct">Claims Documentation & Adjuster Audit Trail (<code>document</code>)</div>', unsafe_allow_html=True)
+        doc_c1, doc_c2 = st.columns([2, 3])
+        with doc_c1:
+            if not document_df.empty and "document_type" in document_df.columns:
+                dtype_counts = document_df["document_type"].value_counts().reset_index()
+                dtype_counts.columns = ["document_type", "count"]
+                fig = px.pie(
+                    dtype_counts,
+                    names="document_type",
+                    values="count",
+                    hole=0.5,
+                    title="Document Types Filed",
+                    color_discrete_sequence=[PURPLE, MID, DEEP, SOFT]
+                )
+                fig_style(fig, 280)
+                st.plotly_chart(fig, use_container_width=True)
+        with doc_c2:
+            if not document_df.empty:
+                st.dataframe(
+                    document_df[["document_id", "claim_id", "document_type", "created_date"]],
+                    hide_index=True,
+                    use_container_width=True,
+                    column_config={
+                        "document_id": "Document ID",
+                        "claim_id": "Claim ID",
+                        "document_type": "Document Type",
+                        "created_date": st.column_config.DateColumn("Filing Date")
+                    }
+                )
+
+
+def render_ai_underwriter_copilot(
+    C: pd.DataFrame,
+    P: pd.DataFrame,
+    CL: pd.DataFrame,
+    PO: pd.DataFrame,
+    SRC: Optional[Dict[str, Any]] = None
+):
+    """Renders the AI Underwriter & Open LLM Copilot interface."""
+    from llm_engine import copilot, OPEN_LLM_MODELS
+
+    st.markdown("### 🤖 AI Underwriter & Open LLM Copilot")
+    st.markdown(
+        "Generate automated actuarial underwriting memorandums, claims loss investigation briefs, "
+        "and perform natural language portfolio queries using Databricks Foundation Models (Meta Llama 3.3, DBRX, Mixtral) "
+        "or local Open LLMs (Ollama, vLLM)."
+    )
+
+    # 1. Model Selector & Configuration Bar
+    with st.container(border=True):
+        m_col1, m_col2, m_col3 = st.columns([3, 2, 2])
+        with m_col1:
+            model_options = [m[0] for m in OPEN_LLM_MODELS]
+            model_labels = {m[0]: m[1] for m in OPEN_LLM_MODELS}
+            selected_model = st.selectbox(
+                "Active Open LLM Architecture",
+                options=model_options,
+                format_func=lambda x: model_labels.get(x, x),
+                index=0,
+                help="Select between Databricks Foundation Models or local Open LLM runtimes."
+            )
+        with m_col2:
+            is_remote_active = copilot._can_call_remote_llm(selected_model)
+            engine_status = (
+                "⚡ Live Serving Endpoint" if is_remote_active
+                else "🛡️ Actuarial Expert Rules Engine (Offline Fallback)"
+            )
+            st.metric("Inference Engine Status", "Active", engine_status)
+        with m_col3:
+            st.markdown("<div style='height:28px;'></div>", unsafe_allow_html=True)
+            show_config = st.checkbox("⚙️ LLM Endpoint Settings", value=False)
+
+        if show_config:
+            cfg_c1, cfg_c2 = st.columns(2)
+            with cfg_c1:
+                custom_url = st.text_input(
+                    "Custom Endpoint URL (Ollama / vLLM / Groq)",
+                    value=copilot.custom_endpoint_url or "http://localhost:11434/v1",
+                    help="For Ollama: http://localhost:11434/v1 | For vLLM: http://localhost:8000/v1"
+                )
+                if custom_url != copilot.custom_endpoint_url:
+                    copilot.custom_endpoint_url = custom_url
+            with cfg_c2:
+                custom_key = st.text_input(
+                    "API Key (Optional / Bearer Token)",
+                    value=copilot.api_key,
+                    type="password",
+                    help="Optional API key for private model serving or external providers."
+                )
+                if custom_key != copilot.api_key:
+                    copilot.api_key = custom_key
+
+    # 2. Copilot Workflows (Tabs)
+    tab1, tab2, tab3 = st.tabs([
+        "🛡️ Policy Underwriting Memorandum",
+        "📑 Claims Loss Narrative & Brief",
+        "💬 Open LLM Risk Analyst (Q&A)"
+    ])
+
+    # -------------------------------------------------------------
+    # TAB 1: Policy Underwriting Memorandum
+    # -------------------------------------------------------------
+    with tab1:
+        st.markdown("#### Automated Actuarial Underwriting Review")
+        st.markdown("Select any customer to generate a comprehensive, structured Underwriting Memorandum.")
+
+        if C.empty:
+            st.info("No policyholder records available.")
+        else:
+            cust_display_options = {
+                row.customer_id: f"{row.customer_id} — {row.first_name} {row.last_name} ({row.highest_risk_band} Risk · {row.properties} properties)"
+                for row in C.itertuples()
+            }
+            sel_cid = st.selectbox(
+                "Select Insured Customer",
+                options=list(cust_display_options.keys()),
+                format_func=lambda x: cust_display_options.get(x, x),
+                key="uw_memo_cust_sel"
+            )
+
+            cust_series = C[C["customer_id"] == sel_cid].iloc[0]
+            cust_dict = cust_series.to_dict()
+            props_subset = P[P["customer_id"] == sel_cid] if not P.empty else pd.DataFrame()
+            claims_subset = CL[CL["policy_id"].isin(props_subset["active_policy_id"].dropna())] if not CL.empty and not props_subset.empty else pd.DataFrame()
+
+            # Dossier Quick Metrics
+            d1, d2, d3, d4, d5 = st.columns(5)
+            r_score = float(cust_dict.get("highest_risk_score", 45.0) or 45.0)
+            d1.metric("Risk Score", f"{r_score:.0f} / 100", cust_dict.get("highest_risk_band", "Medium"))
+            d2.metric("Scheduled Properties", f"{int(cust_dict.get('properties', 1))}")
+            d3.metric("In-Force Premium", usd(float(cust_dict.get("premium_active", 0.0) or 0.0)))
+            d4.metric("Total Exposure", usd(float(cust_dict.get("insured_value_active", 0.0) or 0.0)))
+            d5.metric("Historical Claims", f"{int(cust_dict.get('claims_total', 0))}", f"${float(cust_dict.get('claims_paid_total', 0.0) or 0.0):,.0f} paid")
+
+            gen_memo_btn = st.button("✨ Generate Underwriting Memorandum with " + model_labels.get(selected_model, selected_model).split('(')[0].strip(), type="primary", key="btn_gen_memo")
+            
+            memo_state_key = f"memo_result_{sel_cid}_{selected_model}"
+            if gen_memo_btn or memo_state_key in st.session_state:
+                if gen_memo_btn:
+                    with st.spinner("Synthesizing multi-variate actuarial dossier and generating memo..."):
+                        memo_text = copilot.generate_underwriting_memo(
+                            customer_row=cust_dict,
+                            properties_df=props_subset,
+                            claims_df=claims_subset,
+                            model_name=selected_model
+                        )
+                        st.session_state[memo_state_key] = memo_text
+                else:
+                    memo_text = st.session_state[memo_state_key]
+
+                with st.container(border=True):
+                    st.markdown(memo_text)
+                    st.download_button(
+                        label="📥 Download Underwriting Memo (.md)",
+                        data=memo_text,
+                        file_name=f"Underwriting_Memo_{sel_cid}.md",
+                        mime="text/markdown",
+                        key=f"dl_memo_{sel_cid}"
+                    )
+
+    # -------------------------------------------------------------
+    # TAB 2: Claims Loss Narrative & Brief
+    # -------------------------------------------------------------
+    with tab2:
+        st.markdown("#### Adjuster Loss Investigation & Narrative Generation")
+        st.markdown("Generate formal adjuster causality briefs, water damage depths, and coverage payout justifications.")
+
+        if CL.empty:
+            st.info("No claim records available.")
+        else:
+            clm_display_options = {
+                row.claim_id: f"{row.claim_id} — {row.community_name}, {row.state} (${(float(getattr(row, 'amount_paid_on_building_claim', 0) or 0) + float(getattr(row, 'amount_paid_on_contents_claim', 0) or 0) + float(getattr(row, 'amount_paid_on_icc_claim', 0) or 0)):,.0f} paid · {str(row.date_of_loss)[:10]})"
+                for row in CL.itertuples()
+            }
+            sel_clid = st.selectbox(
+                "Select Claim Record",
+                options=list(clm_display_options.keys()),
+                format_func=lambda x: clm_display_options.get(x, x),
+                key="clm_loss_sel"
+            )
+
+            claim_series = CL[CL["claim_id"] == sel_clid].iloc[0]
+            claim_dict = claim_series.to_dict()
+
+            bldg_p = float(claim_dict.get("amount_paid_on_building_claim", 0.0) or 0.0)
+            cont_p = float(claim_dict.get("amount_paid_on_contents_claim", 0.0) or 0.0)
+            icc_p = float(claim_dict.get("amount_paid_on_icc_claim", 0.0) or 0.0)
+            tot_p = bldg_p + cont_p + icc_p
+
+            cl1, cl2, cl3, cl4 = st.columns(4)
+            cl1.metric("Building Payout", usd(bldg_p))
+            cl2.metric("Contents Payout", usd(cont_p))
+            cl3.metric("ICC Compliance", usd(icc_p))
+            cl4.metric("Total Settlement", usd(tot_p))
+
+            gen_clm_btn = st.button("📑 Generate Loss Investigation Brief with " + model_labels.get(selected_model, selected_model).split('(')[0].strip(), type="primary", key="btn_gen_clm")
+
+            clm_state_key = f"clm_result_{sel_clid}_{selected_model}"
+            if gen_clm_btn or clm_state_key in st.session_state:
+                if gen_clm_btn:
+                    with st.spinner("Extracting claim settlement logs and composing adjuster brief..."):
+                        narrative_text = copilot.generate_claim_loss_narrative(
+                            claim_row=claim_dict,
+                            model_name=selected_model
+                        )
+                        st.session_state[clm_state_key] = narrative_text
+                else:
+                    narrative_text = st.session_state[clm_state_key]
+
+                with st.container(border=True):
+                    st.markdown(narrative_text)
+                    st.download_button(
+                        label="📥 Download Claims Brief (.md)",
+                        data=narrative_text,
+                        file_name=f"Claims_Investigation_{sel_clid}.md",
+                        mime="text/markdown",
+                        key=f"dl_clm_{sel_clid}"
+                    )
+
+    # -------------------------------------------------------------
+    # TAB 3: Open LLM Risk Analyst (Q&A)
+    # -------------------------------------------------------------
+    with tab3:
+        st.markdown("#### Natural Language Risk & Portfolio Copilot")
+        st.markdown("Ask open-ended actuarial, financial, or regulatory questions grounded in your Unity Catalog data.")
+
+        # Compute portfolio summary stats for context
+        active_pols = len(P[P["active_policy_id"].notna()])
+        prem_sum = float(PO["total_insurance_premium"].sum()) if not PO.empty and "total_insurance_premium" in PO.columns else 0.0
+        exp_sum = float(P["active_building_coverage"].fillna(0).sum() + P["active_contents_coverage"].fillna(0).sum()) if not P.empty else 0.0
+        paid_sum = float(CL["paid"].sum()) if not CL.empty and "paid" in CL.columns else 0.0
+        sfha_count = int(P["flood_zone"].fillna("").astype(str).str[:1].isin(["A", "V"]).sum()) if not P.empty and "flood_zone" in P.columns else 0
+        sfha_share = sfha_count / max(len(P), 1)
+
+        portfolio_summary = {
+            "active_policies": active_pols,
+            "total_exposure": exp_sum,
+            "active_premium": prem_sum,
+            "net_loss_ratio": paid_sum / max(prem_sum, 1.0),
+            "sfha_exposure_share": sfha_share,
+            "total_claims_paid": paid_sum,
+            "open_claims_count": int(P.get("claims_open", pd.Series([0])).sum()) if not P.empty else 0,
+        }
+
+        st.markdown("##### 💡 Suggested Actuarial Prompts")
+        sq1, sq2, sq3, sq4 = st.columns(4)
+        preset_q = None
+        if sq1.button("🌊 High-Risk SFHA Exposure", use_container_width=True):
+            preset_q = "Analyze portfolio vulnerability in Coastal VE and AE zones"
+        if sq2.button("📊 Loss Ratio Health", use_container_width=True):
+            preset_q = "How is our net loss ratio performing against the 65% target?"
+        if sq3.button("🏛️ CRS Discount Impact", use_container_width=True):
+            preset_q = "How do Community CRS rating classes impact our claims frequency?"
+        if sq4.button("🏷️ Rate Revision Strategy", use_container_width=True):
+            preset_q = "Recommend an actuarial rate revision strategy for Pre-FIRM properties"
+
+        user_query = st.text_input(
+            "Enter your risk or underwriting question:",
+            value=preset_q or st.session_state.get("llm_copilot_last_q", ""),
+            placeholder="e.g. What percentage of our exposure is in VE zones, and what rate action is needed?",
+            key="llm_copilot_input"
+        )
+
+        if st.button("🚀 Ask Open LLM", type="primary", key="btn_ask_llm"):
+            if user_query:
+                st.session_state["llm_copilot_last_q"] = user_query
+                with st.spinner(f"Querying {model_labels.get(selected_model, selected_model)}..."):
+                    answer = copilot.answer_portfolio_query(
+                        query=user_query,
+                        portfolio_summary=portfolio_summary,
+                        model_name=selected_model
+                    )
+                    st.session_state["llm_copilot_last_a"] = answer
+
+        if "llm_copilot_last_a" in st.session_state:
+            with st.container(border=True):
+                st.markdown(st.session_state["llm_copilot_last_a"])
+
 
 

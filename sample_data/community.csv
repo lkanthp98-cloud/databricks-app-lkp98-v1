@@ -1,0 +1,13 @@
+community_id,community_name,county,state,participating_in_nfip,tribal,class_rating,sfha_discount,non_sfha_discount,sanction
+COM-48000,Baytown,Harris,TX,True,False,7,0.15,0.05,NONE
+COM-48001,Galveston,Galveston,TX,True,False,6,0.2,0.1,NONE
+COM-48002,Freeport,Brazoria,TX,True,False,7,0.15,0.05,NONE
+COM-48003,Metairie,Jefferson,LA,True,False,8,0.2,0.1,NONE
+COM-48004,New Orleans,Orleans,LA,True,False,8,0.15,0.05,NONE
+COM-48005,Miami,Miami-Dade,FL,True,False,7,0.2,0.1,NONE
+COM-48006,Fort Myers,Lee,FL,True,False,6,0.15,0.05,NONE
+COM-48007,Tampa,Hillsborough,FL,True,False,7,0.2,0.1,NONE
+COM-48008,Wilmington,New Hanover,NC,True,False,8,0.15,0.05,NONE
+COM-48009,Nags Head,Dare,NC,True,False,8,0.2,0.1,NONE
+COM-48010,Charleston,Charleston,SC,True,False,7,0.15,0.05,NONE
+COM-48011,Myrtle Beach,Horry,SC,True,False,6,0.2,0.1,NONE

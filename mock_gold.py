@@ -13,6 +13,12 @@ GEO = [("TX", "Harris", "Baytown", "77520", 6, [.45, .05, .1, .35, .05]), ("TX",
        ("FL", "Lee", "Fort Myers", "33901", 4, [.4, .2, .1, .25, .05]), ("FL", "Hillsborough", "Tampa", "33602", 3, [.35, .15, .1, .35, .05]),
        ("NC", "New Hanover", "Wilmington", "28401", 3, [.35, .15, .1, .35, .05]), ("NC", "Dare", "Nags Head", "27959", 2, [.3, .3, .1, .25, .05]),
        ("SC", "Charleston", "Charleston", "29401", 3, [.4, .15, .1, .3, .05]), ("SC", "Horry", "Myrtle Beach", "29577", 2, [.35, .2, .1, .3, .05])]
+GEO_COORDS = [
+    (29.7355, -94.9774), (29.3013, -94.7977), (28.9497, -95.4419),
+    (29.9841, -90.1526), (29.9511, -90.0715), (25.7617, -80.1918),
+    (26.6406, -81.8723), (27.9506, -82.4572), (34.2257, -77.9447),
+    (35.9188, -75.5977), (32.7765, -79.9311), (33.6891, -78.8867)
+]
 ZONES = ["AE", "VE", "A", "X", "B"]
 CRS = {"AE": 7, "VE": 6, "A": 7, "X": 8, "B": 8}
 ZONE_RATE = {"VE": 2.4, "AE": 1.5, "A": 1.3, "B": .7, "X": .5}
@@ -107,7 +113,11 @@ def build(n_customers=700):
         st_, cty_n, city, zp, _, _ = GEO[p["gi"]]; k = p["gi"]; c = cty[k]
         a = next((t for t in p["terms"] if t["eff"] <= AS_OF < t["exp"]), None)
         ncl = len(p["claims"]); opn = sum(1 for _, _, s in p["claims"] if s == "OPEN")
+        base_lat, base_lon = GEO_COORDS[p["gi"]]
+        lat_val = round(base_lat + float(rng.uniform(-0.04, 0.04)), 4)
+        lon_val = round(base_lon + float(rng.uniform(-0.04, 0.04)), 4)
         prop_rows.append(dict(property_id=p["pid"], customer_id=sp["cid"], address_line=p["addr"], city=city, zip_code=zp, state=st_, county=cty_n, flood_zone=p["zone"], construction_date_band=p["band"],
+            latitude=lat_val, longitude=lon_val,
             elevated=p["elevated"], crs_class=CRS[p["zone"]], active_policy_id=a["pid"] if a else None, policy_expiration_date=a["exp"] if a else pd.NaT,
             active_building_coverage=p["bcov"] if a else np.nan, active_contents_coverage=p["ccov"] if a else np.nan, active_premium=(a["prem"] + 50) if a else np.nan,
             policy_terms=len(p["terms"]), claims_total=ncl, claims_open=opn, claims_paid_total=sum(x for _, x, _ in p["claims"]), last_loss_date=max((d for d, _, _ in p["claims"]), default=pd.NaT),
@@ -230,15 +240,370 @@ def build(n_customers=700):
         ))
     GEO_RISK = pd.DataFrame(geo_risk_rows)
 
+    # Base Relational & Operational Tables
+    agent_rows = [
+        dict(agent_id=aid, agent_name=aname, state="TX" if i % 2 == 0 else "FL")
+        for i, (aid, aname) in enumerate(AGENTS)
+    ]
+    AGENT_DF = pd.DataFrame(agent_rows)
+
+    community_rows = [
+        dict(
+            community_id=f"COM-{48000 + i}",
+            community_name=city,
+            county=cty_n,
+            state=st_,
+            participating_in_nfip=True,
+            tribal=False,
+            class_rating=int(CRS.get(ZONES[i % len(ZONES)], 7)),
+            sfha_discount=0.15 if i % 2 == 0 else 0.20,
+            non_sfha_discount=0.05 if i % 2 == 0 else 0.10,
+            sanction="NONE"
+        )
+        for i, (st_, cty_n, city, zp, _, _) in enumerate(GEO)
+    ]
+    COMMUNITY_DF = pd.DataFrame(community_rows)
+
+    customer_rows = [
+        dict(
+            customer_id=r["customer_id"],
+            state=r["primary_state"],
+            county_code=str(r["primary_county"]),
+            community_id=f"COM-{48000 + (hash(r['customer_id']) % len(GEO))}"
+        )
+        for _, r in C.iterrows()
+    ]
+    CUSTOMER_DF = pd.DataFrame(customer_rows)
+
+    property_rows = []
+    for _, r in P.iterrows():
+        property_rows.append(dict(
+            property_id=r["property_id"],
+            community_id=f"COM-{48000 + (hash(r['property_id']) % len(GEO))}",
+            state=r["state"],
+            state_abbreviation=r["state"],
+            county=r["county"],
+            zip_code=r["zip_code"],
+            city=r["city"],
+            flood_zone=r["flood_zone"],
+            latitude=round(float(29.0 + (hash(r['property_id']) % 1000) * 0.005), 4),
+            longitude=round(float(-95.0 - (hash(r['property_id']) % 1000) * 0.005), 4),
+            occupancy_type="Single Family Residence",
+            original_construction_date=pd.Timestamp("1995-06-15") if r["construction_date_band"] == "Pre-FIRM" else pd.Timestamp("2012-08-20"),
+            primary_residence_indicator=True,
+            total_losses=int(r["claims_total"]),
+            nfip_rl=bool(r["nfip_rl"]),
+            nfip_srl=bool(r["claims_total"] >= 4),
+            mitigated_indicator=bool(r["mitigation_count"] > 0),
+            insured_indicator=bool(pd.notna(r["active_policy_id"])),
+            synthetic_geo_key=f"GEO-{r['state']}-{r['zip_code']}",
+            synthetic_zip_key=f"ZIP-{r['zip_code']}"
+        ))
+    PROPERTY_DF = pd.DataFrame(property_rows)
+
+    policy_rows = []
+    for _, r in PO.iterrows():
+        p_match = P[P.active_policy_id == r["policy_id"]]
+        pid_val = p_match.iloc[0]["property_id"] if not p_match.empty else f"PROP-{r['policy_id'][-5:]}"
+        cid_val = p_match.iloc[0]["customer_id"] if not p_match.empty else f"CUST-{r['policy_id'][-5:]}"
+        policy_rows.append(dict(
+            policy_id=r["policy_id"],
+            customer_id=cid_val,
+            property_id=pid_val,
+            agent_id=f"AGT-0{1 + (hash(r['policy_id']) % 5)}",
+            community_id=f"COM-{48000 + (hash(r['policy_id']) % len(GEO))}",
+            policy_effective_date=r["policy_effective_date"],
+            policy_termination_date=r["policy_termination_date"],
+            total_building_insurance_coverage=r["total_building_insurance_coverage"],
+            total_contents_insurance_coverage=r["total_contents_insurance_coverage"],
+            total_insurance_premium=r["total_insurance_premium"],
+            hfiaa_surcharge=25.0,
+            federal_policy_fee=50.0,
+            occupancy_type="Single Family",
+            rated_flood_zone="AE",
+            state=r["state"],
+            county_code=r["county_code"],
+            synthetic_property_key=f"SYN-PROP-{pid_val}",
+            synthetic_policy_key=f"SYN-POL-{r['policy_id']}"
+        ))
+    POLICY_DF = pd.DataFrame(policy_rows)
+
+    claim_rows = []
+    for _, r in CL.iterrows():
+        claim_rows.append(dict(
+            claim_id=r["claim_id"],
+            policy_id=r["policy_id"],
+            community_id=f"COM-{48000 + (hash(r['claim_id']) % len(GEO))}",
+            date_of_loss=r["date_of_loss"],
+            year_of_loss=int(r["year_of_loss"]),
+            state=r["state"],
+            county_code=str(r["state"]) + "-001",
+            amount_paid_on_building_claim=r["amount_paid_on_building_claim"],
+            amount_paid_on_contents_claim=r["amount_paid_on_contents_claim"],
+            amount_paid_on_icc_claim=r["amount_paid_on_icc_claim"],
+            total_building_insurance_coverage=r["total_building_insurance_coverage"],
+            total_contents_insurance_coverage=r["total_contents_insurance_coverage"],
+            occupancy_type="Single Family",
+            rated_flood_zone="AE",
+            primary_residence_indicator=True,
+            elevated_building_indicator=False,
+            synthetic_policy_key=f"SYN-POL-{r['policy_id']}"
+        ))
+    CLAIM_DF = pd.DataFrame(claim_rows)
+
+    cov_rows = []
+    for _, r in POLICY_DF.head(300).iterrows():
+        cov_rows.append(dict(coverage_id=f"COV-B-{r['policy_id']}", policy_id=r["policy_id"], coverage_type="BUILDING", coverage_amount=float(r["total_building_insurance_coverage"])))
+        cov_rows.append(dict(coverage_id=f"COV-C-{r['policy_id']}", policy_id=r["policy_id"], coverage_type="CONTENTS", coverage_amount=float(r["total_contents_insurance_coverage"])))
+    COVERAGE_DF = pd.DataFrame(cov_rows)
+
+    doc_rows = []
+    for _, r in CLAIM_DF.head(200).iterrows():
+        doc_rows.append(dict(document_id=f"DOC-FNOL-{r['claim_id']}", claim_id=r["claim_id"], document_type="First Notice of Loss", created_date=r["date_of_loss"]))
+        doc_rows.append(dict(document_id=f"DOC-ADJ-{r['claim_id']}", claim_id=r["claim_id"], document_type="Adjuster Report", created_date=pd.Timestamp(r["date_of_loss"]) + pd.Timedelta(days=7)))
+    DOCUMENT_DF = pd.DataFrame(doc_rows)
+
+    insp_rows = []
+    for _, r in PROPERTY_DF.head(250).iterrows():
+        insp_rows.append(dict(
+            inspection_id=f"INSP-{r['property_id']}",
+            property_id=r["property_id"],
+            agent_id="AGT-01",
+            project_identifier="HMA-ELEV-2024",
+            program_area="Flood Mitigation Assistance",
+            property_action="Elevation Certificate Verification",
+            structure_type="Single Family",
+            foundation_type="Slab-on-Grade",
+            damage_category="None",
+            actual_amount_paid=450.0,
+            number_of_properties=1,
+            state=r["state"],
+            county=r["county"],
+            city=r["city"],
+            zip_code=r["zip_code"],
+            synthetic_property_key=r["synthetic_geo_key"]
+        ))
+    INSPECTION_DF = pd.DataFrame(insp_rows)
+
+    # Dimensional Star-Schema Tables
+    dim_comm_rows = [
+        dict(
+            community_key=i + 1,
+            community_id_number=r["community_id"],
+            community_name=r["community_name"],
+            state=r["state"],
+            participation_status="Regular",
+            crs_class=int(r["class_rating"])
+        )
+        for i, r in COMMUNITY_DF.iterrows()
+    ]
+    DIM_COMMUNITY = pd.DataFrame(dim_comm_rows)
+
+    date_range = pd.date_range("2020-01-01", "2026-12-31", freq="D")
+    dim_date_rows = [
+        dict(
+            date_key=int(d.strftime("%Y%m%d")),
+            full_date=d,
+            day_of_week=d.weekday() + 1,
+            day_name=d.strftime("%A"),
+            day_of_month=d.day,
+            month=d.month,
+            month_name=d.strftime("%B"),
+            quarter=d.quarter,
+            year=d.year,
+            fiscal_year=d.year if d.month >= 10 else d.year - 1,
+            is_weekend=bool(d.weekday() >= 5)
+        )
+        for d in date_range[::14]  # bi-weekly sample to keep lightweight
+    ]
+    DIM_DATE = pd.DataFrame(dim_date_rows)
+
+    dim_dis_rows = [
+        dict(
+            disaster_key=i + 1,
+            disaster_number=int(r["disaster_number"]),
+            fema_declaration_string=r["fema_declaration_string"],
+            declaration_type="Major Disaster",
+            declaration_title=r["declaration_title"],
+            incident_type=r["incident_type"],
+            declaration_date=pd.Timestamp(f"{2020 + i}-08-15"),
+            incident_begin_date=pd.Timestamp(f"{2020 + i}-08-10"),
+            incident_end_date=pd.Timestamp(f"{2020 + i}-08-20"),
+            ih_program_declared=True,
+            ia_program_declared=True,
+            pa_program_declared=True,
+            hm_program_declared=True
+        )
+        for i, r in DIS.iterrows()
+    ]
+    DIM_DISASTER_DECLARATION = pd.DataFrame(dim_dis_rows)
+
+    dim_geo_rows = [
+        dict(
+            geography_key=i + 1,
+            state=st_,
+            fips_state_code=f"4{i:01d}",
+            county_code=f"{48000 + i}",
+            fips_county_code=f"48{i:03d}",
+            region="Gulf Coast" if st_ in ["TX", "LA"] else "South Atlantic"
+        )
+        for i, (st_, _, _, _, _, _) in enumerate(GEO)
+    ]
+    DIM_GEOGRAPHY = pd.DataFrame(dim_geo_rows)
+
+    dim_hma_rows = [
+        dict(
+            project_key=i + 1,
+            project_identifier=f"PDMC-PL-{st_}-202{i}",
+            program_area="Pre-Disaster Mitigation",
+            project_type="Flood Elevation and Stormwater Management",
+            status="Active",
+            recipient=f"{st_} Division of Emergency Management",
+            subrecipient=f"City of {city}",
+            project_title=f"Regional Stormwater Resiliency - {city}"
+        )
+        for i, (st_, _, city, _, _, _) in enumerate(GEO)
+    ]
+    DIM_HMA_PROJECT = pd.DataFrame(dim_hma_rows)
+
+    dim_prop_prof_rows = [
+        dict(
+            property_profile_key=i + 1,
+            occupancy_type="Single Family Residence",
+            flood_zone=zg,
+            construction_date_band=cb,
+            primary_residence_indicator=True,
+            elevated_building_indicator=elev,
+            condominium_indicator=False
+        )
+        for i, (zg, cb, elev) in enumerate([
+            ("VE", "Pre-FIRM", False), ("VE", "Post-FIRM", True),
+            ("AE", "Pre-FIRM", False), ("AE", "Post-FIRM", True),
+            ("A", "Post-FIRM", False), ("X", "Post-FIRM", False),
+            ("B", "Post-FIRM", False)
+        ])
+    ]
+    DIM_PROPERTY_PROFILE = pd.DataFrame(dim_prop_prof_rows)
+
+    # Fact Tables
+    fact_dis_area_rows = [
+        dict(
+            declaration_area_key=i + 1,
+            declaration_date_key=20240815,
+            geography_key=1 + (i % len(DIM_GEOGRAPHY)),
+            disaster_key=1 + (i % len(DIM_DISASTER_DECLARATION)),
+            ih_program_declared=True,
+            ia_program_declared=True,
+            pa_program_declared=True,
+            hm_program_declared=True,
+            declaration_count=1
+        )
+        for i in range(12)
+    ]
+    FACT_DISASTER_DECLARATION_AREA = pd.DataFrame(fact_dis_area_rows)
+
+    fact_hma_txn_rows = [
+        dict(
+            transaction_key=i + 1,
+            obligated_date_key=20240601,
+            geography_key=1 + (i % len(DIM_GEOGRAPHY)),
+            project_key=1 + (i % len(DIM_HMA_PROJECT)),
+            disaster_key=1 + (i % len(DIM_DISASTER_DECLARATION)),
+            transaction_level="Project Award",
+            obligated_amount=round(float(rng.uniform(1500000, 8500000)), 2),
+            federal_share_obligated=round(float(rng.uniform(1100000, 6500000)), 2),
+            transaction_count=1
+        )
+        for i in range(15)
+    ]
+    FACT_HMA_FINANCIAL_TRANSACTION = pd.DataFrame(fact_hma_txn_rows)
+
+    fact_claim_rows = [
+        dict(
+            claim_key=i + 1,
+            date_of_loss_key=int(pd.Timestamp(r["date_of_loss"]).strftime("%Y%m%d")),
+            geography_key=1 + (i % len(DIM_GEOGRAPHY)),
+            community_key=1 + (i % len(DIM_COMMUNITY)),
+            property_profile_key=1 + (i % len(DIM_PROPERTY_PROFILE)),
+            disaster_key=1 + (i % len(DIM_DISASTER_DECLARATION)),
+            amount_paid_on_building_claim=float(r["amount_paid_on_building_claim"]),
+            amount_paid_on_contents_claim=float(r["amount_paid_on_contents_claim"]),
+            amount_paid_on_icc_claim=float(r["amount_paid_on_icc_claim"]),
+            net_building_payment_amount=float(r["amount_paid_on_building_claim"]),
+            net_contents_payment_amount=float(r["amount_paid_on_contents_claim"]),
+            total_building_insurance_coverage=float(r["total_building_insurance_coverage"]),
+            total_contents_insurance_coverage=float(r["total_contents_insurance_coverage"]),
+            claim_count=1
+        )
+        for i, r in CLAIM_DF.head(300).iterrows()
+    ]
+    FACT_NFIP_CLAIM = pd.DataFrame(fact_claim_rows)
+
+    fact_pol_rows = [
+        dict(
+            policy_key=i + 1,
+            effective_date_key=int(pd.Timestamp(r["policy_effective_date"]).strftime("%Y%m%d")),
+            expiration_date_key=int(pd.Timestamp(r["policy_termination_date"]).strftime("%Y%m%d")),
+            geography_key=1 + (i % len(DIM_GEOGRAPHY)),
+            community_key=1 + (i % len(DIM_COMMUNITY)),
+            property_profile_key=1 + (i % len(DIM_PROPERTY_PROFILE)),
+            total_building_insurance_coverage=float(r["total_building_insurance_coverage"]),
+            total_contents_insurance_coverage=float(r["total_contents_insurance_coverage"]),
+            total_insurance_premium=float(r["total_insurance_premium"]),
+            hfiaa_surcharge=float(r["hfiaa_surcharge"]),
+            federal_policy_fee=float(r["federal_policy_fee"]),
+            policy_count=1
+        )
+        for i, r in POLICY_DF.head(500).iterrows()
+    ]
+    FACT_NFIP_POLICY = pd.DataFrame(fact_pol_rows)
+
+    id_map_rows = [
+        dict(entity="policy", uuid_value=f"uuid-{r['policy_id']}", seq=i + 1, display_id=r["policy_id"])
+        for i, r in POLICY_DF.head(100).iterrows()
+    ] + [
+        dict(entity="claim", uuid_value=f"uuid-{r['claim_id']}", seq=i + 1, display_id=r["claim_id"])
+        for i, r in CLAIM_DF.head(100).iterrows()
+    ]
+    ID_MAP_DF = pd.DataFrame(id_map_rows)
+
     return {
+        # 1. Operational & Entity Tables
+        "agent": AGENT_DF,
+        "claim": CLAIM_DF,
+        "community": COMMUNITY_DF,
+        "coverage": COVERAGE_DF,
+        "customer": CUSTOMER_DF,
+        "document": DOCUMENT_DF,
+        "inspection": INSPECTION_DF,
+        "policy": POLICY_DF,
+        "property": PROPERTY_DF,
+
+        # 2. Dimensional Star-Schema Tables
+        "dim_community": DIM_COMMUNITY,
+        "dim_date": DIM_DATE,
+        "dim_disaster_declaration": DIM_DISASTER_DECLARATION,
+        "dim_geography": DIM_GEOGRAPHY,
+        "dim_hma_project": DIM_HMA_PROJECT,
+        "dim_property_profile": DIM_PROPERTY_PROFILE,
+        "fact_disaster_declaration_area": FACT_DISASTER_DECLARATION_AREA,
+        "fact_hma_financial_transaction": FACT_HMA_FINANCIAL_TRANSACTION,
+        "fact_nfip_claim": FACT_NFIP_CLAIM,
+        "fact_nfip_policy": FACT_NFIP_POLICY,
+
+        # 3. Gold Aggregates & Reporting Tables
         "gold_claim_report": CL,
+        "gold_claims_by_disaster": DIS,
+        "gold_loss_ratio_by_state_year": LR_STATE_YEAR,
+        "gold_mitigation_vs_claims_by_state": MIT,
         "gold_policy_report": PO,
         "gold_property_risk": PROP_RISK,
         "gold_risk_by_geography": GEO_RISK,
-        "gold_loss_ratio_by_state_year": LR_STATE_YEAR,
-        "gold_claims_by_disaster": DIS,
-        "gold_mitigation_vs_claims_by_state": MIT,
-        # Backwards-compatible aliases:
+
+        # 4. Utility / Map
+        "id_map": ID_MAP_DF,
+
+        # Backwards-compatible aliases & operational profiles:
         "claim_report": CL,
         "policy_report": PO,
         "property_risk": PROP_RISK,

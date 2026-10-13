@@ -10,17 +10,10 @@ import os
 from pathlib import Path
 import pandas as pd
 import mock_gold
+import data
 from config import AppConfig
 
-TABLES = [
-    "gold_claim_report",
-    "gold_policy_report",
-    "gold_property_risk",
-    "gold_risk_by_geography",
-    "gold_loss_ratio_by_state_year",
-    "gold_claims_by_disaster",
-    "gold_mitigation_vs_claims_by_state",
-]
+TABLES = data.ALL_TABLES
 
 def export_samples(output_dir: str = "sample_data"):
     out_path = Path(output_dir)

@@ -1,0 +1,13 @@
+declaration_area_key,declaration_date_key,geography_key,disaster_key,ih_program_declared,ia_program_declared,pa_program_declared,hm_program_declared,declaration_count
+1,20240815,1,1,True,True,True,True,1
+2,20240815,2,2,True,True,True,True,1
+3,20240815,3,3,True,True,True,True,1
+4,20240815,4,4,True,True,True,True,1
+5,20240815,5,5,True,True,True,True,1
+6,20240815,6,6,True,True,True,True,1
+7,20240815,7,1,True,True,True,True,1
+8,20240815,8,2,True,True,True,True,1
+9,20240815,9,3,True,True,True,True,1
+10,20240815,10,4,True,True,True,True,1
+11,20240815,11,5,True,True,True,True,1
+12,20240815,12,6,True,True,True,True,1

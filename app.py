@@ -137,8 +137,11 @@ def header(title, sub=""):
 
 ANALYTICS = [
     "Executive Cockpit",
+    "AI Underwriter & LLM Copilot",
     "Property Risk Intelligence",
     "Customer Risk Profile",
+    "Community & Mitigation",
+    "Inspections & Endorsements",
     "Geospatial Risk Map",
     "Underwriting Flow",
     "ML Risk & Pricing",
@@ -147,7 +150,7 @@ ANALYTICS = [
     "Catastrophe Simulator",
     "Agent Performance",
 ]
-MAIN = ["Overview", "Customer 360", "Process Flow", "Portfolio & Geography", "Ask Genie"]
+MAIN = ["Overview", "Customer 360", "Process Flow", "Portfolio & Geography", "Data Catalog", "Open LLM Studio", "Ask Genie"]
 RECORDS = ["Customers", "Properties", "Policies", "Claims", "Renewals"]
 st.session_state.setdefault("page", "Executive Cockpit")
 page = st.session_state["page"]
@@ -230,6 +233,10 @@ if page == "Executive Cockpit":
     header("Executive Cockpit", "Portfolio performance & loss ratio cockpit")
     AV.render_executive_cockpit(C, P, PO, CL, ACT, AS_OF)
 
+elif page == "AI Underwriter & LLM Copilot":
+    header("AI Underwriter & Open LLM Copilot", "Databricks Foundation Models, Llama 3.3, Ollama & automated actuarial memos")
+    AV.render_ai_underwriter_copilot(C, P, CL, PO, SRC)
+
 elif page == "Property Risk Intelligence":
     header("Property Risk Intelligence", "Actuarial components, structural matrices, and vulnerability analysis")
     AV.render_property_risk_intelligence(PROP_RISK, PO, CL)
@@ -237,6 +244,27 @@ elif page == "Property Risk Intelligence":
 elif page == "Customer Risk Profile":
     header("Customer Risk Profile", "Individual policyholder risk dossier, property schedules, and loss histories")
     AV.render_customer_risk_profile(C, P, PO, CL, PROP_RISK)
+
+elif page == "Community & Mitigation":
+    header("Community Resilience & Hazard Mitigation", "NFIP community discounts, CRS rating classes & federal HMA grants")
+    AV.render_community_mitigation_intelligence(
+        SRC.get("community", {}).get("df", pd.DataFrame()),
+        SRC.get("dim_community", {}).get("df", pd.DataFrame()),
+        SRC.get("dim_hma_project", {}).get("df", pd.DataFrame()),
+        SRC.get("fact_hma_financial_transaction", {}).get("df", pd.DataFrame()),
+        SRC.get("dim_disaster_declaration", {}).get("df", pd.DataFrame()),
+        MIT
+    )
+
+elif page == "Inspections & Endorsements":
+    header("Inspections & Endorsement Portfolio", "Foundation vulnerability audits, coverage lines & document pipelines")
+    AV.render_inspection_coverage_intelligence(
+        SRC.get("inspection", {}).get("df", pd.DataFrame()),
+        P,
+        SRC.get("coverage", {}).get("df", pd.DataFrame()),
+        SRC.get("document", {}).get("df", pd.DataFrame()),
+        CL
+    )
 
 elif page == "Geospatial Risk Map":
     header("Geospatial Risk Map", "Coastal hazard distribution, state exposure, and loss ratios")
@@ -1048,6 +1076,93 @@ elif page in RECORDS or page == "Search":
         d = d[d.agent_name == ag] if not ag.startswith("All") else d
         grid(d.sort_values("days"), "ren", POL_CFG, ["active_policy_id", "customer", "agent_name", "property_id", "city", "state", "policy_expiration_date", "days", "active_premium", "coverage",
              "renewal_pending", "claims_total", "customer_id"], "customer_id", "renewals")
+
+# =====================================================================
+# DATA CATALOG (UNITY CATALOG TABLE EXPLORER)
+# =====================================================================
+elif page == "Data Catalog":
+    header("Data Catalog & Schema Explorer", f"Catalog: {AppConfig.GOLD_CATALOG} · Schema: {AppConfig.GOLD_SCHEMA}")
+    
+    cat_summary = [
+        ("Total Tables", f"{len(data.ALL_TABLES)} tables"),
+        ("Operational", f"{len(data.OPERATIONAL_TABLES)} tables"),
+        ("Dimensional DW", f"{len(data.DIMENSIONAL_TABLES)} tables"),
+        ("Gold Reports", f"{len(data.GOLD_TABLES)} tables"),
+    ]
+    for c_, (l, v) in zip(st.columns(4), cat_summary):
+        c_.metric(l, v)
+
+    st.markdown('<div class="navlbl" style="margin-top:16px;">Browse Unity Catalog Tables</div>', unsafe_allow_html=True)
+    c1, c2 = st.columns([1.5, 3.5])
+    with c1:
+        group_filter = st.selectbox(
+            "Filter Category",
+            ["All Tables (27)", "Operational Tables (9)", "Dimensional Warehouse (10)", "Gold Reporting (7)", "Utility & ID Map (1)"],
+            key="cat_grp_flt"
+        )
+        if "Operational" in group_filter:
+            tbl_choices = data.OPERATIONAL_TABLES
+        elif "Dimensional" in group_filter:
+            tbl_choices = data.DIMENSIONAL_TABLES
+        elif "Gold" in group_filter:
+            tbl_choices = data.GOLD_TABLES
+        elif "Utility" in group_filter:
+            tbl_choices = data.UTILITY_TABLES
+        else:
+            tbl_choices = data.ALL_TABLES
+
+        sel_tbl = st.selectbox("Select Table", tbl_choices, key="sel_cat_tbl")
+
+    # Fetch table metadata and DataFrame
+    tbl_name, cols_spec = data.SPEC.get(sel_tbl, (sel_tbl, []))
+    full_path = f"{AppConfig.GOLD_CATALOG}.{AppConfig.GOLD_SCHEMA}.{tbl_name}"
+    
+    # Retrieve dataset from SRC or mock_gold
+    tbl_df = SRC.get(sel_tbl, {}).get("df", pd.DataFrame())
+    if tbl_df.empty:
+        import mock_gold
+        mg = mock_gold.get()
+        tbl_df = mg.get(sel_tbl, pd.DataFrame())
+
+    with c2:
+        with st.container(border=True):
+            st.markdown(f"### Table: `<code>{tbl_name}</code>`", unsafe_allow_html=True)
+            st.caption(f"Unity Catalog Path: **`{full_path}`** · **{len(cols_spec)} columns** · **{len(tbl_df):,} rows**")
+            
+            # Show Schema Definition Table
+            type_desc = {"s": "STRING", "i": "BIGINT", "n": "DOUBLE", "f": "DOUBLE", "b": "BOOLEAN", "d": "TIMESTAMP"}
+            schema_rows = [{"Column Name": c, "Data Type": type_desc.get(t, "STRING"), "Type Key": t} for c, t in cols_spec]
+            st.dataframe(pd.DataFrame(schema_rows), use_container_width=True, hide_index=True, height=180)
+
+    # Live Data Preview and Search
+    st.markdown(f"#### Data Preview: `<code>{tbl_name}</code>`", unsafe_allow_html=True)
+    f1, f2 = st.columns([4, 1])
+    q_search = f1.text_input("Filter preview rows", placeholder=f"Search any value in {tbl_name}…", label_visibility="collapsed", key=f"sq_{sel_tbl}")
+    f2.download_button("⬇ Download CSV", tbl_df.to_csv(index=False), file_name=f"{tbl_name}.csv", mime="text/csv", use_container_width=True, key=f"dl_{sel_tbl}")
+    
+    disp_df = tbl_df
+    if q_search and not tbl_df.empty:
+        mask = tbl_df.astype(str).agg(" ".join, axis=1).str.lower().str.contains(q_search.strip().lower(), regex=False)
+        disp_df = tbl_df[mask]
+    
+    st.dataframe(disp_df.head(1000), use_container_width=True, hide_index=True, height=450)
+    st.caption(f"Showing up to 1,000 of {len(tbl_df):,} records for table `{tbl_name}`.")
+
+    # Databricks DDL Script View
+    with st.expander("🛠️ Databricks SQL DDL (Create Table Statement)"):
+        col_sql = [f"    {c} {type_desc.get(t, 'STRING')}" for c, t in cols_spec]
+        ddl_sql = f"CREATE OR REPLACE TABLE {full_path} (\n" + ",\n".join(col_sql) + "\n);"
+        st.code(ddl_sql, language="sql")
+
+
+# =====================================================================
+# OPEN SOURCE LLM STUDIO (IN-APP DATA RAG & COPILOT)
+# =====================================================================
+elif page == "Open LLM Studio":
+    header("Open Source LLM Studio", "In-application Open LLM reasoning engine operating directly on your internal data")
+    from open_llm_frontend import render_open_llm_frontend
+    render_open_llm_frontend(SRC, C, P, PO, CL, ACT)
+
 
 # =====================================================================
 # ASK GENIE
