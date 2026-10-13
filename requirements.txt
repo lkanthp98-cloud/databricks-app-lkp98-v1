@@ -5,3 +5,4 @@ plotly
 databricks-sdk>=0.40
 requests
 pyarrow
+scikit-learn

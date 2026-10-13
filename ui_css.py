@@ -221,5 +221,22 @@ div[data-testid="stChatInput"] textarea {color:@INK;}
 .ctag.warn {background:#F4F0C8; color:#8A7A1E;} .ctag.bad {background:#FADDE6; color:#C0476F;} .ctag.ok {background:#D9F2E6; color:#3F8A68;}
 .chat {border:1px solid #DCE3F7; border-radius:20px; background:rgba(255,255,255,.55); padding:12px 16px; margin-bottom:10px;}
 .chat.me {background:#2C3556; color:#fff; border-color:#2C3556;}
+
+/* Business & Data Analytics Suite */
+.exec-hero {border-radius:26px; padding:22px 26px; background:linear-gradient(135deg, @DEEP 0%, #2A365C 100%); color:#fff; margin-bottom:20px; box-shadow:0 12px 28px rgba(31,42,74,.22);}
+.exec-hero .title {font-size:1.8rem; font-weight:800; letter-spacing:-.02em;}
+.exec-hero .sub {font-size:.9rem; opacity:.85; margin-top:4px;}
+.exec-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-top:18px;}
+.exec-tile {background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.14); border-radius:18px; padding:14px 16px;}
+.exec-tile .val {font-size:1.6rem; font-weight:800; letter-spacing:-.02em;}
+.exec-tile .lbl {font-size:.76rem; opacity:.78; margin-top:2px;}
+.exec-tile .badge {display:inline-block; font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:999px; margin-top:6px;}
+
+.sim-box {border:1px solid #DCE3F7; border-radius:24px; padding:20px 22px; background:rgba(255,255,255,.65); margin-bottom:18px;}
+.sim-title {font-size:1.25rem; font-weight:800; color:@INK; margin-bottom:4px;}
+.sim-desc {font-size:.85rem; color:@MUTED; margin-bottom:16px;}
+.sim-res {background:#F3F6FE; border:1px solid #D5DCF5; border-radius:18px; padding:16px 20px; margin-top:14px;}
+.sim-delta {font-size:1.5rem; font-weight:800; color:#C0476F;}
+.sim-delta.ok {color:#3F8A68;}
 </style>
 """

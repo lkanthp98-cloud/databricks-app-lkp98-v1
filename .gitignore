@@ -1,0 +1,22 @@
+# Environment & credentials
+.env
+.env.local
+.databrickscfg
+
+# Python cache and environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+env/
+venv/
+
+# Streamlit local state
+.streamlit/secrets.toml
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

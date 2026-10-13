@@ -1,0 +1,7 @@
+disaster_number,fema_declaration_string,declaration_title,incident_type,claim_count,total_paid
+4520,DR-4520-TX,Hurricane Laura,Hurricane,620,22400000.0
+4611,DR-4611-LA,Hurricane Ida,Hurricane,740,31800000.0
+4673,DR-4673-FL,Hurricane Ian,Hurricane,980,46500000.0
+4712,DR-4712-NC,Tropical Storm Debby,Tropical Storm,180,4800000.0
+4735,DR-4735-SC,Coastal Surge and Flooding,Flood,230,6200000.0
+4789,DR-4789-TX,Gulf Coast Severe Storms,Severe Storm,190,3900000.0

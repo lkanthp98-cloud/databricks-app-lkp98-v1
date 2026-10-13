@@ -5,9 +5,11 @@ env:
   - name: GENIE_SPACE_ID
     valueFrom: genie-space
   - name: GOLD_CATALOG
-    value: "synthetic"
+    value: "insurance_dev_gold"
   - name: GOLD_SCHEMA
-    value: "gold2"
+    value: "gold_schema"
+  - name: DATABRICKS_WAREHOUSE_ID
+    value: ""            # Optional: provide SQL warehouse id for direct SQL pushdown
   - name: AS_OF_DATE
     value: ""            # blank = today. Set 2026-10-09 to match the notebook's as-of date.
   - name: CACHE_TTL_SECONDS

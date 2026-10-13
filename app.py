@@ -5,6 +5,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from config import AppConfig
+import analytics_views as AV
 import data
 import journey as J
 import ui
@@ -39,13 +41,23 @@ except Exception as e:
         (st.success if ok_ else st.error)(f"{table}: {detail}")
         if sql_:
             st.code(sql_, language="sql")
-    st.stop()
-C_ALL, P_ALL, PO_ALL, CL_ALL = (SRC[k]["df"] for k in data.CORE)
+PO_ALL = SRC["gold_policy_report"]["df"]
+CL_ALL = SRC["gold_claim_report"]["df"]
+PROP_RISK_ALL = SRC["gold_property_risk"]["df"]
+GEO_RISK_ALL = SRC["gold_risk_by_geography"]["df"]
+LR_STATE_YEAR_ALL = SRC["gold_loss_ratio_by_state_year"]["df"]
+DIS_CLAIMS_ALL = SRC["gold_claims_by_disaster"]["df"]
+MIT_ALL = SRC["gold_mitigation_vs_claims_by_state"]["df"]
+
+# In-memory operational entities derived from gold_policy_report and gold_claim_report
+C_ALL = SRC.get("customer_profile", {}).get("df", pd.DataFrame())
+P_ALL = SRC.get("property_profile", {}).get("df", pd.DataFrame())
+
 for _k in data.CORE:
-    if SRC[_k].get("note"):
+    if SRC.get(_k, {}).get("note"):
         st.warning(f"{SRC[_k]['table']}: {SRC[_k]['note']}")
 if LIVE:
-    AS_OF = pd.Timestamp(os.getenv("AS_OF_DATE") or pd.Timestamp.today().normalize())
+    AS_OF = pd.Timestamp(AppConfig.AS_OF_DATE or pd.Timestamp.today().normalize())
 else:
     import mock_gold
     AS_OF = mock_gold.AS_OF
@@ -123,26 +135,60 @@ def header(title, sub=""):
         st.markdown(f'<div class="hdr-right"><div class="chip-d">{_greeting()}</div></div>', unsafe_allow_html=True)
 
 
-MAIN = ["Overview", "Process Flow", "Customer 360", "Portfolio & Geography", "Ask Genie"]
+ANALYTICS = [
+    "Executive Cockpit",
+    "Property Risk Intelligence",
+    "Customer Risk Profile",
+    "Geospatial Risk Map",
+    "Underwriting Flow",
+    "ML Risk & Pricing",
+    "Actuarial & Risk",
+    "Financial Loss Ratios",
+    "Catastrophe Simulator",
+    "Agent Performance",
+]
+MAIN = ["Overview", "Customer 360", "Process Flow", "Portfolio & Geography", "Ask Genie"]
 RECORDS = ["Customers", "Properties", "Policies", "Claims", "Renewals"]
-st.session_state.setdefault("page", "Overview")
+st.session_state.setdefault("page", "Executive Cockpit")
 page = st.session_state["page"]
 
 with st.sidebar:
     st.markdown('<div class="brand"><div class="logo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
                 '<path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>'
-                '<div class="bt2"><b>Property Insurance</b></div></div>', unsafe_allow_html=True)
+                '<div class="bt2"><b>Property Insurance BI</b></div></div>', unsafe_allow_html=True)
 
     def nav_item(name):
         slug = name.lower().replace(" & ", "_").replace(" ", "_")
         st.button(name, key=("navon_" if name == page else "nav_") + slug, on_click=goto, args=(name,), kwargs={"cj_search": "", "cj_cid": None} if name == "Customer 360" else {}, use_container_width=True)
 
-    st.markdown('<div class="navlbl">Dashboard</div>', unsafe_allow_html=True)
+    st.markdown('<div class="navlbl">Analytics & ML</div>', unsafe_allow_html=True)
+    for p_ in ANALYTICS:
+        nav_item(p_)
+    st.markdown('<div class="navlbl">Operations</div>', unsafe_allow_html=True)
     for p_ in MAIN:
         nav_item(p_)
     st.markdown('<div class="navlbl">Records</div>', unsafe_allow_html=True)
     for p_ in RECORDS:
         nav_item(p_)
+
+    # Dynamic Unity Catalog & Schema Selector
+    st.markdown('<div class="navlbl">Unity Catalog</div>', unsafe_allow_html=True)
+    with st.expander("⚙️ Switch Catalog / Schema", expanded=False):
+        st.caption("Dynamically switch to any catalog & schema in your workspace.")
+        cats = AppConfig.list_available_catalogs()
+        cat_idx = cats.index(AppConfig.GOLD_CATALOG) if AppConfig.GOLD_CATALOG in cats else 0
+        new_cat = st.selectbox("Catalog", cats, index=cat_idx, key="dyn_cat")
+        schemas = AppConfig.list_available_schemas(new_cat)
+        sch_idx = schemas.index(AppConfig.GOLD_SCHEMA) if AppConfig.GOLD_SCHEMA in schemas else 0
+        new_sch = st.selectbox("Schema", schemas, index=sch_idx, key="dyn_sch")
+        if st.button("Connect & Reload", key="apply_schema", use_container_width=True):
+            AppConfig.update_schema(new_cat, new_sch)
+            data.T = f"{new_cat}.{new_sch}"
+            with data._lock:
+                data._store.clear()
+            st.success(f"Connected to {new_cat}.{new_sch}")
+            st.rerun()
+
     st.markdown('<div class="navlbl">Filter</div>', unsafe_allow_html=True)
     sel_states = st.multiselect("State", sorted(P_ALL.state.dropna().unique()), placeholder="All states", label_visibility="collapsed")
     if LIVE:
@@ -160,16 +206,71 @@ ACT = P[P.active_policy_id.notna()].assign(coverage=lambda d: d.active_building_
 ACT = ACT.assign(days=(ACT.policy_expiration_date - AS_OF).dt.days)
 SFHA = lambda s: s.fillna("").astype(str).str[:1].isin(["A", "V"])
 
+# Extract Unity Catalog Gold tables from SRC
+PROP_RISK_ALL = SRC.get("gold_property_risk", {}).get("df", pd.DataFrame())
+GEO_RISK_ALL = SRC.get("gold_risk_by_geography", {}).get("df", pd.DataFrame())
+LR_STATE_YEAR_ALL = SRC.get("gold_loss_ratio_by_state_year", {}).get("df", pd.DataFrame())
+DIS_CLAIMS_ALL = SRC.get("gold_claims_by_disaster", {}).get("df", pd.DataFrame())
+MIT_ALL = SRC.get("gold_mitigation_vs_claims_by_state", {}).get("df", pd.DataFrame())
+
+PROP_RISK = PROP_RISK_ALL[PROP_RISK_ALL.state.isin(sel_states)] if (sel_states and not PROP_RISK_ALL.empty and "state" in PROP_RISK_ALL.columns) else PROP_RISK_ALL
+GEO_RISK = GEO_RISK_ALL[GEO_RISK_ALL.state.isin(sel_states)] if (sel_states and not GEO_RISK_ALL.empty and "state" in GEO_RISK_ALL.columns) else GEO_RISK_ALL
+LR_STATE_YEAR = LR_STATE_YEAR_ALL[LR_STATE_YEAR_ALL.state.isin(sel_states)] if (sel_states and not LR_STATE_YEAR_ALL.empty and "state" in LR_STATE_YEAR_ALL.columns) else LR_STATE_YEAR_ALL
+MIT = MIT_ALL[MIT_ALL.state.isin(sel_states)] if (sel_states and not MIT_ALL.empty and "state" in MIT_ALL.columns) else MIT_ALL
+
 
 def empty(msg="No data for this selection."):
     st.info(msg)
 
 
 # =====================================================================
-# OVERVIEW
+# BUSINESS & DATA ANALYTICS SUITE
 # =====================================================================
-if page == "Overview":
-    header("Insurance Dashboard")
+if page == "Executive Cockpit":
+    header("Executive Cockpit", "Portfolio performance & loss ratio cockpit")
+    AV.render_executive_cockpit(C, P, PO, CL, ACT, AS_OF)
+
+elif page == "Property Risk Intelligence":
+    header("Property Risk Intelligence", "Actuarial components, structural matrices, and vulnerability analysis")
+    AV.render_property_risk_intelligence(PROP_RISK, PO, CL)
+
+elif page == "Customer Risk Profile":
+    header("Customer Risk Profile", "Individual policyholder risk dossier, property schedules, and loss histories")
+    AV.render_customer_risk_profile(C, P, PO, CL, PROP_RISK)
+
+elif page == "Geospatial Risk Map":
+    header("Geospatial Risk Map", "Coastal hazard distribution, state exposure, and loss ratios")
+    AV.render_geospatial_map(P, ACT, PO, CL, geo_risk=GEO_RISK)
+
+elif page == "Underwriting Flow":
+    header("Underwriting Flow", "Sankey lifecycle linkage from customers to claims and renewals")
+    AV.render_flow_sankey(P, ACT, C)
+
+elif page == "ML Risk & Pricing":
+    header("ML Risk & Pricing", "Random Forest predictive claim likelihood and actuarial simulator")
+    AV.render_ml_underwriting(P, ACT)
+
+elif page == "Actuarial & Risk":
+    header("Actuarial & Hazard Risk", "Flood zone exposure, CRS community rating & repetitive losses")
+    AV.render_actuarial_risk(P, ACT, prop_risk=PROP_RISK)
+
+elif page == "Financial Loss Ratios":
+    header("Financials & Loss Ratios", "State-by-state profitability matrix and claim severity analysis")
+    AV.render_financial_ratios(PO, CL, P, ACT, lr_state_year=LR_STATE_YEAR, mitigation=MIT)
+
+elif page == "Catastrophe Simulator":
+    header("Catastrophe Shock Simulator", "Interactive weather shock, hurricane landfall & capital stress test")
+    AV.render_catastrophe_simulator(ACT, CL, disaster_claims=DIS_CLAIMS_ALL)
+
+elif page == "Agent Performance":
+    header("Agent & Sales Performance", "Agent production ranking, loss ratios, and property risk ratings")
+    AV.render_agent_performance(C, P, ACT)
+
+# =====================================================================
+# OVERVIEW (OPERATIONAL DASHBOARD)
+# =====================================================================
+elif page == "Overview":
+    header("Insurance Operations Overview")
     exposure = ACT.coverage.sum()
     hr_share = ACT[SFHA(ACT.flood_zone)].coverage.sum() / max(exposure, 1)
     n_claims, n_open = len(CL), int(P.claims_open.fillna(0).sum())

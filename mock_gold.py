@@ -138,9 +138,117 @@ def build(n_customers=700):
     C = pd.DataFrame(cust_rows)
     PO = pd.DataFrame(pols, columns=["policy_id", "state", "county_code", "community_name", "policy_effective_date", "policy_termination_date", "total_building_insurance_coverage",
                                      "total_contents_insurance_coverage", "total_insurance_premium"])
+    PO["policy_id_uuid"] = "uuid-" + PO["policy_id"]
+
     CL = pd.DataFrame(clms, columns=["claim_id", "policy_id", "state", "community_name", "date_of_loss", "year_of_loss", "amount_paid_on_building_claim", "amount_paid_on_contents_claim",
                                      "amount_paid_on_icc_claim", "total_building_insurance_coverage", "total_contents_insurance_coverage", "_status"]).drop(columns="_status")
-    return {"customer_profile": C, "property_profile": P, "policy_report": PO, "claim_report": CL}
+    CL["claim_id_uuid"] = "uuid-" + CL["claim_id"]
+    CL["policy_id_uuid"] = "uuid-" + CL["policy_id"]
+
+    # 1. gold_claims_by_disaster
+    dis_rows = [
+        dict(disaster_number=4520, fema_declaration_string="DR-4520-TX", declaration_title="Hurricane Laura", incident_type="Hurricane", claim_count=620, total_paid=22400000.0),
+        dict(disaster_number=4611, fema_declaration_string="DR-4611-LA", declaration_title="Hurricane Ida", incident_type="Hurricane", claim_count=740, total_paid=31800000.0),
+        dict(disaster_number=4673, fema_declaration_string="DR-4673-FL", declaration_title="Hurricane Ian", incident_type="Hurricane", claim_count=980, total_paid=46500000.0),
+        dict(disaster_number=4712, fema_declaration_string="DR-4712-NC", declaration_title="Tropical Storm Debby", incident_type="Tropical Storm", claim_count=180, total_paid=4800000.0),
+        dict(disaster_number=4735, fema_declaration_string="DR-4735-SC", declaration_title="Coastal Surge and Flooding", incident_type="Flood", claim_count=230, total_paid=6200000.0),
+        dict(disaster_number=4789, fema_declaration_string="DR-4789-TX", declaration_title="Gulf Coast Severe Storms", incident_type="Severe Storm", claim_count=190, total_paid=3900000.0),
+    ]
+    DIS = pd.DataFrame(dis_rows)
+
+    # 2. gold_loss_ratio_by_state_year
+    lr_rows = []
+    years = [2021, 2022, 2023, 2024, 2025, 2026]
+    states = ["TX", "FL", "LA", "NC", "SC"]
+    for st_ in states:
+        for yr in years:
+            prem = float(PO[(PO.state == st_) & (PO.policy_effective_date.dt.year == yr)].total_insurance_premium.sum())
+            clms_subset = CL[(CL.state == st_) & (CL.year_of_loss == yr)]
+            cc = len(clms_subset)
+            paid = float(clms_subset.amount_paid_on_building_claim.sum() + clms_subset.amount_paid_on_contents_claim.sum() + clms_subset.amount_paid_on_icc_claim.sum())
+            if prem == 0:
+                prem = round(float(rng.uniform(800000, 3500000)), 2)
+                paid = round(prem * float(rng.uniform(0.35, 0.78)), 2)
+                cc = int(rng.integers(15, 80))
+            lr = round(paid / max(prem, 1.0), 4)
+            lr_rows.append(dict(state=st_, year=yr, total_premium=prem, claim_count=cc, total_paid=paid, loss_ratio=lr, data_status="FINALIZED" if yr < 2026 else "DEVELOPING"))
+    LR_STATE_YEAR = pd.DataFrame(lr_rows)
+
+    # 3. gold_mitigation_vs_claims_by_state
+    mit_rows = []
+    for st_ in states:
+        tot_paid = float(LR_STATE_YEAR[LR_STATE_YEAR.state == st_].total_paid.sum())
+        mit_spend = round(tot_paid * float(rng.uniform(0.20, 0.45)), 2)
+        mit_rows.append(dict(state=st_, total_mitigation_spend=mit_spend, total_claims_paid=tot_paid))
+    MIT = pd.DataFrame(mit_rows)
+
+    # 4. gold_property_risk
+    region_map = {"TX": "Gulf Coast", "LA": "Gulf Coast", "FL": "South Atlantic", "NC": "South Atlantic", "SC": "South Atlantic"}
+    prop_risk_rows = []
+    for st_ in states:
+        for zg in ["VE", "AE", "A", "B", "X"]:
+            for band_ in ["Pre-FIRM", "Post-FIRM"]:
+                for elev in [True, False]:
+                    reg = region_map.get(st_, "Gulf Coast")
+                    pol_ct = int(rng.integers(40, 250))
+                    clm_ct = int(pol_ct * (0.22 if zg in ["VE", "AE"] else 0.08) * (1.3 if band_ == "Pre-FIRM" else 0.8) * (0.7 if elev else 1.1))
+                    avg_paid = float(round(rng.uniform(18000, 48000), 2))
+                    clm_paid = round(clm_ct * avg_paid, 2)
+                    prem = round(pol_ct * (2800.0 if zg == "VE" else (1900.0 if zg == "AE" else 1100.0)) * (1.2 if band_ == "Pre-FIRM" else 1.0) * (0.85 if elev else 1.0), 2)
+                    cov_tot = round(pol_ct * 320000.0, 2)
+                    lr = round(clm_paid / max(prem, 1.0), 4)
+                    freq = round(clm_ct / max(pol_ct, 1.0), 4)
+                    r_score = round(float(np.clip((ZONE_RISK.get(zg, 20) + (14 if band_ == "Pre-FIRM" else 0) - (12 if elev else 0) + rng.normal(0, 4)), 5, 98)), 1)
+                    prop_risk_rows.append(dict(
+                        state=st_, zone_group=zg, construction_date_band=band_, elevated=elev, region=reg, data_status="ACTIVE",
+                        policy_count=pol_ct, claim_count=clm_ct, claims_paid=clm_paid, premium=prem, coverage_total=cov_tot,
+                        loss_ratio=lr, claim_frequency=freq, avg_claim_paid=avg_paid, declared_disasters=int(rng.integers(2, 7)),
+                        hma_projects=int(rng.integers(5, 30)), loss_component=round(lr * 40, 2), hazard_component=round(ZONE_RISK.get(zg, 20) * 0.4, 2),
+                        property_component=round((15.0 if band_ == "Pre-FIRM" else 5.0), 2), protection_component=round((-8.0 if elev else 0.0), 2),
+                        credibility=round(float(min(1.0, pol_ct / 150.0)), 2), risk_score=r_score, risk_band=band(r_score),
+                        top_driver="Coastal Hazard" if zg in ["VE", "AE"] else ("Pre-FIRM Structure" if band_ == "Pre-FIRM" else "Elevation Deficit"),
+                        window_start_year=2018, window_end_year=2025, _built_at="2026-10-13 12:00:00"
+                    ))
+    PROP_RISK = pd.DataFrame(prop_risk_rows)
+
+    # 5. gold_risk_by_geography
+    geo_risk_rows = []
+    for st_ in states:
+        reg = region_map.get(st_, "Gulf Coast")
+        sub_pr = PROP_RISK[PROP_RISK.state == st_]
+        p_cnt = int(sub_pr.policy_count.sum())
+        c_cnt = int(sub_pr.claim_count.sum())
+        c_pd = float(sub_pr.claims_paid.sum())
+        prm = float(sub_pr.premium.sum())
+        lr = round(c_pd / max(prm, 1.0), 4)
+        r_score = round(float(sub_pr.risk_score.mean()), 1)
+        geo_risk_rows.append(dict(
+            state=st_, region=reg, policy_count=p_cnt, claim_count=c_cnt, claims_paid=c_pd, premium=prm,
+            declared_disasters=int(sub_pr.declared_disasters.max()), hma_projects=int(sub_pr.hma_projects.sum()),
+            high_risk_segments=int((sub_pr.risk_band == "High").sum()), segments=len(sub_pr),
+            risk_score=r_score, loss_ratio=lr, risk_band=band(r_score)
+        ))
+    GEO_RISK = pd.DataFrame(geo_risk_rows)
+
+    return {
+        "gold_claim_report": CL,
+        "gold_policy_report": PO,
+        "gold_property_risk": PROP_RISK,
+        "gold_risk_by_geography": GEO_RISK,
+        "gold_loss_ratio_by_state_year": LR_STATE_YEAR,
+        "gold_claims_by_disaster": DIS,
+        "gold_mitigation_vs_claims_by_state": MIT,
+        # Backwards-compatible aliases:
+        "claim_report": CL,
+        "policy_report": PO,
+        "property_risk": PROP_RISK,
+        "risk_by_geography": GEO_RISK,
+        "loss_ratio_by_state_year": LR_STATE_YEAR,
+        "claims_by_disaster": DIS,
+        "mitigation_vs_claims_by_state": MIT,
+        "customer_profile": C,
+        "property_profile": P,
+    }
 
 
 def get():
@@ -150,4 +258,4 @@ def get():
 
 
 def disasters():
-    return pd.DataFrame({"incident_type": ["Hurricane", "Flood", "Severe Storm", "Tropical Storm"], "claims": [610, 420, 150, 140], "paid": [21.4e6, 9.8e6, 3.1e6, 2.6e6]})
+    return get()["gold_claims_by_disaster"]
