@@ -288,7 +288,11 @@ class OpenLLMCopilot:
                 ms = int((time.time() - t0) * 1000)
                 return {"ok": True, "latency_ms": ms, "message": f"Connected to Open LLM host at {url} ({ms}ms)."}
         except Exception as e:
-            return {"ok": False, "latency_ms": int((time.time() - t0) * 1000), "message": f"Endpoint unreachable at {url}: {str(e)[:90]}"}
+            err_str = str(e)
+            if any(k in err_str for k in ("Connection refused", "10061", "111")):
+                hint = "Local Ollama server is not running on port 11434. Either run 'ollama run llama3' in a terminal, or select 'In-Application Actuarial Model' (ready immediately) or a Databricks Foundation Model."
+                return {"ok": False, "latency_ms": int((time.time() - t0) * 1000), "message": f"Endpoint unreachable at {url} (Connection refused).\n💡 {hint}"}
+            return {"ok": False, "latency_ms": int((time.time() - t0) * 1000), "message": f"Endpoint unreachable at {url}: {err_str[:120]}"}
 
     def generate_rag_response(
         self,
