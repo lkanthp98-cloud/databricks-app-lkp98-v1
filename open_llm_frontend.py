@@ -29,6 +29,10 @@ def render_open_llm_frontend(
     indexed_stats = rag.get_indexed_table_summary()
     tot_indexed_rows = sum(indexed_stats.values())
 
+    if tot_indexed_rows == 0:
+        st.info("No records are currently indexed or available to query in Open LLM Studio.")
+        return
+
     # 1. Header Hero Banner
     st.markdown(f"""
     <div style="background:linear-gradient(135deg, #1C1948 0%, #2A247A 50%, #4038A8 100%);

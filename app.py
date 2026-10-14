@@ -381,6 +381,34 @@ def safe_view(fn, *args, **kwargs):
 
 
 # =====================================================================
+# GLOBAL LIVE CONNECTION GUARD
+# =====================================================================
+# If in Live mode but no active connection to Databricks SQL Warehouse/Unity Catalog exists,
+# and no records were loaded, do NOT show empty dashboards or mock fallbacks on any page.
+# Exception: Allow "Data Catalog" so developers can inspect table schemas and SQL DDL.
+if LIVE and P_ALL.empty and PO_ALL.empty and page != "Data Catalog":
+    header(page)
+    st.info(
+        f"📡 **Live Databricks Connection Required for {page}**\n\n"
+        f"You are currently in **🟢 Live Mode**, but no active connection to a Databricks SQL Warehouse or Unity Catalog has been established yet. **Zero live records are loaded (no mock data is substituted).**\n\n"
+        "• **To view the demo application**: Click **🟠 Mock** in the sidebar to load the complete 38-state portfolio.\n"
+        "• **To connect your live Lakehouse**: Open **⚙️ Connect Catalog / Warehouse** in the sidebar, or configure `DATABRICKS_HOST`, `DATABRICKS_TOKEN`, and `DATABRICKS_WAREHOUSE_ID` in `.env`.\n"
+        "• **To inspect table schemas & DDLs without live data**: Navigate to **Data Catalog** in the sidebar."
+    )
+    col_c1, col_c2 = st.columns(2)
+    if col_c1.button("🟠 Switch to Mock Demo Data", key="btn_guard_to_mock", type="primary"):
+        st.session_state["data_mode"] = "mock"
+        with data._lock:
+            data._store.clear()
+        st.rerun()
+    if col_c2.button("↻ Retry Live Query", key="btn_guard_retry_live"):
+        with data._lock:
+            data._store.clear()
+        st.rerun()
+    st.stop()
+
+
+# =====================================================================
 # BUSINESS & DATA ANALYTICS SUITE
 # =====================================================================
 if page == "Executive Cockpit":
@@ -460,24 +488,16 @@ elif page == "Agent Performance":
 # =====================================================================
 elif page == "Overview":
     header("Insurance Operations Overview")
-    if LIVE and P_ALL.empty and PO_ALL.empty:
-        st.info("📡 **Live Databricks Connection Required**\n\n"
-                "You are currently in **🟢 Live Mode**, but no active connection to a Databricks SQL Warehouse or Unity Catalog has been established yet. **Zero live records are loaded (no mock data is substituted).**\n\n"
-                "• **To view the demo application**: Click **🟠 Mock** in the sidebar.\n"
-                "• **To connect your live Lakehouse**: Open **⚙️ Connect Catalog / Warehouse** in the sidebar, or set `DATABRICKS_HOST`, `DATABRICKS_TOKEN`, and `DATABRICKS_WAREHOUSE_ID` in `.env`.\n"
-                "• **To deploy to Databricks**: Deploy via **Databricks Apps** with your SQL Warehouse attached.")
-        st.stop()
-    else:
-        exposure = ACT.coverage.sum() if not ACT.empty else 0.0
-        hr_share = (ACT[SFHA(ACT.flood_zone)].coverage.sum() / max(exposure, 1)) if not ACT.empty else 0.0
-        n_claims, n_open = len(CL), (int(P.claims_open.fillna(0).sum()) if not P.empty and "claims_open" in P.columns else 0)
-        paid_total = CL.paid.sum() if not CL.empty and "paid" in CL.columns else 0.0
-        due60 = int(ACT.days.between(0, 60).sum()) if not ACT.empty and "days" in ACT.columns else 0
-        tiles = [("👥", "Customers", n(len(C)), "Customers", {}), ("🏠", "Properties", n(len(P)), "Properties", {}), ("🛡️", "Active policies", n(len(ACT)), "Policies", {"pol_view": "Active"}),
-                 ("⚠️", "Open claims", n(n_open), "Claims", {"claims_view": "Open claims"}), ("🔁", "Renewals due ≤60d", n(due60), "Renewals", {"ren_win": "≤60 days"})]
-        for col_, (i, l, v, tgt, st_) in zip(st.columns(5), tiles):
-            with col_:
-                card_link("kpi_" + tgt.lower(), f'<div class="kpi"><div class="ico">{i}</div><div class="kt"><div class="kl">{l}</div><div class="kv">{v}</div></div><div class="go">›</div></div>', tgt, **st_)
+    exposure = ACT.coverage.sum() if not ACT.empty else 0.0
+    hr_share = (ACT[SFHA(ACT.flood_zone)].coverage.sum() / max(exposure, 1)) if not ACT.empty else 0.0
+    n_claims, n_open = len(CL), (int(P.claims_open.fillna(0).sum()) if not P.empty and "claims_open" in P.columns else 0)
+    paid_total = CL.paid.sum() if not CL.empty and "paid" in CL.columns else 0.0
+    due60 = int(ACT.days.between(0, 60).sum()) if not ACT.empty and "days" in ACT.columns else 0
+    tiles = [("👥", "Customers", n(len(C)), "Customers", {}), ("🏠", "Properties", n(len(P)), "Properties", {}), ("🛡️", "Active policies", n(len(ACT)), "Policies", {"pol_view": "Active"}),
+             ("⚠️", "Open claims", n(n_open), "Claims", {"claims_view": "Open claims"}), ("🔁", "Renewals due ≤60d", n(due60), "Renewals", {"ren_win": "≤60 days"})]
+    for col_, (i, l, v, tgt, st_) in zip(st.columns(5), tiles):
+        with col_:
+            card_link("kpi_" + tgt.lower(), f'<div class="kpi"><div class="ico">{i}</div><div class="kt"><div class="kl">{l}</div><div class="kv">{v}</div></div><div class="go">›</div></div>', tgt, **st_)
 
     c1, c2, c3 = st.columns(3)
     with c1:

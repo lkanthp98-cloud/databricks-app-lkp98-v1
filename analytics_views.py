@@ -23,6 +23,9 @@ from ui import AMBER, BAND_COL, DEEP, INK, MID, MUTED, PURPLE, RED, SOFT, ZONE_C
 
 def render_executive_cockpit(C: pd.DataFrame, P: pd.DataFrame, PO: pd.DataFrame, CL: pd.DataFrame, ACT: pd.DataFrame, as_of: pd.Timestamp):
     """Renders the executive dashboard with high-level business indicators and loss ratios."""
+    if P is None or P.empty:
+        st.info("No property or portfolio records available.")
+        return
     metrics = AE.compute_executive_cockpit(C, P, PO, CL, ACT, as_of)
 
     # 1. Executive Hero Banner
@@ -855,6 +858,9 @@ def render_flow_sankey(P: pd.DataFrame, ACT: pd.DataFrame, C: pd.DataFrame):
 
 def render_ml_underwriting(P: pd.DataFrame, ACT: pd.DataFrame):
     """Renders the Machine Learning model diagnostics and interactive underwriting simulator."""
+    if P is None or P.empty:
+        st.info("No property records available for Machine Learning underwriting.")
+        return
     st.markdown("### Machine Learning Predictive Underwriting & Risk Scoring")
     st.markdown("Trained on your Unity Catalog property and claims records to predict loss likelihood, expected severity, and actuarial pricing.")
 
@@ -1332,16 +1338,15 @@ def render_community_mitigation_intelligence(
     st.markdown("### Community Resilience & Hazard Mitigation Intelligence")
     st.markdown("Analyze NFIP participating community discounts, CRS rating classes, FEMA HMA federal grants, and disaster declarations.")
 
-    # Fallback to mock data if empty
     if community_df is None or community_df.empty:
-        import mock_gold
-        mg = mock_gold.get()
-        community_df = mg.get("community", pd.DataFrame())
-        dim_comm_df = mg.get("dim_community", pd.DataFrame())
-        hma_project_df = mg.get("dim_hma_project", pd.DataFrame())
-        hma_txn_df = mg.get("fact_hma_financial_transaction", pd.DataFrame())
-        disaster_df = mg.get("dim_disaster_declaration", pd.DataFrame())
-        mitigation_state_df = mg.get("gold_mitigation_vs_claims_by_state", pd.DataFrame())
+        st.info("No community resilience data available for this selection.")
+        return
+
+    dim_comm_df = dim_comm_df if dim_comm_df is not None else pd.DataFrame()
+    hma_project_df = hma_project_df if hma_project_df is not None else pd.DataFrame()
+    hma_txn_df = hma_txn_df if hma_txn_df is not None else pd.DataFrame()
+    disaster_df = disaster_df if disaster_df is not None else pd.DataFrame()
+    mitigation_state_df = mitigation_state_df if mitigation_state_df is not None else pd.DataFrame()
 
     # 1. Executive Metric Header
     tot_comm = len(community_df)
@@ -1492,13 +1497,13 @@ def render_inspection_coverage_intelligence(
     st.markdown("Analyze property inspection audits, foundation vulnerabilities, endorsement structures, and document processing velocity.")
 
     if inspection_df is None or inspection_df.empty:
-        import mock_gold
-        mg = mock_gold.get()
-        inspection_df = mg.get("inspection", pd.DataFrame())
-        property_df = mg.get("property", pd.DataFrame())
-        coverage_df = mg.get("coverage", pd.DataFrame())
-        document_df = mg.get("document", pd.DataFrame())
-        claim_df = mg.get("claim", pd.DataFrame())
+        st.info("No inspection records available for this selection.")
+        return
+
+    property_df = property_df if property_df is not None else pd.DataFrame()
+    coverage_df = coverage_df if coverage_df is not None else pd.DataFrame()
+    document_df = document_df if document_df is not None else pd.DataFrame()
+    claim_df = claim_df if claim_df is not None else pd.DataFrame()
 
     # 1. Executive Metric Header
     n_insps = len(inspection_df)
@@ -1865,6 +1870,9 @@ def render_ai_underwriter_copilot(
 
 def render_alpha_earth_intelligence(P: pd.DataFrame):
     """Renders Google DeepMind AlphaEarth Satellite Embedding analysis for properties."""
+    if P is None or P.empty:
+        st.info("No property records available for satellite embedding analysis.")
+        return
     from alpha_earth_engine import alpha_earth
 
     st.markdown("### 🌍 Google DeepMind AlphaEarth: Satellite Embedding GeoAI")
