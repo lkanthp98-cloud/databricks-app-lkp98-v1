@@ -12,11 +12,6 @@ import pandas as pd
 
 from config import AppConfig
 
-CATALOG = AppConfig.GOLD_CATALOG
-SCHEMA = AppConfig.GOLD_SCHEMA
-SPACE_ID = AppConfig.GENIE_SPACE_ID
-CACHE_TTL = AppConfig.CACHE_TTL_SECONDS
-
 SPEC = {
     # 1. Operational & Entity Tables
     "agent": ("agent", [
@@ -208,7 +203,6 @@ UTILITY_TABLES = ["id_map"]
 
 ALL_TABLES = list(SPEC.keys())
 CORE = list(GOLD_TABLES)
-T = AppConfig.FULL_SCHEMA
 
 
 def __getattr__(name: str):
@@ -285,9 +279,7 @@ def _fresh(name):
 def derive_profiles(po_df: pd.DataFrame, cl_df: pd.DataFrame, pr_df: pd.DataFrame = None):
     """Synthesizes customer_profile and property_profile from gold_policy_report and gold_claim_report."""
     if po_df.empty:
-        import mock_gold
-        mg = mock_gold.get()
-        return mg.get("customer_profile", pd.DataFrame()), mg.get("property_profile", pd.DataFrame())
+        return pd.DataFrame(), pd.DataFrame()
 
     po = po_df.copy()
     cl = cl_df.copy() if not cl_df.empty else pd.DataFrame(columns=["policy_id", "paid"])
@@ -390,7 +382,7 @@ def _load_one(name):
                 t0 = time.time()
                 sql = f"SELECT * FROM {target_schema}.{tbl_candidate}"
                 df_raw = AppConfig.execute_sql(sql)
-                if df_raw is not None and not df_raw.empty:
+                if df_raw is not None:
                     df = coerce(df_raw, cols) if cols else df_raw
                     sec = time.time() - t0
                     table = tbl_candidate
@@ -415,22 +407,15 @@ def _load_one(name):
             if not note:
                 note = f"Genie error: {ex}"
 
-    # 3. Fallback to mock data with helpful note
+    # 3. Fallback behavior in LIVE mode: never substitute mock data
     if df is None:
-        import mock_gold
-        mg = mock_gold.get()
-        if name in mg:
-            df = mg[name]
-        elif table in mg:
-            df = mg[table]
-        else:
-            df = pd.DataFrame()
-        sql = "(demo data fallback)"
+        df = pd.DataFrame(columns=[c for c, _ in cols]) if cols else pd.DataFrame()
+        sql = f"(no live data: {target_schema}.{table})"
         if not note:
             if not AppConfig.HAS_SQL_WAREHOUSE and not AppConfig.GENIE_SPACE_ID:
                 note = "Running offline. To query live data, connect a SQL Warehouse or Genie Space."
             else:
-                note = f"Table {target_schema}.{table} not found. Using fallback data."
+                note = f"Table {target_schema}.{table} not found or query failed on live warehouse."
 
     e = dict(ts=time.time(), df=df, sql=sql, seconds=sec, note=note, table=table)
     with _lock:
@@ -440,7 +425,7 @@ def _load_one(name):
 
 def load_core(use_genie=None, force=False):
     """Loads all Gold tables and profiles. Parallel querying, rate-limited, cached."""
-    use_live = AppConfig.IS_LIVE if use_genie is None else (use_genie and AppConfig.IS_LIVE)
+    use_live = AppConfig.IS_LIVE if use_genie is None else bool(use_genie)
     if not use_live:
         import mock_gold
         mg = mock_gold.get()
@@ -456,13 +441,19 @@ def load_core(use_genie=None, force=False):
         res = {n: f.result() for n, f in futs.items()}
 
     # Synthesize customer/property profiles if missing or empty
-    if "gold_policy_report" in res and ("customer_profile" not in res or res["customer_profile"]["df"].empty):
+    if "gold_policy_report" in res:
         po_df = res["gold_policy_report"]["df"]
-        cl_df = res.get("gold_claim_report", {}).get("df", pd.DataFrame())
-        pr_df = res.get("gold_property_risk", {}).get("df", None)
-        c_df, p_df = derive_profiles(po_df, cl_df, pr_df)
-        res["customer_profile"] = dict(ts=time.time(), df=c_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_customer_profile")
-        res["property_profile"] = dict(ts=time.time(), df=p_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_property_profile")
+        if not po_df.empty:
+            cl_df = res.get("gold_claim_report", {}).get("df", pd.DataFrame())
+            pr_df = res.get("gold_property_risk", {}).get("df", None)
+            c_df, p_df = derive_profiles(po_df, cl_df, pr_df)
+            res["customer_profile"] = dict(ts=time.time(), df=c_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_customer_profile")
+            res["property_profile"] = dict(ts=time.time(), df=p_df, sql="(derived from gold_policy_report)", seconds=0.0, note="", table="gold_property_profile")
+        else:
+            cust_cols = ["customer_id", "first_name", "last_name", "customer_status", "customer_since", "agent_id", "agent_name", "properties", "states", "active_policies", "policy_terms_total", "building_coverage_active", "contents_coverage_active", "premium_active", "next_renewal_date", "days_to_renewal", "renewal_due_60d", "renewal_pending", "claims_total", "claims_open", "claims_paid_total", "last_loss_date", "mitigation_count", "primary_property_id", "primary_county", "primary_state", "highest_risk_score", "highest_risk_band", "highest_risk_property_id", "in_special_flood_hazard_area", "pre_firm_properties", "insured_value_active", "primary_county_insured_value", "primary_county_share", "primary_county_rank", "primary_county_declared_disasters_window", "primary_county_last_declared_year", "primary_county_hma_projects", "primary_county_claims_paid_per_policy"]
+            prop_cols = ["property_id", "customer_id", "address_line", "city", "zip_code", "state", "county", "flood_zone", "construction_date_band", "elevated", "crs_class", "active_policy_id", "policy_expiration_date", "active_building_coverage", "active_contents_coverage", "active_premium", "policy_terms", "claims_total", "claims_open", "claims_paid_total", "last_loss_date", "nfip_rl", "mitigation_count", "assessed_risk_score", "assessed_risk_band", "county_declared_disasters_window", "county_last_declared_year", "county_hma_projects", "county_hma_obligated", "county_insured_value", "county_share_of_portfolio", "county_rank", "county_claims_paid_per_policy"]
+            res["customer_profile"] = dict(ts=time.time(), df=pd.DataFrame(columns=cust_cols), sql="(empty)", seconds=0.0, note="", table="gold_customer_profile")
+            res["property_profile"] = dict(ts=time.time(), df=pd.DataFrame(columns=prop_cols), sql="(empty)", seconds=0.0, note="", table="gold_property_profile")
 
     res["policy_report"] = res.get("gold_policy_report", res.get("policy_report"))
     res["claim_report"] = res.get("gold_claim_report", res.get("claim_report"))
@@ -491,7 +482,7 @@ def diagnose():
     for name in CORE:
         table, cols = SPEC[name]
         try:
-            ans = _genie().ask(f"How many rows are in {T}.{table}?")
+            ans = _genie().ask(f"How many rows are in {AppConfig.FULL_SCHEMA}.{table}?")
             if ans.df is not None and len(ans.df):
                 out.append((table, True, f"answered: {ans.df.iloc[0, 0]} rows", ans.sql))
             else:
@@ -511,5 +502,7 @@ def whoami():
 
 def grant_sql(principal):
     p = principal or "<app-service-principal-application-id>"
-    return (f"GRANT USE CATALOG ON CATALOG {CATALOG} TO `{p}`;\n"
-            f"GRANT USE SCHEMA, SELECT ON SCHEMA {CATALOG}.{SCHEMA} TO `{p}`;")
+    cat = AppConfig.GOLD_CATALOG
+    sch = AppConfig.GOLD_SCHEMA
+    return (f"GRANT USE CATALOG ON CATALOG {cat} TO `{p}`;\n"
+            f"GRANT USE SCHEMA, SELECT ON SCHEMA {cat}.{sch} TO `{p}`;")

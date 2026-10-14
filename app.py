@@ -1,5 +1,3 @@
-import os
-
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -38,7 +36,14 @@ except Exception as e:
         with data._lock:
             data._store.clear()
         st.rerun()
-    SRC = data.load_core(use_genie=False)
+    if LIVE:
+        SRC = {k: dict(df=pd.DataFrame(columns=[c for c, _ in data.SPEC[k][1]]), sql="", seconds=0.0, note=str(e), table=data.SPEC[k][0]) for k in data.SPEC}
+        SRC["customer_profile"] = dict(df=pd.DataFrame(), sql="", seconds=0.0, note=str(e), table="gold_customer_profile")
+        SRC["property_profile"] = dict(df=pd.DataFrame(), sql="", seconds=0.0, note=str(e), table="gold_property_profile")
+        SRC["policy_report"] = SRC.get("gold_policy_report")
+        SRC["claim_report"] = SRC.get("gold_claim_report")
+    else:
+        SRC = data.load_core(use_genie=False)
 PO_ALL = SRC["gold_policy_report"]["df"]
 CL_ALL = SRC["gold_claim_report"]["df"]
 PROP_RISK_ALL = SRC["gold_property_risk"]["df"]
@@ -132,26 +137,6 @@ def header(title, sub=""):
     with c[2]:
         st.markdown(f'<div class="hdr-right"><div class="chip-d">{_greeting()}</div></div>', unsafe_allow_html=True)
 
-
-AI_STUDIO = [
-    "Executive Cockpit",
-    "Open LLM Studio",
-    "AlphaEarth GeoAI Embeddings",
-    "ML Risk & Pricing",
-]
-
-ANALYTICS = [
-    "Property Risk Intelligence",
-    "Customer Risk Profile",
-    "Geospatial Risk Map",
-    "Community & Mitigation",
-    "Inspections & Endorsements",
-    "Financial Loss Ratios",
-    "Catastrophe Simulator",
-    "Actuarial & Risk",
-    "Underwriting Flow",
-    "Agent Performance",
-]
 
 MAIN = [
     "Overview",
@@ -263,8 +248,16 @@ with st.sidebar:
     # Filter by State
     st.markdown('<div class="navlbl">Filter</div>', unsafe_allow_html=True)
     sel_states = st.multiselect("State", sorted(P_ALL.state.dropna().unique()), placeholder="All states", label_visibility="collapsed")
-    if LIVE:
-        st.button("↻  Refresh data", key="refresh_data", on_click=lambda: data.load_core(use_genie=True, force=True), use_container_width=True)
+    def _do_refresh():
+        if LIVE:
+            data.load_core(use_genie=True, force=True)
+        else:
+            with data._lock:
+                data._store.clear()
+            import mock_gold
+            mock_gold._cache.clear()
+
+    st.button("↻  Refresh data", key="refresh_data", on_click=_do_refresh, use_container_width=True)
 
     def nav_item(name):
         slug = name.lower().replace(" & ", "_").replace(" ", "_")
@@ -299,16 +292,33 @@ with st.sidebar:
         nav_item(p_)
 
 # ------------------------------------------------------------------ state filter
-P = P_ALL[P_ALL.state.isin(sel_states)] if sel_states else P_ALL
-cust_ids = set(P.customer_id)
-C = C_ALL[C_ALL.customer_id.isin(cust_ids)]
-PO = PO_ALL[PO_ALL.state.isin(sel_states)] if sel_states else PO_ALL
-CL = CL_ALL[CL_ALL.state.isin(sel_states)] if sel_states else CL_ALL
-CL = CL.assign(paid=CL.amount_paid_on_building_claim.fillna(0) + CL.amount_paid_on_contents_claim.fillna(0) + CL.amount_paid_on_icc_claim.fillna(0))
-PO = PO.assign(coverage=PO.total_building_insurance_coverage.fillna(0) + PO.total_contents_insurance_coverage.fillna(0))
-ACT = P[P.active_policy_id.notna()].assign(coverage=lambda d: d.active_building_coverage.fillna(0) + d.active_contents_coverage.fillna(0))
-ACT = ACT.assign(days=(ACT.policy_expiration_date - AS_OF).dt.days)
-SFHA = lambda s: s.fillna("").astype(str).str[:1].isin(["A", "V"])
+# ------------------------------------------------------------------ state filter
+P = P_ALL[P_ALL.state.isin(sel_states)] if (sel_states and not P_ALL.empty and "state" in P_ALL.columns) else P_ALL
+cust_ids = set(P.customer_id) if (not P.empty and "customer_id" in P.columns) else set()
+C = C_ALL[C_ALL.customer_id.isin(cust_ids)] if (not C_ALL.empty and "customer_id" in C_ALL.columns) else C_ALL
+PO = PO_ALL[PO_ALL.state.isin(sel_states)] if (sel_states and not PO_ALL.empty and "state" in PO_ALL.columns) else PO_ALL
+CL = CL_ALL[CL_ALL.state.isin(sel_states)] if (sel_states and not CL_ALL.empty and "state" in CL_ALL.columns) else CL_ALL
+
+if not CL.empty and "amount_paid_on_building_claim" in CL.columns:
+    CL = CL.assign(paid=CL.amount_paid_on_building_claim.fillna(0) + CL.amount_paid_on_contents_claim.fillna(0) + CL.amount_paid_on_icc_claim.fillna(0))
+else:
+    CL = CL.assign(paid=pd.Series(dtype=float)) if not CL.empty else pd.DataFrame(columns=["claim_id", "policy_id", "state", "paid"])
+
+if not PO.empty and "total_building_insurance_coverage" in PO.columns:
+    PO = PO.assign(coverage=PO.total_building_insurance_coverage.fillna(0) + PO.total_contents_insurance_coverage.fillna(0))
+else:
+    PO = PO.assign(coverage=pd.Series(dtype=float)) if not PO.empty else pd.DataFrame(columns=["policy_id", "state", "coverage", "total_insurance_premium"])
+
+if not P.empty and "active_policy_id" in P.columns:
+    ACT = P[P.active_policy_id.notna()].assign(coverage=lambda d: d.active_building_coverage.fillna(0) + d.active_contents_coverage.fillna(0))
+    if "policy_expiration_date" in ACT.columns:
+        ACT = ACT.assign(days=(ACT.policy_expiration_date - AS_OF).dt.days)
+    else:
+        ACT = ACT.assign(days=pd.Series(dtype=int))
+else:
+    ACT = pd.DataFrame(columns=["property_id", "customer_id", "active_policy_id", "coverage", "days", "flood_zone", "active_premium", "state"])
+
+SFHA = lambda s: s.fillna("").astype(str).str[:1].isin(["A", "V"]) if (s is not None and len(s) > 0) else pd.Series(dtype=bool)
 
 # Extract Unity Catalog Gold tables from SRC
 PROP_RISK_ALL = SRC.get("gold_property_risk", {}).get("df", pd.DataFrame())
@@ -329,12 +339,27 @@ def empty(msg="No data for this selection."):
 
 # Mode notification banner
 if LIVE:
-    st.markdown(f'''
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:10px; padding:7px 14px; margin-bottom:12px; font-size:0.83rem; color:#065F46;">
-        <div>🟢 <b>Connected to Live Databricks Lakehouse:</b> <code>{AppConfig.FULL_SCHEMA}</code> ({len(P_ALL):,} properties · {len(PO_ALL):,} policies)</div>
-        <div style="font-size:0.78rem; color:#047857;">SQL Warehouse: <b>{AppConfig.get_warehouse_id()[:8] if AppConfig.get_warehouse_id() else 'Auto-Discovered'}</b></div>
-    </div>
-    ''', unsafe_allow_html=True)
+    has_live_data = (len(P_ALL) > 0 or len(PO_ALL) > 0)
+    wh_id = AppConfig.get_warehouse_id()
+    if has_live_data:
+        st.markdown(f'''
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:10px; padding:7px 14px; margin-bottom:12px; font-size:0.83rem; color:#065F46;">
+            <div>🟢 <b>Connected to Live Databricks Lakehouse:</b> <code>{AppConfig.FULL_SCHEMA}</code> ({len(P_ALL):,} properties · {len(PO_ALL):,} policies)</div>
+            <div style="font-size:0.78rem; color:#047857;">SQL Warehouse: <b>{wh_id[:8] if wh_id else 'Active'}</b></div>
+        </div>
+        ''', unsafe_allow_html=True)
+    else:
+        st.markdown(f'''
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#FEF2F2; border:1px solid #FECACA; border-radius:10px; padding:10px 16px; margin-bottom:14px; font-size:0.84rem; color:#991B1B;">
+            <div>
+                🔴 <b>Live Databricks Connection Offline (0 Records Loaded):</b><br>
+                <span style="font-size:0.8rem; color:#B91C1C;">You are in <b>🟢 Live Mode</b>, but no Databricks SQL Warehouse or Unity Catalog connection has been established yet. No mock data is shown.</span>
+            </div>
+            <div>
+                <span style="font-size:0.8rem; font-weight:600; background:#FEE2E2; border:1px solid #FCA5A5; border-radius:6px; padding:3px 8px; color:#991B1B;">Not Connected</span>
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
 else:
     st.markdown(f'''
     <div style="display:flex; justify-content:space-between; align-items:center; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; padding:7px 14px; margin-bottom:12px; font-size:0.83rem; color:#92400E;">
@@ -343,32 +368,45 @@ else:
     </div>
     ''', unsafe_allow_html=True)
 
+def safe_view(fn, *args, **kwargs):
+    """Safely executes an analytics view with an error boundary to prevent app crashes."""
+    try:
+        fn(*args, **kwargs)
+    except Exception as ex:
+        st.error(f"⚠️ Error loading this view: {ex}")
+        with st.expander("🛠️ View Error Traceback"):
+            import traceback
+            st.code(traceback.format_exc(), language="python")
+
+
 # =====================================================================
 # BUSINESS & DATA ANALYTICS SUITE
 # =====================================================================
 if page == "Executive Cockpit":
     header("Executive Cockpit", "Portfolio performance & loss ratio cockpit")
-    AV.render_executive_cockpit(C, P, PO, CL, ACT, AS_OF)
+    safe_view(AV.render_executive_cockpit, C, P, PO, CL, ACT, AS_OF)
 
 elif page in ("Open LLM Studio", "AI Underwriter & LLM Copilot"):
+    header("Open Source LLM Studio", "In-application Open LLM reasoning engine operating directly on your internal data")
     from open_llm_frontend import render_open_llm_frontend
-    render_open_llm_frontend(SRC, C, P, PO, CL, ACT)
+    safe_view(render_open_llm_frontend, SRC, C, P, PO, CL, ACT)
 
 elif page == "AlphaEarth GeoAI Embeddings":
     header("AlphaEarth GeoAI Satellite Embeddings", "Google DeepMind 64D Earth Observation embeddings & hazard twins")
-    AV.render_alpha_earth_intelligence(P)
+    safe_view(AV.render_alpha_earth_intelligence, P)
 
 elif page == "Property Risk Intelligence":
     header("Property Risk Intelligence", "Actuarial components, structural matrices, and vulnerability analysis")
-    AV.render_property_risk_intelligence(PROP_RISK, PO, CL)
+    safe_view(AV.render_property_risk_intelligence, PROP_RISK, PO, CL)
 
 elif page == "Customer Risk Profile":
     header("Customer Risk Profile", "Individual policyholder risk dossier, property schedules, and loss histories")
-    AV.render_customer_risk_profile(C, P, PO, CL, PROP_RISK)
+    safe_view(AV.render_customer_risk_profile, C, P, PO, CL, PROP_RISK)
 
 elif page == "Community & Mitigation":
     header("Community Resilience & Hazard Mitigation", "NFIP community discounts, CRS rating classes & federal HMA grants")
-    AV.render_community_mitigation_intelligence(
+    safe_view(
+        AV.render_community_mitigation_intelligence,
         SRC.get("community", {}).get("df", pd.DataFrame()),
         SRC.get("dim_community", {}).get("df", pd.DataFrame()),
         SRC.get("dim_hma_project", {}).get("df", pd.DataFrame()),
@@ -379,7 +417,8 @@ elif page == "Community & Mitigation":
 
 elif page == "Inspections & Endorsements":
     header("Inspections & Endorsement Portfolio", "Foundation vulnerability audits, coverage lines & document pipelines")
-    AV.render_inspection_coverage_intelligence(
+    safe_view(
+        AV.render_inspection_coverage_intelligence,
         SRC.get("inspection", {}).get("df", pd.DataFrame()),
         P,
         SRC.get("coverage", {}).get("df", pd.DataFrame()),
@@ -389,47 +428,55 @@ elif page == "Inspections & Endorsements":
 
 elif page == "Geospatial Risk Map":
     header("Geospatial Risk Map", "Coastal hazard distribution, state exposure, and loss ratios")
-    AV.render_geospatial_map(P, ACT, PO, CL, geo_risk=GEO_RISK)
+    safe_view(AV.render_geospatial_map, P, ACT, PO, CL, geo_risk=GEO_RISK)
 
 elif page == "Underwriting Flow":
     header("Underwriting Flow", "Sankey lifecycle linkage from customers to claims and renewals")
-    AV.render_flow_sankey(P, ACT, C)
+    safe_view(AV.render_flow_sankey, P, ACT, C)
 
 elif page == "ML Risk & Pricing":
     header("ML Risk & Pricing", "Random Forest predictive claim likelihood and actuarial simulator")
-    AV.render_ml_underwriting(P, ACT)
+    safe_view(AV.render_ml_underwriting, P, ACT)
 
 elif page == "Actuarial & Risk":
     header("Actuarial & Hazard Risk", "Flood zone exposure, CRS community rating & repetitive losses")
-    AV.render_actuarial_risk(P, ACT, prop_risk=PROP_RISK)
+    safe_view(AV.render_actuarial_risk, P, ACT, prop_risk=PROP_RISK)
 
 elif page == "Financial Loss Ratios":
     header("Financials & Loss Ratios", "State-by-state profitability matrix and claim severity analysis")
-    AV.render_financial_ratios(PO, CL, P, ACT, lr_state_year=LR_STATE_YEAR, mitigation=MIT)
+    safe_view(AV.render_financial_ratios, PO, CL, P, ACT, lr_state_year=LR_STATE_YEAR, mitigation=MIT)
 
 elif page == "Catastrophe Simulator":
     header("Catastrophe Shock Simulator", "Interactive weather shock, hurricane landfall & capital stress test")
-    AV.render_catastrophe_simulator(ACT, CL, disaster_claims=DIS_CLAIMS_ALL)
+    safe_view(AV.render_catastrophe_simulator, ACT, CL, disaster_claims=DIS_CLAIMS_ALL)
 
 elif page == "Agent Performance":
     header("Agent & Sales Performance", "Agent production ranking, loss ratios, and property risk ratings")
-    AV.render_agent_performance(C, P, ACT)
+    safe_view(AV.render_agent_performance, C, P, ACT)
 
 # =====================================================================
 # OVERVIEW (OPERATIONAL DASHBOARD)
 # =====================================================================
 elif page == "Overview":
     header("Insurance Operations Overview")
-    exposure = ACT.coverage.sum()
-    hr_share = ACT[SFHA(ACT.flood_zone)].coverage.sum() / max(exposure, 1)
-    n_claims, n_open = len(CL), int(P.claims_open.fillna(0).sum())
-    paid_total = CL.paid.sum()
-    due60 = int(ACT.days.between(0, 60).sum())
-    tiles = [("👥", "Customers", n(len(C)), "Customers", {}), ("🏠", "Properties", n(len(P)), "Properties", {}), ("🛡️", "Active policies", n(len(ACT)), "Policies", {"pol_view": "Active"}),
-             ("⚠️", "Open claims", n(n_open), "Claims", {"claims_view": "Open claims"}), ("🔁", "Renewals due ≤60d", n(due60), "Renewals", {"ren_win": "≤60 days"})]
-    for col_, (i, l, v, tgt, st_) in zip(st.columns(5), tiles):
-        with col_:
-            card_link("kpi_" + tgt.lower(), f'<div class="kpi"><div class="ico">{i}</div><div class="kt"><div class="kl">{l}</div><div class="kv">{v}</div></div><div class="go">›</div></div>', tgt, **st_)
+    if LIVE and P_ALL.empty and PO_ALL.empty:
+        st.info("📡 **Live Databricks Connection Required**\n\n"
+                "You are currently in **🟢 Live Mode**, but no active connection to a Databricks SQL Warehouse or Unity Catalog has been established yet. **Zero live records are loaded (no mock data is substituted).**\n\n"
+                "• **To view the demo application**: Click **🟠 Mock** in the sidebar.\n"
+                "• **To connect your live Lakehouse**: Open **⚙️ Connect Catalog / Warehouse** in the sidebar, or set `DATABRICKS_HOST`, `DATABRICKS_TOKEN`, and `DATABRICKS_WAREHOUSE_ID` in `.env`.\n"
+                "• **To deploy to Databricks**: Deploy via **Databricks Apps** with your SQL Warehouse attached.")
+        st.stop()
+    else:
+        exposure = ACT.coverage.sum() if not ACT.empty else 0.0
+        hr_share = (ACT[SFHA(ACT.flood_zone)].coverage.sum() / max(exposure, 1)) if not ACT.empty else 0.0
+        n_claims, n_open = len(CL), (int(P.claims_open.fillna(0).sum()) if not P.empty and "claims_open" in P.columns else 0)
+        paid_total = CL.paid.sum() if not CL.empty and "paid" in CL.columns else 0.0
+        due60 = int(ACT.days.between(0, 60).sum()) if not ACT.empty and "days" in ACT.columns else 0
+        tiles = [("👥", "Customers", n(len(C)), "Customers", {}), ("🏠", "Properties", n(len(P)), "Properties", {}), ("🛡️", "Active policies", n(len(ACT)), "Policies", {"pol_view": "Active"}),
+                 ("⚠️", "Open claims", n(n_open), "Claims", {"claims_view": "Open claims"}), ("🔁", "Renewals due ≤60d", n(due60), "Renewals", {"ren_win": "≤60 days"})]
+        for col_, (i, l, v, tgt, st_) in zip(st.columns(5), tiles):
+            with col_:
+                card_link("kpi_" + tgt.lower(), f'<div class="kpi"><div class="ico">{i}</div><div class="kt"><div class="kl">{l}</div><div class="kv">{v}</div></div><div class="go">›</div></div>', tgt, **st_)
 
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -753,6 +800,12 @@ elif page == "Process Flow":
 # =====================================================================
 elif page == "Customer 360":
     header("Customer 360")
+    if C_ALL.empty:
+        st.info("📡 **Live Databricks Connection Required**\n\n"
+                "No live customer records are loaded because the Lakehouse is not connected or the schema contains 0 records.\n\n"
+                "• Click **🟠 Mock** in the sidebar to explore Customer 360 with demo data.\n"
+                "• Connect a Databricks SQL Warehouse to query live customer records.")
+        st.stop()
     lab = C_ALL.assign(label=C_ALL.first_name + " " + C_ALL.last_name + " · " + C_ALL.customer_id)
     q = st.session_state.get("cj_search", "").strip()
     cid = st.session_state.get("cj_cid")
@@ -1240,14 +1293,14 @@ elif page == "Data Catalog":
     
     # Retrieve dataset from SRC or mock_gold
     tbl_df = SRC.get(sel_tbl, {}).get("df", pd.DataFrame())
-    if tbl_df.empty:
+    if tbl_df.empty and not LIVE:
         import mock_gold
         mg = mock_gold.get()
         tbl_df = mg.get(sel_tbl, pd.DataFrame())
 
     with c2:
         with st.container(border=True):
-            st.markdown(f"### Table: `<code>{tbl_name}</code>`", unsafe_allow_html=True)
+            st.markdown(f"### Table: `{tbl_name}`")
             st.caption(f"Unity Catalog Path: **`{full_path}`** · **{len(cols_spec)} columns** · **{len(tbl_df):,} rows**")
             
             # Show Schema Definition Table
@@ -1256,7 +1309,7 @@ elif page == "Data Catalog":
             st.dataframe(pd.DataFrame(schema_rows), use_container_width=True, hide_index=True, height=180)
 
     # Live Data Preview and Search
-    st.markdown(f"#### Data Preview: `<code>{tbl_name}</code>`", unsafe_allow_html=True)
+    st.markdown(f"#### Data Preview: `{tbl_name}`")
     f1, f2 = st.columns([4, 1])
     q_search = f1.text_input("Filter preview rows", placeholder=f"Search any value in {tbl_name}…", label_visibility="collapsed", key=f"sq_{sel_tbl}")
     f2.download_button("⬇ Download CSV", tbl_df.to_csv(index=False), file_name=f"{tbl_name}.csv", mime="text/csv", use_container_width=True, key=f"dl_{sel_tbl}")
@@ -1274,15 +1327,6 @@ elif page == "Data Catalog":
         col_sql = [f"    {c} {type_desc.get(t, 'STRING')}" for c, t in cols_spec]
         ddl_sql = f"CREATE OR REPLACE TABLE {full_path} (\n" + ",\n".join(col_sql) + "\n);"
         st.code(ddl_sql, language="sql")
-
-
-# =====================================================================
-# OPEN SOURCE LLM STUDIO (IN-APP DATA RAG & COPILOT)
-# =====================================================================
-elif page == "Open LLM Studio":
-    header("Open Source LLM Studio", "In-application Open LLM reasoning engine operating directly on your internal data")
-    from open_llm_frontend import render_open_llm_frontend
-    render_open_llm_frontend(SRC, C, P, PO, CL, ACT)
 
 
 # =====================================================================

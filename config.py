@@ -47,7 +47,12 @@ class _Config:
         self.DATABRICKS_HOST: str = os.getenv("DATABRICKS_HOST", "").strip().rstrip("/")
         self.DATABRICKS_TOKEN: str = os.getenv("DATABRICKS_TOKEN", "").strip()
         self.DATABRICKS_CONFIG_PROFILE: str = os.getenv("DATABRICKS_CONFIG_PROFILE", "").strip()
-        self.DATABRICKS_WAREHOUSE_ID: str = os.getenv("DATABRICKS_WAREHOUSE_ID", "").strip()
+        self.DATABRICKS_WAREHOUSE_ID: str = (
+            os.getenv("DATABRICKS_WAREHOUSE_ID", "")
+            or os.getenv("SQL_WAREHOUSE_ID", "")
+            or os.getenv("WAREHOUSE_ID", "")
+            or os.getenv("DATABRICKS_SQL_WAREHOUSE_ID", "")
+        ).strip()
 
         # --- Genie & Unity Catalog Settings ---
         self.GENIE_SPACE_ID: str = os.getenv("GENIE_SPACE_ID", "").strip()
@@ -100,8 +105,8 @@ class _Config:
 
     @property
     def IS_LIVE(self) -> bool:
-        """True when a Genie Space ID or SQL Warehouse is configured or auto-discovered for live querying."""
-        return bool(self.GENIE_SPACE_ID or self.get_warehouse_id())
+        """True when running in Databricks Apps or when a Genie Space ID / SQL Warehouse is available."""
+        return bool(self.IS_DATABRICKS_APP or self.GENIE_SPACE_ID or self.get_warehouse_id())
 
     @property
     def HAS_SQL_WAREHOUSE(self) -> bool:

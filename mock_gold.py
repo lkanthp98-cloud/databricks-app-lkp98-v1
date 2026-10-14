@@ -1,6 +1,7 @@
 """Demo data in the EXACT shape of gold_customer_profile / gold_property_profile / gold_policy_report / gold_claim_report
 (from Synthetic_Data_To_Gold). Used only when GENIE_SPACE_ID is not set. Maria Chen matches the notebook's own check."""
 import datetime as dt
+from pathlib import Path
 import numpy as np
 import pandas as pd
 
@@ -613,9 +614,82 @@ def build(n_customers=700):
     }
 
 
+def load_from_sample_data(sample_dir=None):
+    """Loads datasets directly from pre-exported sample_data/ CSVs (fast path).
+    Falls back to in-memory generation if CSVs are missing or incomplete.
+    """
+    if sample_dir is None:
+        sample_path = Path(__file__).resolve().parent / "sample_data"
+    else:
+        sample_path = Path(sample_dir)
+
+    if not sample_path.exists() or not sample_path.is_dir():
+        return None
+
+    date_cols = {
+        "policy_effective_date", "policy_termination_date", "date_of_loss",
+        "policy_expiration_date", "customer_since", "last_loss_date",
+        "original_construction_date", "full_date", "declaration_date",
+        "incident_begin_date", "incident_end_date", "created_date", "next_renewal_date"
+    }
+    bool_cols = {
+        "elevated", "primary_residence_indicator", "elevated_building_indicator",
+        "participating_in_nfip", "tribal", "is_weekend", "ih_program_declared",
+        "ia_program_declared", "pa_program_declared", "hm_program_declared",
+        "mitigated_indicator", "insured_indicator", "nfip_rl", "nfip_srl",
+        "renewal_due_60d", "renewal_pending", "in_special_flood_hazard_area"
+    }
+
+    res = {}
+    csv_files = list(sample_path.glob("*.csv"))
+    if not csv_files:
+        return None
+
+    for f in csv_files:
+        tbl = f.stem
+        try:
+            df = pd.read_csv(f)
+            for c in df.columns:
+                if c == "year_of_loss":
+                    df[c] = pd.to_numeric(df[c], errors="coerce").astype("int64")
+                elif c in date_cols or c.endswith("_date"):
+                    df[c] = pd.to_datetime(df[c], errors="coerce")
+                elif c in bool_cols:
+                    df[c] = df[c].map(lambda v: None if pd.isna(v) else (v if isinstance(v, bool) else str(v).strip().lower() in ("true", "t", "1", "yes")))
+            res[tbl] = df
+        except Exception:
+            return None
+
+    aliases = {
+        "claim_report": "gold_claim_report",
+        "policy_report": "gold_policy_report",
+        "property_risk": "gold_property_risk",
+        "risk_by_geography": "gold_risk_by_geography",
+        "loss_ratio_by_state_year": "gold_loss_ratio_by_state_year",
+        "claims_by_disaster": "gold_claims_by_disaster",
+        "mitigation_vs_claims_by_state": "gold_mitigation_vs_claims_by_state",
+    }
+    for alias, target in aliases.items():
+        if target in res and alias not in res:
+            res[alias] = res[target]
+
+    required_samples = ["property", "policy", "customer", "claim", "gold_policy_report", "gold_claim_report", "customer_profile", "property_profile"]
+    if all(k in res and not res[k].empty for k in required_samples):
+        return res
+    return None
+
+
 def get():
     if not _cache:
-        _cache.update(build())
+        loaded = None
+        try:
+            loaded = load_from_sample_data()
+        except Exception:
+            loaded = None
+        if loaded:
+            _cache.update(loaded)
+        else:
+            _cache.update(build())
     return _cache
 
 
