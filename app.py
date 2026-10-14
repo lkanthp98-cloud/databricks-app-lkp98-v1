@@ -247,7 +247,8 @@ with st.sidebar:
 
     # Filter by State
     st.markdown('<div class="navlbl">Filter</div>', unsafe_allow_html=True)
-    sel_states = st.multiselect("State", sorted(P_ALL.state.dropna().unique()), placeholder="All states", label_visibility="collapsed")
+    available_states = sorted(P_ALL.state.dropna().unique()) if (not P_ALL.empty and "state" in P_ALL.columns) else []
+    sel_states = st.multiselect("State", available_states, placeholder="All states", label_visibility="collapsed")
     def _do_refresh():
         if LIVE:
             data.load_core(use_genie=True, force=True)
@@ -563,7 +564,7 @@ elif page == "Overview":
             with b:
                 flt = seg("Type", ["All", "Claims", "Renewals"], "txnf")
             rows = []
-            pol_cust = dict(zip(P_ALL.active_policy_id.dropna(), P_ALL.customer_id[P_ALL.active_policy_id.notna()]))
+            pol_cust = dict(zip(P_ALL.active_policy_id.dropna(), P_ALL.customer_id[P_ALL.active_policy_id.notna()])) if (not P_ALL.empty and "active_policy_id" in P_ALL.columns and "customer_id" in P_ALL.columns) else {}
             if flt in ("All", "Claims"):
                 for r in CL.sort_values("date_of_loss", ascending=False).head(6).itertuples():
                     done = r.paid > 0
@@ -998,7 +999,7 @@ elif page == "Customer 360":
             else:
                 act = f"Next renewal is in {dnext} days. No action needed yet."
             st.markdown(f'<div class="callout"><b>Next action.</b> {act}</div>', unsafe_allow_html=True)
-            peers_all = P_ALL.assessed_risk_score.mean()
+            peers_all = P_ALL.assessed_risk_score.mean() if (not P_ALL.empty and "assessed_risk_score" in P_ALL.columns) else 50.0
             cards = []
             for r in cprops.itertuples():
                 hr = SFHA(pd.Series([r.flood_zone])).iloc[0]
@@ -1068,8 +1069,11 @@ elif page == "Portfolio & Geography":
 # RECORD PAGES (drill-downs) + SEARCH
 # =====================================================================
 elif page in RECORDS or page == "Search":
-    NAME = (C_ALL.first_name.fillna("") + " " + C_ALL.last_name.fillna("")).str.strip()
-    NAME = dict(zip(C_ALL.customer_id, NAME))
+    if not C_ALL.empty and "first_name" in C_ALL.columns:
+        NAME = (C_ALL.first_name.fillna("") + " " + C_ALL.last_name.fillna("")).str.strip()
+        NAME = dict(zip(C_ALL.customer_id, NAME))
+    else:
+        NAME = {}
     MAXROWS = 5000
     D_ = st.column_config.DateColumn
     M_ = lambda label: st.column_config.NumberColumn(label, format="$%d")
