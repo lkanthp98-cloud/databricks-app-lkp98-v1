@@ -168,22 +168,22 @@ class AlphaEarthEmbeddingEngine:
         t_vec = self.get_property_embedding(t_lat, t_lon, target_property_id)
 
         results = []
-        for _, row in properties_df.iterrows():
-            pid = str(row["property_id"])
+        for row in properties_df.itertuples():
+            pid = str(getattr(row, "property_id", ""))
             if pid == target_property_id:
                 continue
-            lat = float(row.get("latitude", 29.5) or 29.5)
-            lon = float(row.get("longitude", -95.0) or -95.0)
+            lat = float(getattr(row, "latitude", 29.5) or 29.5)
+            lon = float(getattr(row, "longitude", -95.0) or -95.0)
             vec = self.get_property_embedding(lat, lon, pid)
             sim = self.compute_similarity(t_vec, vec)
             results.append({
                 "property_id": pid,
-                "city": row.get("city", "Unknown"),
-                "state": row.get("state", "TX"),
-                "flood_zone": row.get("flood_zone", "X"),
+                "city": getattr(row, "city", "Unknown"),
+                "state": getattr(row, "state", "TX"),
+                "flood_zone": getattr(row, "flood_zone", "X"),
                 "similarity": sim,
-                "assessed_risk_score": float(row.get("assessed_risk_score", 50.0) or 50.0),
-                "claims_total": int(row.get("claims_total", 0) or 0)
+                "assessed_risk_score": float(getattr(row, "assessed_risk_score", 50.0) or 50.0),
+                "claims_total": int(getattr(row, "claims_total", 0) or 0)
             })
 
         results.sort(key=lambda x: x["similarity"], reverse=True)

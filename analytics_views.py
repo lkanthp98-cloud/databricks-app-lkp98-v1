@@ -29,11 +29,11 @@ def render_executive_cockpit(C: pd.DataFrame, P: pd.DataFrame, PO: pd.DataFrame,
     metrics = AE.compute_executive_cockpit(C, P, PO, CL, ACT, as_of)
 
     # 1. Executive Hero Banner
-    connection_mode = (
-        f"⚡ Databricks SQL Warehouse ({AppConfig.DATABRICKS_WAREHOUSE_ID})"
-        if AppConfig.HAS_SQL_WAREHOUSE
-        else ("✨ Live Genie Space" if AppConfig.IS_LIVE else "💾 Local / Demo Gold Data")
-    )
+    is_live = (st.session_state.get("data_mode") == "live")
+    if is_live:
+        connection_mode = f"🟢 Live Databricks Lakehouse ({AppConfig.FULL_SCHEMA} · {len(P):,} Properties · {len(PO):,} Policies)"
+    else:
+        connection_mode = f"🟠 Mock Portfolio (38 States · {len(P):,} Properties · {len(PO):,} Policies)"
 
     st.markdown(f'''
     <div class="exec-hero">
@@ -867,18 +867,23 @@ def render_ml_underwriting(P: pd.DataFrame, ACT: pd.DataFrame):
     from ml_engine import ml_model
 
     # 1. Model Training & Diagnostics
-    if not ml_model.is_trained:
-        with st.spinner("Training Machine Learning Random Forest models on portfolio data..."):
+    is_live = (st.session_state.get("data_mode") == "live")
+    data_label = f"🟢 Live Lakehouse ({AppConfig.FULL_SCHEMA})" if is_live else "🟠 Mock Portfolio (38 States)"
+    p_signature = f"{'live' if is_live else 'mock'}_{len(P)}_{P['property_id'].iloc[0] if not P.empty else ''}"
+
+    if not ml_model.is_trained or getattr(ml_model, "_current_signature", None) != p_signature:
+        with st.spinner(f"Training Machine Learning Random Forest on {data_label} ({len(P):,} records)..."):
             ml_model.train(P)
+            ml_model._current_signature = p_signature
 
     diag_c1, diag_c2, diag_c3 = st.columns(3)
-    acc = ml_model.metrics.get("accuracy", 0.82)
-    auc = ml_model.metrics.get("roc_auc", 0.78)
+    acc = ml_model.metrics.get("accuracy")
+    auc = ml_model.metrics.get("roc_auc")
     samples = ml_model.metrics.get("samples_trained", len(P))
 
-    diag_c1.metric("Model Classification Accuracy", f"{acc:.1%}", "Random Forest Classifier")
-    diag_c2.metric("ROC-AUC Discrimination Score", f"{auc:.3f}", "Loss Predictor")
-    diag_c3.metric("Trained Property Observations", f"{samples:,}", "Unity Catalog Records")
+    diag_c1.metric("Model Classification Accuracy", f"{acc:.1%}" if acc is not None else "N/A", "Random Forest Classifier")
+    diag_c2.metric("ROC-AUC Discrimination Score", f"{auc:.3f}" if auc is not None else "N/A", "Loss Predictor")
+    diag_c3.metric("Trained Property Observations", f"{samples:,}", data_label)
 
     c1, c2 = st.columns([3, 2])
     with c1:
@@ -1882,6 +1887,12 @@ def render_alpha_earth_intelligence(P: pd.DataFrame):
     )
 
     # 1. Connection Header & Free-Tier Badge
+    is_live = (st.session_state.get("data_mode") == "live")
+    data_source_badge = (
+        f"🟢 Live Portfolio ({len(P):,} in {AppConfig.FULL_SCHEMA})"
+        if is_live
+        else f"🟠 Mock Portfolio (38 States · {len(P):,} properties)"
+    )
     c_status = (
         "⚡ Connected to Live Google Earth Engine API" if alpha_earth.ee_initialized
         else "🛡️ In-App Calibrated GeoAI Embeddings (Free Offline POC Mode)"
@@ -1903,18 +1914,17 @@ def render_alpha_earth_intelligence(P: pd.DataFrame):
                 </div>
             </div>
             <div style="text-align:right;">
-                <span style="background:rgba(56,189,248,0.15); border:1px solid #38BDF8; color:#38BDF8; border-radius:999px; padding:6px 14px; font-size:0.8rem; font-weight:600;">
+                <span style="background:rgba(56,189,248,0.15); border:1px solid #38BDF8; color:#38BDF8; border-radius:999px; padding:6px 14px; font-size:0.8rem; font-weight:600; margin-right:6px;">
                     {c_status}
+                </span>
+                <span style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#F1F5F9; border-radius:999px; padding:6px 14px; font-size:0.8rem; font-weight:600;">
+                    {data_source_badge}
                 </span>
                 <div style="font-size:0.75rem; color:#64748B; margin-top:6px;">100% Free of Cost on Google Earth Engine</div>
             </div>
         </div>
     </div>
     ''', unsafe_allow_html=True)
-
-    if P.empty:
-        st.info("No property records available.")
-        return
 
     # 2. Property Selector
     prop_options = {

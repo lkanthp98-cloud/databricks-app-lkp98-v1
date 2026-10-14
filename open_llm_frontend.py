@@ -34,6 +34,18 @@ def render_open_llm_frontend(
         return
 
     # 1. Header Hero Banner
+    is_live = (st.session_state.get("data_mode") == "live")
+    sub_desc = (
+        f"Autonomous in-application intelligence operating directly on your live <b>{len(indexed_stats)} Unity Catalog tables</b>."
+        if is_live
+        else f"Autonomous in-application intelligence operating directly on your <b>{len(indexed_stats)} connected mock tables (38 States)</b>."
+    )
+    catalog_lbl = (
+        f"Live Catalog: <code>{AppConfig.GOLD_CATALOG}.{AppConfig.GOLD_SCHEMA}</code>"
+        if is_live
+        else "Dataset: <b>Mock Portfolio (38 States · 27 Tables)</b>"
+    )
+
     st.markdown(f"""
     <div style="background:linear-gradient(135deg, #1C1948 0%, #2A247A 50%, #4038A8 100%);
                 border-radius:24px; padding:28px 32px; color:#FFFFFF; margin-bottom:20px;
@@ -47,7 +59,7 @@ def render_open_llm_frontend(
                     🤖 Open Source LLM Frontend
                 </div>
                 <div style="font-size:0.95rem; color:#E0E7FF; max-width:750px; line-height:1.5;">
-                    Autonomous in-application intelligence operating directly on your internal <b>{len(indexed_stats)} Unity Catalog tables</b>.
+                    {sub_desc}
                     Query, audit, and reason across your portfolio using local Open LLMs (Ollama) or Databricks Foundation Models with zero external data leaks.
                 </div>
             </div>
@@ -56,7 +68,7 @@ def render_open_llm_frontend(
                     <span style="font-size:1.1rem; font-weight:800;">{tot_indexed_rows:,}</span>
                     <span style="font-size:0.8rem; color:#E0E7FF;"> records indexed</span>
                 </div>
-                <div style="font-size:0.75rem; color:#C7D2FE;">Catalog: <code>{AppConfig.GOLD_CATALOG}.{AppConfig.GOLD_SCHEMA}</code></div>
+                <div style="font-size:0.75rem; color:#C7D2FE;">{catalog_lbl}</div>
             </div>
         </div>
     </div>
@@ -148,19 +160,23 @@ def render_open_llm_frontend(
             starter_query = "Show top 5 claims by total settlement and identify the communities affected"
         if q2.button("🌊 Coastal VE Surge", use_container_width=True, key="sq_ve"):
             starter_query = "Analyze Pre-FIRM properties in VE coastal surge flood zones and their structural vulnerability"
-        if q3.button("👤 Customer CUST-1001", use_container_width=True, key="sq_c1001"):
-            starter_query = "Provide complete underwriting risk dossier and claim history for customer CUST-1001"
+        target_cid = C['customer_id'].iloc[0] if (not C.empty and 'customer_id' in C.columns) else "CUST-1001"
+        if q3.button(f"👤 Customer {target_cid}", use_container_width=True, key="sq_c1001"):
+            starter_query = f"Provide complete underwriting risk dossier and claim history for customer {target_cid}"
         if q4.button("🏛️ State Mitigation ROI", use_container_width=True, key="sq_mit"):
             starter_query = "What is our mitigation grant investment vs paid claims by state?"
         if q5.button("📊 Loss Ratio Health", use_container_width=True, key="sq_lr"):
             starter_query = "Evaluate our portfolio net loss ratio against the 65% target and recommend rate actions"
 
         # Session State Chat History
-        if "llm_studio_messages" not in st.session_state:
+        active_mode_str = "live" if is_live else "mock"
+        if ("llm_studio_messages" not in st.session_state) or (st.session_state.get("llm_studio_messages_mode") != active_mode_str):
+            st.session_state["llm_studio_messages_mode"] = active_mode_str
+            source_desc = f"live Unity Catalog (`{AppConfig.FULL_SCHEMA}`)" if is_live else "connected mock portfolio (38 States)"
             st.session_state["llm_studio_messages"] = [
                 {
                     "role": "assistant",
-                    "content": f"Hello! I am your **In-Application Open LLM Copilot** operating directly on your **{len(indexed_stats)} Unity Catalog tables** (`{AppConfig.GOLD_CATALOG}.{AppConfig.GOLD_SCHEMA}`). Ask me any question about your policyholders, claims, hazard zones, or underwriting guidelines.",
+                    "content": f"Hello! I am your **In-Application Open LLM Copilot** operating directly on your **{len(indexed_stats)} tables** ({source_desc}). Ask me any question about your policyholders, claims, hazard zones, or underwriting guidelines.",
                     "citations": []
                 }
             ]

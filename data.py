@@ -273,7 +273,7 @@ def _genie():
 
 def _fresh(name):
     e = _store.get(name)
-    return e if e and time.time() - e["ts"] < CACHE_TTL else None
+    return e if e and time.time() - e["ts"] < AppConfig.CACHE_TTL_SECONDS else None
 
 
 def derive_profiles(po_df: pd.DataFrame, cl_df: pd.DataFrame, pr_df: pd.DataFrame = None):
