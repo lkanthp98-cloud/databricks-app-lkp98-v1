@@ -79,11 +79,10 @@ class PropertyRiskMLModel:
 
             # 1. Classification Model: Probability of Loss
             self.clf = RandomForestClassifier(
-                n_estimators=80,
-                max_depth=5,
+                n_estimators=100,
+                max_depth=6,
                 min_samples_split=4,
                 random_state=42,
-                class_weight="balanced" if y_class.sum() > 0 else None
             )
             self.clf.fit(X, y_class)
 

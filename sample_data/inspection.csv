@@ -1,251 +1,251 @@
 inspection_id,property_id,agent_id,project_identifier,program_area,property_action,structure_type,foundation_type,damage_category,actual_amount_paid,number_of_properties,state,county,city,zip_code,synthetic_property_key
 INSP-PROP-58210,PROP-58210,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60005,PROP-60005,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60014,PROP-60014,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60015,PROP-60015,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
+INSP-PROP-60005,PROP-60005,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
+INSP-PROP-60014,PROP-60014,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AZ,Maricopa,Phoenix,85001,GEO-AZ-85001
+INSP-PROP-60015,PROP-60015,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CO,Denver,Denver,80202,GEO-CO-80202
 INSP-PROP-60016,PROP-60016,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60023,PROP-60023,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60032,PROP-60032,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-60033,PROP-60033,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-60041,PROP-60041,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60050,PROP-60050,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60059,PROP-60059,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-60068,PROP-60068,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60077,PROP-60077,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60078,PROP-60078,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-60086,PROP-60086,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-60095,PROP-60095,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60096,PROP-60096,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60104,PROP-60104,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60113,PROP-60113,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60122,PROP-60122,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60131,PROP-60131,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60140,PROP-60140,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60149,PROP-60149,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60150,PROP-60150,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60158,PROP-60158,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60167,PROP-60167,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60168,PROP-60168,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-60176,PROP-60176,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60185,PROP-60185,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60194,PROP-60194,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-60195,PROP-60195,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60196,PROP-60196,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60203,PROP-60203,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60212,PROP-60212,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60221,PROP-60221,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60222,PROP-60222,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60223,PROP-60223,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60230,PROP-60230,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60239,PROP-60239,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-60248,PROP-60248,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-60023,PROP-60023,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TN,Shelby,Memphis,38103,GEO-TN-38103
+INSP-PROP-60032,PROP-60032,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-60033,PROP-60033,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MI,Wayne,Detroit,48226,GEO-MI-48226
+INSP-PROP-60041,PROP-60041,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KY,Jefferson,Louisville,40202,GEO-KY-40202
+INSP-PROP-60050,PROP-60050,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Nassau,Long Beach,11561,GEO-NY-11561
+INSP-PROP-60059,PROP-60059,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-60068,PROP-60068,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Nassau,Long Beach,11561,GEO-NY-11561
+INSP-PROP-60077,PROP-60077,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,DE,Sussex,Rehoboth Beach,19971,GEO-DE-19971
+INSP-PROP-60078,PROP-60078,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WI,Milwaukee,Milwaukee,53202,GEO-WI-53202
+INSP-PROP-60086,PROP-60086,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MA,Barnstable,Barnstable,02630,GEO-MA-02630
+INSP-PROP-60095,PROP-60095,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-60096,PROP-60096,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-60104,PROP-60104,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,DE,Sussex,Rehoboth Beach,19971,GEO-DE-19971
+INSP-PROP-60113,PROP-60113,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-60122,PROP-60122,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Suffolk,Riverhead,11901,GEO-NY-11901
+INSP-PROP-60131,PROP-60131,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,Los Angeles,Long Beach,90802,GEO-CA-90802
+INSP-PROP-60140,PROP-60140,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,Los Angeles,Long Beach,90802,GEO-CA-90802
+INSP-PROP-60149,PROP-60149,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,DE,Sussex,Rehoboth Beach,19971,GEO-DE-19971
+INSP-PROP-60150,PROP-60150,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
+INSP-PROP-60158,PROP-60158,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,San Diego,San Diego,92101,GEO-CA-92101
+INSP-PROP-60167,PROP-60167,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,San Diego,San Diego,92101,GEO-CA-92101
+INSP-PROP-60168,PROP-60168,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-60176,PROP-60176,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Nassau,Long Beach,11561,GEO-NY-11561
+INSP-PROP-60185,PROP-60185,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Worcester,Ocean City,21842,GEO-MD-21842
+INSP-PROP-60194,PROP-60194,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,San Diego,San Diego,92101,GEO-CA-92101
+INSP-PROP-60195,PROP-60195,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
+INSP-PROP-60196,PROP-60196,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
+INSP-PROP-60203,PROP-60203,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CT,Fairfield,Bridgeport,06604,GEO-CT-06604
+INSP-PROP-60212,PROP-60212,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,GA,Chatham,Savannah,31401,GEO-GA-31401
+INSP-PROP-60221,PROP-60221,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AZ,Maricopa,Phoenix,85001,GEO-AZ-85001
+INSP-PROP-60222,PROP-60222,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NJ,Atlantic,Atlantic City,08401,GEO-NJ-08401
+INSP-PROP-60223,PROP-60223,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
+INSP-PROP-60230,PROP-60230,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
+INSP-PROP-60239,PROP-60239,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-60248,PROP-60248,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,PA,Philadelphia,Philadelphia,19106,GEO-PA-19106
 INSP-PROP-60257,PROP-60257,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60258,PROP-60258,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
-INSP-PROP-60266,PROP-60266,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60275,PROP-60275,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60284,PROP-60284,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60285,PROP-60285,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60293,PROP-60293,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-60302,PROP-60302,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60311,PROP-60311,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60312,PROP-60312,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60320,PROP-60320,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60321,PROP-60321,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60329,PROP-60329,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
+INSP-PROP-60258,PROP-60258,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,OK,Tulsa,Tulsa,74103,GEO-OK-74103
+INSP-PROP-60266,PROP-60266,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Anne Arundel,Annapolis,21401,GEO-MD-21401
+INSP-PROP-60275,PROP-60275,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Anne Arundel,Annapolis,21401,GEO-MD-21401
+INSP-PROP-60284,PROP-60284,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MO,St. Louis,St. Louis,63101,GEO-MO-63101
+INSP-PROP-60285,PROP-60285,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Worcester,Ocean City,21842,GEO-MD-21842
+INSP-PROP-60293,PROP-60293,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,ME,Cumberland,Portland,04101,GEO-ME-04101
+INSP-PROP-60302,PROP-60302,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Suffolk,Riverhead,11901,GEO-NY-11901
+INSP-PROP-60311,PROP-60311,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-60312,PROP-60312,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CT,Fairfield,Bridgeport,06604,GEO-CT-06604
+INSP-PROP-60320,PROP-60320,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,GA,Chatham,Savannah,31401,GEO-GA-31401
+INSP-PROP-60321,PROP-60321,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,Los Angeles,Long Beach,90802,GEO-CA-90802
+INSP-PROP-60329,PROP-60329,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
 INSP-PROP-60338,PROP-60338,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60347,PROP-60347,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60356,PROP-60356,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60357,PROP-60357,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60358,PROP-60358,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60365,PROP-60365,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60366,PROP-60366,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60374,PROP-60374,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60383,PROP-60383,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-60392,PROP-60392,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60401,PROP-60401,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-60410,PROP-60410,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
-INSP-PROP-60419,PROP-60419,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60428,PROP-60428,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
-INSP-PROP-60437,PROP-60437,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60446,PROP-60446,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60455,PROP-60455,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60464,PROP-60464,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-60473,PROP-60473,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-60482,PROP-60482,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-60491,PROP-60491,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60500,PROP-60500,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
+INSP-PROP-60347,PROP-60347,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,DE,Sussex,Rehoboth Beach,19971,GEO-DE-19971
+INSP-PROP-60356,PROP-60356,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
+INSP-PROP-60357,PROP-60357,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Suffolk,Riverhead,11901,GEO-NY-11901
+INSP-PROP-60358,PROP-60358,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,Los Angeles,Long Beach,90802,GEO-CA-90802
+INSP-PROP-60365,PROP-60365,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,DE,Sussex,Rehoboth Beach,19971,GEO-DE-19971
+INSP-PROP-60366,PROP-60366,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-60374,PROP-60374,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Worcester,Ocean City,21842,GEO-MD-21842
+INSP-PROP-60383,PROP-60383,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-60392,PROP-60392,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-60401,PROP-60401,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-60410,PROP-60410,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KS,Sedgwick,Wichita,67202,GEO-KS-67202
+INSP-PROP-60419,PROP-60419,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-60428,PROP-60428,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KS,Sedgwick,Wichita,67202,GEO-KS-67202
+INSP-PROP-60437,PROP-60437,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Worcester,Ocean City,21842,GEO-MD-21842
+INSP-PROP-60446,PROP-60446,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
+INSP-PROP-60455,PROP-60455,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,Los Angeles,Long Beach,90802,GEO-CA-90802
+INSP-PROP-60464,PROP-60464,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-60473,PROP-60473,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WI,Milwaukee,Milwaukee,53202,GEO-WI-53202
+INSP-PROP-60482,PROP-60482,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-60491,PROP-60491,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MS,Harrison,Gulfport,39501,GEO-MS-39501
+INSP-PROP-60500,PROP-60500,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NV,Clark,Las Vegas,89101,GEO-NV-89101
 INSP-PROP-60509,PROP-60509,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60518,PROP-60518,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60519,PROP-60519,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-60520,PROP-60520,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60527,PROP-60527,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-60518,PROP-60518,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CT,Fairfield,Bridgeport,06604,GEO-CT-06604
+INSP-PROP-60519,PROP-60519,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,OR,Multnomah,Portland,97201,GEO-OR-97201
+INSP-PROP-60520,PROP-60520,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-60527,PROP-60527,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
 INSP-PROP-60536,PROP-60536,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60545,PROP-60545,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60546,PROP-60546,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-60554,PROP-60554,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60563,PROP-60563,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60564,PROP-60564,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-60572,PROP-60572,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60581,PROP-60581,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60590,PROP-60590,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60599,PROP-60599,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60608,PROP-60608,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60617,PROP-60617,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-60626,PROP-60626,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-60635,PROP-60635,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60644,PROP-60644,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60653,PROP-60653,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60662,PROP-60662,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60671,PROP-60671,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60680,PROP-60680,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-60689,PROP-60689,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60698,PROP-60698,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-60707,PROP-60707,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-60716,PROP-60716,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60725,PROP-60725,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-60734,PROP-60734,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60735,PROP-60735,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-60743,PROP-60743,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60752,PROP-60752,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-60761,PROP-60761,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60770,PROP-60770,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-60545,PROP-60545,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
+INSP-PROP-60546,PROP-60546,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-60554,PROP-60554,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KY,Jefferson,Louisville,40202,GEO-KY-40202
+INSP-PROP-60563,PROP-60563,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-60564,PROP-60564,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,ME,Cumberland,Portland,04101,GEO-ME-04101
+INSP-PROP-60572,PROP-60572,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KY,Jefferson,Louisville,40202,GEO-KY-40202
+INSP-PROP-60581,PROP-60581,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NV,Clark,Las Vegas,89101,GEO-NV-89101
+INSP-PROP-60590,PROP-60590,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KY,Jefferson,Louisville,40202,GEO-KY-40202
+INSP-PROP-60599,PROP-60599,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AZ,Maricopa,Phoenix,85001,GEO-AZ-85001
+INSP-PROP-60608,PROP-60608,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NV,Clark,Las Vegas,89101,GEO-NV-89101
+INSP-PROP-60617,PROP-60617,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-60626,PROP-60626,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IL,Cook,Chicago,60601,GEO-IL-60601
+INSP-PROP-60635,PROP-60635,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,GA,Chatham,Savannah,31401,GEO-GA-31401
+INSP-PROP-60644,PROP-60644,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-60653,PROP-60653,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-60662,PROP-60662,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-60671,PROP-60671,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-60680,PROP-60680,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-60689,PROP-60689,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,Los Angeles,Long Beach,90802,GEO-CA-90802
+INSP-PROP-60698,PROP-60698,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,PA,Philadelphia,Philadelphia,19106,GEO-PA-19106
+INSP-PROP-60707,PROP-60707,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-60716,PROP-60716,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MS,Harrison,Gulfport,39501,GEO-MS-39501
+INSP-PROP-60725,PROP-60725,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IA,Polk,Des Moines,50309,GEO-IA-50309
+INSP-PROP-60734,PROP-60734,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AZ,Maricopa,Phoenix,85001,GEO-AZ-85001
+INSP-PROP-60735,PROP-60735,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-60743,PROP-60743,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Suffolk,Riverhead,11901,GEO-NY-11901
+INSP-PROP-60752,PROP-60752,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
+INSP-PROP-60761,PROP-60761,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MO,St. Louis,St. Louis,63101,GEO-MO-63101
+INSP-PROP-60770,PROP-60770,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
 INSP-PROP-60779,PROP-60779,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60788,PROP-60788,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-60797,PROP-60797,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-60798,PROP-60798,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-60788,PROP-60788,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-60797,PROP-60797,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,San Diego,San Diego,92101,GEO-CA-92101
+INSP-PROP-60798,PROP-60798,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,OK,Tulsa,Tulsa,74103,GEO-OK-74103
 INSP-PROP-60806,PROP-60806,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60815,PROP-60815,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-60824,PROP-60824,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60833,PROP-60833,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-60834,PROP-60834,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-60842,PROP-60842,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-60851,PROP-60851,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60860,PROP-60860,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60869,PROP-60869,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60878,PROP-60878,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60887,PROP-60887,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-60896,PROP-60896,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-60905,PROP-60905,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-60914,PROP-60914,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-60923,PROP-60923,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-60932,PROP-60932,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60941,PROP-60941,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-60950,PROP-60950,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-60959,PROP-60959,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60968,PROP-60968,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-60977,PROP-60977,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-60986,PROP-60986,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-60995,PROP-60995,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61004,PROP-61004,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61005,PROP-61005,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61013,PROP-61013,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61022,PROP-61022,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-61023,PROP-61023,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-61031,PROP-61031,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61040,PROP-61040,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61041,PROP-61041,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
-INSP-PROP-61042,PROP-61042,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61049,PROP-61049,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61058,PROP-61058,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61059,PROP-61059,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61067,PROP-61067,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-61076,PROP-61076,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61085,PROP-61085,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61094,PROP-61094,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61103,PROP-61103,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-61112,PROP-61112,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61121,PROP-61121,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-61130,PROP-61130,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
+INSP-PROP-60815,PROP-60815,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MN,Hennepin,Minneapolis,55401,GEO-MN-55401
+INSP-PROP-60824,PROP-60824,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TN,Shelby,Memphis,38103,GEO-TN-38103
+INSP-PROP-60833,PROP-60833,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-60834,PROP-60834,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Mobile,Mobile,36602,GEO-AL-36602
+INSP-PROP-60842,PROP-60842,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-60851,PROP-60851,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
+INSP-PROP-60860,PROP-60860,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Nassau,Long Beach,11561,GEO-NY-11561
+INSP-PROP-60869,PROP-60869,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CT,Fairfield,Bridgeport,06604,GEO-CT-06604
+INSP-PROP-60878,PROP-60878,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,VA,Norfolk,Norfolk,23510,GEO-VA-23510
+INSP-PROP-60887,PROP-60887,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MA,Barnstable,Barnstable,02630,GEO-MA-02630
+INSP-PROP-60896,PROP-60896,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IA,Polk,Des Moines,50309,GEO-IA-50309
+INSP-PROP-60905,PROP-60905,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,GA,Chatham,Savannah,31401,GEO-GA-31401
+INSP-PROP-60914,PROP-60914,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NJ,Cape May,Ocean City,08226,GEO-NJ-08226
+INSP-PROP-60923,PROP-60923,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NV,Clark,Las Vegas,89101,GEO-NV-89101
+INSP-PROP-60932,PROP-60932,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
+INSP-PROP-60941,PROP-60941,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IN,Marion,Indianapolis,46204,GEO-IN-46204
+INSP-PROP-60950,PROP-60950,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,VA,Virginia Beach,Virginia Beach,23451,GEO-VA-23451
+INSP-PROP-60959,PROP-60959,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-60968,PROP-60968,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MI,Wayne,Detroit,48226,GEO-MI-48226
+INSP-PROP-60977,PROP-60977,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MS,Harrison,Gulfport,39501,GEO-MS-39501
+INSP-PROP-60986,PROP-60986,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IA,Polk,Des Moines,50309,GEO-IA-50309
+INSP-PROP-60995,PROP-60995,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CT,Fairfield,Bridgeport,06604,GEO-CT-06604
+INSP-PROP-61004,PROP-61004,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MS,Harrison,Gulfport,39501,GEO-MS-39501
+INSP-PROP-61005,PROP-61005,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,RI,Newport,Newport,02840,GEO-RI-02840
+INSP-PROP-61013,PROP-61013,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NJ,Atlantic,Atlantic City,08401,GEO-NJ-08401
+INSP-PROP-61022,PROP-61022,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,VA,Virginia Beach,Virginia Beach,23451,GEO-VA-23451
+INSP-PROP-61023,PROP-61023,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-61031,PROP-61031,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-61040,PROP-61040,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MS,Harrison,Gulfport,39501,GEO-MS-39501
+INSP-PROP-61041,PROP-61041,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CO,Denver,Denver,80202,GEO-CO-80202
+INSP-PROP-61042,PROP-61042,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Mobile,Mobile,36602,GEO-AL-36602
+INSP-PROP-61049,PROP-61049,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-61058,PROP-61058,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-61059,PROP-61059,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
+INSP-PROP-61067,PROP-61067,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IL,Cook,Chicago,60601,GEO-IL-60601
+INSP-PROP-61076,PROP-61076,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-61085,PROP-61085,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NJ,Cape May,Ocean City,08226,GEO-NJ-08226
+INSP-PROP-61094,PROP-61094,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,ME,Cumberland,Portland,04101,GEO-ME-04101
+INSP-PROP-61103,PROP-61103,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
+INSP-PROP-61112,PROP-61112,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61121,PROP-61121,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-61130,PROP-61130,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
 INSP-PROP-61139,PROP-61139,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61148,PROP-61148,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-61157,PROP-61157,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61166,PROP-61166,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61167,PROP-61167,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61175,PROP-61175,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61184,PROP-61184,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61193,PROP-61193,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61202,PROP-61202,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61211,PROP-61211,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61220,PROP-61220,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61229,PROP-61229,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61238,PROP-61238,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-61247,PROP-61247,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61256,PROP-61256,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-61265,PROP-61265,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61148,PROP-61148,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-61157,PROP-61157,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
+INSP-PROP-61166,PROP-61166,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MS,Jackson,Pascagoula,39567,GEO-MS-39567
+INSP-PROP-61167,PROP-61167,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
+INSP-PROP-61175,PROP-61175,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-61184,PROP-61184,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61193,PROP-61193,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-61202,PROP-61202,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
+INSP-PROP-61211,PROP-61211,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-61220,PROP-61220,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-61229,PROP-61229,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
+INSP-PROP-61238,PROP-61238,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-61247,PROP-61247,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Worcester,Ocean City,21842,GEO-MD-21842
+INSP-PROP-61256,PROP-61256,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MO,St. Louis,St. Louis,63101,GEO-MO-63101
+INSP-PROP-61265,PROP-61265,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,RI,Newport,Newport,02840,GEO-RI-02840
 INSP-PROP-61274,PROP-61274,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61283,PROP-61283,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
-INSP-PROP-61284,PROP-61284,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61292,PROP-61292,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61301,PROP-61301,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61310,PROP-61310,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-61319,PROP-61319,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61328,PROP-61328,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-61337,PROP-61337,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-61346,PROP-61346,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-61355,PROP-61355,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-61364,PROP-61364,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-61373,PROP-61373,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61382,PROP-61382,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61391,PROP-61391,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-61400,PROP-61400,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-61409,PROP-61409,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61418,PROP-61418,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61427,PROP-61427,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61436,PROP-61436,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61445,PROP-61445,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
-INSP-PROP-61446,PROP-61446,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61454,PROP-61454,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61463,PROP-61463,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61472,PROP-61472,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61481,PROP-61481,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
-INSP-PROP-61490,PROP-61490,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,Dare,Nags Head,27959,GEO-NC-27959
-INSP-PROP-61491,PROP-61491,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61499,PROP-61499,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-61500,PROP-61500,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61501,PROP-61501,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61508,PROP-61508,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61517,PROP-61517,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61526,PROP-61526,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61535,PROP-61535,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-61536,PROP-61536,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61544,PROP-61544,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61553,PROP-61553,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-61562,PROP-61562,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-61571,PROP-61571,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61580,PROP-61580,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61589,PROP-61589,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61598,PROP-61598,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61599,PROP-61599,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61600,PROP-61600,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61607,PROP-61607,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61616,PROP-61616,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61625,PROP-61625,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61634,PROP-61634,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61643,PROP-61643,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-61652,PROP-61652,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61661,PROP-61661,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61670,PROP-61670,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61679,PROP-61679,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61688,PROP-61688,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61697,PROP-61697,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61706,PROP-61706,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-61715,PROP-61715,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
+INSP-PROP-61283,PROP-61283,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KS,Sedgwick,Wichita,67202,GEO-KS-67202
+INSP-PROP-61284,PROP-61284,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61292,PROP-61292,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-61301,PROP-61301,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NJ,Cape May,Ocean City,08226,GEO-NJ-08226
+INSP-PROP-61310,PROP-61310,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NV,Clark,Las Vegas,89101,GEO-NV-89101
+INSP-PROP-61319,PROP-61319,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Mobile,Mobile,36602,GEO-AL-36602
+INSP-PROP-61328,PROP-61328,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-61337,PROP-61337,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IN,Marion,Indianapolis,46204,GEO-IN-46204
+INSP-PROP-61346,PROP-61346,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WI,Milwaukee,Milwaukee,53202,GEO-WI-53202
+INSP-PROP-61355,PROP-61355,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,VA,Virginia Beach,Virginia Beach,23451,GEO-VA-23451
+INSP-PROP-61364,PROP-61364,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IL,Cook,Chicago,60601,GEO-IL-60601
+INSP-PROP-61373,PROP-61373,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
+INSP-PROP-61382,PROP-61382,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-61391,PROP-61391,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IN,Marion,Indianapolis,46204,GEO-IN-46204
+INSP-PROP-61400,PROP-61400,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,San Diego,San Diego,92101,GEO-CA-92101
+INSP-PROP-61409,PROP-61409,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-61418,PROP-61418,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Suffolk,Riverhead,11901,GEO-NY-11901
+INSP-PROP-61427,PROP-61427,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,PA,Philadelphia,Philadelphia,19106,GEO-PA-19106
+INSP-PROP-61436,PROP-61436,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,GA,Chatham,Savannah,31401,GEO-GA-31401
+INSP-PROP-61445,PROP-61445,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,IL,Cook,Chicago,60601,GEO-IL-60601
+INSP-PROP-61446,PROP-61446,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
+INSP-PROP-61454,PROP-61454,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-61463,PROP-61463,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-61472,PROP-61472,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Mobile,Mobile,36602,GEO-AL-36602
+INSP-PROP-61481,PROP-61481,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NE,Douglas,Omaha,68102,GEO-NE-68102
+INSP-PROP-61490,PROP-61490,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,OK,Tulsa,Tulsa,74103,GEO-OK-74103
+INSP-PROP-61491,PROP-61491,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-61499,PROP-61499,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-61500,PROP-61500,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,PA,Philadelphia,Philadelphia,19106,GEO-PA-19106
+INSP-PROP-61501,PROP-61501,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-61508,PROP-61508,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NJ,Cape May,Ocean City,08226,GEO-NJ-08226
+INSP-PROP-61517,PROP-61517,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
+INSP-PROP-61526,PROP-61526,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CT,Fairfield,Bridgeport,06604,GEO-CT-06604
+INSP-PROP-61535,PROP-61535,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MO,St. Louis,St. Louis,63101,GEO-MO-63101
+INSP-PROP-61536,PROP-61536,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,VA,Norfolk,Norfolk,23510,GEO-VA-23510
+INSP-PROP-61544,PROP-61544,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
+INSP-PROP-61553,PROP-61553,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-61562,PROP-61562,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,CA,San Diego,San Diego,92101,GEO-CA-92101
+INSP-PROP-61571,PROP-61571,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,OH,Cuyahoga,Cleveland,44113,GEO-OH-44113
+INSP-PROP-61580,PROP-61580,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61589,PROP-61589,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Worcester,Ocean City,21842,GEO-MD-21842
+INSP-PROP-61598,PROP-61598,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
+INSP-PROP-61599,PROP-61599,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,DE,Sussex,Rehoboth Beach,19971,GEO-DE-19971
+INSP-PROP-61600,PROP-61600,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61607,PROP-61607,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MA,Barnstable,Barnstable,02630,GEO-MA-02630
+INSP-PROP-61616,PROP-61616,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Suffolk,Riverhead,11901,GEO-NY-11901
+INSP-PROP-61625,PROP-61625,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Anne Arundel,Annapolis,21401,GEO-MD-21401
+INSP-PROP-61634,PROP-61634,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,ME,Cumberland,Portland,04101,GEO-ME-04101
+INSP-PROP-61643,PROP-61643,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,WA,King,Seattle,98101,GEO-WA-98101
+INSP-PROP-61652,PROP-61652,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Hillsborough,Tampa,33602,GEO-FL-33602
+INSP-PROP-61661,PROP-61661,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
+INSP-PROP-61670,PROP-61670,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
+INSP-PROP-61679,PROP-61679,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AL,Baldwin,Gulf Shores,36542,GEO-AL-36542
+INSP-PROP-61688,PROP-61688,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
+INSP-PROP-61697,PROP-61697,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MA,Barnstable,Barnstable,02630,GEO-MA-02630
+INSP-PROP-61706,PROP-61706,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,AR,Pulaski,Little Rock,72201,GEO-AR-72201
+INSP-PROP-61715,PROP-61715,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
 INSP-PROP-61724,PROP-61724,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61725,PROP-61725,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Charleston,Charleston,29401,GEO-SC-29401
-INSP-PROP-61733,PROP-61733,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Orleans,New Orleans,70112,GEO-LA-70112
-INSP-PROP-61742,PROP-61742,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61751,PROP-61751,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61760,PROP-61760,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61769,PROP-61769,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
-INSP-PROP-61778,PROP-61778,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61787,PROP-61787,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61796,PROP-61796,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Brazoria,Freeport,77541,GEO-TX-77541
-INSP-PROP-61797,PROP-61797,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-61805,PROP-61805,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
-INSP-PROP-61814,PROP-61814,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61823,PROP-61823,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Harris,Baytown,77520,GEO-TX-77520
-INSP-PROP-61824,PROP-61824,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
-INSP-PROP-61832,PROP-61832,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
-INSP-PROP-61841,PROP-61841,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
-INSP-PROP-61850,PROP-61850,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,SC,Horry,Myrtle Beach,29577,GEO-SC-29577
-INSP-PROP-61859,PROP-61859,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TX,Galveston,Galveston,77550,GEO-TX-77550
+INSP-PROP-61725,PROP-61725,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NV,Clark,Las Vegas,89101,GEO-NV-89101
+INSP-PROP-61733,PROP-61733,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NC,New Hanover,Wilmington,28401,GEO-NC-28401
+INSP-PROP-61742,PROP-61742,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,NY,Suffolk,Riverhead,11901,GEO-NY-11901
+INSP-PROP-61751,PROP-61751,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61760,PROP-61760,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-61769,PROP-61769,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MA,Barnstable,Barnstable,02630,GEO-MA-02630
+INSP-PROP-61778,PROP-61778,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61787,PROP-61787,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Anne Arundel,Annapolis,21401,GEO-MD-21401
+INSP-PROP-61796,PROP-61796,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Lee,Fort Myers,33901,GEO-FL-33901
+INSP-PROP-61797,PROP-61797,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,KY,Jefferson,Louisville,40202,GEO-KY-40202
+INSP-PROP-61805,PROP-61805,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,GA,Glynn,Brunswick,31520,GEO-GA-31520
+INSP-PROP-61814,PROP-61814,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,RI,Newport,Newport,02840,GEO-RI-02840
+INSP-PROP-61823,PROP-61823,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,LA,Jefferson,Metairie,70001,GEO-LA-70001
+INSP-PROP-61824,PROP-61824,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101
+INSP-PROP-61832,PROP-61832,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,MD,Worcester,Ocean City,21842,GEO-MD-21842
+INSP-PROP-61841,PROP-61841,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,TN,Shelby,Memphis,38103,GEO-TN-38103
+INSP-PROP-61850,PROP-61850,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,OR,Multnomah,Portland,97201,GEO-OR-97201
+INSP-PROP-61859,PROP-61859,AGT-01,HMA-ELEV-2024,Flood Mitigation Assistance,Elevation Certificate Verification,Single Family,Slab-on-Grade,None,450.0,1,FL,Miami-Dade,Miami,33101,GEO-FL-33101

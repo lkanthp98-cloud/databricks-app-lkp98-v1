@@ -4,10 +4,51 @@ project_key,project_identifier,program_area,project_type,status,recipient,subrec
 3,PDMC-PL-TX-2022,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,TX Division of Emergency Management,City of Freeport,Regional Stormwater Resiliency - Freeport
 4,PDMC-PL-LA-2023,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,LA Division of Emergency Management,City of Metairie,Regional Stormwater Resiliency - Metairie
 5,PDMC-PL-LA-2024,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,LA Division of Emergency Management,City of New Orleans,Regional Stormwater Resiliency - New Orleans
-6,PDMC-PL-FL-2025,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,FL Division of Emergency Management,City of Miami,Regional Stormwater Resiliency - Miami
-7,PDMC-PL-FL-2026,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,FL Division of Emergency Management,City of Fort Myers,Regional Stormwater Resiliency - Fort Myers
-8,PDMC-PL-FL-2027,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,FL Division of Emergency Management,City of Tampa,Regional Stormwater Resiliency - Tampa
-9,PDMC-PL-NC-2028,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NC Division of Emergency Management,City of Wilmington,Regional Stormwater Resiliency - Wilmington
-10,PDMC-PL-NC-2029,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NC Division of Emergency Management,City of Nags Head,Regional Stormwater Resiliency - Nags Head
-11,PDMC-PL-SC-20210,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,SC Division of Emergency Management,City of Charleston,Regional Stormwater Resiliency - Charleston
-12,PDMC-PL-SC-20211,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,SC Division of Emergency Management,City of Myrtle Beach,Regional Stormwater Resiliency - Myrtle Beach
+6,PDMC-PL-MS-2025,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MS Division of Emergency Management,City of Gulfport,Regional Stormwater Resiliency - Gulfport
+7,PDMC-PL-MS-2026,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MS Division of Emergency Management,City of Pascagoula,Regional Stormwater Resiliency - Pascagoula
+8,PDMC-PL-AL-2027,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,AL Division of Emergency Management,City of Mobile,Regional Stormwater Resiliency - Mobile
+9,PDMC-PL-AL-2028,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,AL Division of Emergency Management,City of Gulf Shores,Regional Stormwater Resiliency - Gulf Shores
+10,PDMC-PL-FL-2029,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,FL Division of Emergency Management,City of Miami,Regional Stormwater Resiliency - Miami
+11,PDMC-PL-FL-20210,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,FL Division of Emergency Management,City of Fort Myers,Regional Stormwater Resiliency - Fort Myers
+12,PDMC-PL-FL-20211,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,FL Division of Emergency Management,City of Tampa,Regional Stormwater Resiliency - Tampa
+13,PDMC-PL-GA-20212,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,GA Division of Emergency Management,City of Savannah,Regional Stormwater Resiliency - Savannah
+14,PDMC-PL-GA-20213,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,GA Division of Emergency Management,City of Brunswick,Regional Stormwater Resiliency - Brunswick
+15,PDMC-PL-SC-20214,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,SC Division of Emergency Management,City of Charleston,Regional Stormwater Resiliency - Charleston
+16,PDMC-PL-SC-20215,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,SC Division of Emergency Management,City of Myrtle Beach,Regional Stormwater Resiliency - Myrtle Beach
+17,PDMC-PL-NC-20216,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NC Division of Emergency Management,City of Wilmington,Regional Stormwater Resiliency - Wilmington
+18,PDMC-PL-NC-20217,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NC Division of Emergency Management,City of Nags Head,Regional Stormwater Resiliency - Nags Head
+19,PDMC-PL-VA-20218,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,VA Division of Emergency Management,City of Virginia Beach,Regional Stormwater Resiliency - Virginia Beach
+20,PDMC-PL-VA-20219,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,VA Division of Emergency Management,City of Norfolk,Regional Stormwater Resiliency - Norfolk
+21,PDMC-PL-MD-20220,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MD Division of Emergency Management,City of Annapolis,Regional Stormwater Resiliency - Annapolis
+22,PDMC-PL-MD-20221,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MD Division of Emergency Management,City of Ocean City,Regional Stormwater Resiliency - Ocean City
+23,PDMC-PL-DE-20222,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,DE Division of Emergency Management,City of Rehoboth Beach,Regional Stormwater Resiliency - Rehoboth Beach
+24,PDMC-PL-NJ-20223,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NJ Division of Emergency Management,City of Ocean City,Regional Stormwater Resiliency - Ocean City
+25,PDMC-PL-NJ-20224,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NJ Division of Emergency Management,City of Atlantic City,Regional Stormwater Resiliency - Atlantic City
+26,PDMC-PL-NY-20225,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NY Division of Emergency Management,City of Riverhead,Regional Stormwater Resiliency - Riverhead
+27,PDMC-PL-NY-20226,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NY Division of Emergency Management,City of Long Beach,Regional Stormwater Resiliency - Long Beach
+28,PDMC-PL-CT-20227,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,CT Division of Emergency Management,City of Bridgeport,Regional Stormwater Resiliency - Bridgeport
+29,PDMC-PL-RI-20228,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,RI Division of Emergency Management,City of Newport,Regional Stormwater Resiliency - Newport
+30,PDMC-PL-MA-20229,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MA Division of Emergency Management,City of Barnstable,Regional Stormwater Resiliency - Barnstable
+31,PDMC-PL-ME-20230,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,ME Division of Emergency Management,City of Portland,Regional Stormwater Resiliency - Portland
+32,PDMC-PL-PA-20231,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,PA Division of Emergency Management,City of Philadelphia,Regional Stormwater Resiliency - Philadelphia
+33,PDMC-PL-OH-20232,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,OH Division of Emergency Management,City of Cleveland,Regional Stormwater Resiliency - Cleveland
+34,PDMC-PL-MI-20233,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MI Division of Emergency Management,City of Detroit,Regional Stormwater Resiliency - Detroit
+35,PDMC-PL-IL-20234,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,IL Division of Emergency Management,City of Chicago,Regional Stormwater Resiliency - Chicago
+36,PDMC-PL-IN-20235,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,IN Division of Emergency Management,City of Indianapolis,Regional Stormwater Resiliency - Indianapolis
+37,PDMC-PL-WI-20236,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,WI Division of Emergency Management,City of Milwaukee,Regional Stormwater Resiliency - Milwaukee
+38,PDMC-PL-MN-20237,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MN Division of Emergency Management,City of Minneapolis,Regional Stormwater Resiliency - Minneapolis
+39,PDMC-PL-IA-20238,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,IA Division of Emergency Management,City of Des Moines,Regional Stormwater Resiliency - Des Moines
+40,PDMC-PL-MO-20239,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,MO Division of Emergency Management,City of St. Louis,Regional Stormwater Resiliency - St. Louis
+41,PDMC-PL-KY-20240,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,KY Division of Emergency Management,City of Louisville,Regional Stormwater Resiliency - Louisville
+42,PDMC-PL-TN-20241,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,TN Division of Emergency Management,City of Memphis,Regional Stormwater Resiliency - Memphis
+43,PDMC-PL-AR-20242,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,AR Division of Emergency Management,City of Little Rock,Regional Stormwater Resiliency - Little Rock
+44,PDMC-PL-OK-20243,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,OK Division of Emergency Management,City of Tulsa,Regional Stormwater Resiliency - Tulsa
+45,PDMC-PL-KS-20244,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,KS Division of Emergency Management,City of Wichita,Regional Stormwater Resiliency - Wichita
+46,PDMC-PL-NE-20245,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NE Division of Emergency Management,City of Omaha,Regional Stormwater Resiliency - Omaha
+47,PDMC-PL-CO-20246,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,CO Division of Emergency Management,City of Denver,Regional Stormwater Resiliency - Denver
+48,PDMC-PL-AZ-20247,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,AZ Division of Emergency Management,City of Phoenix,Regional Stormwater Resiliency - Phoenix
+49,PDMC-PL-NV-20248,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,NV Division of Emergency Management,City of Las Vegas,Regional Stormwater Resiliency - Las Vegas
+50,PDMC-PL-CA-20249,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,CA Division of Emergency Management,City of Long Beach,Regional Stormwater Resiliency - Long Beach
+51,PDMC-PL-CA-20250,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,CA Division of Emergency Management,City of San Diego,Regional Stormwater Resiliency - San Diego
+52,PDMC-PL-OR-20251,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,OR Division of Emergency Management,City of Portland,Regional Stormwater Resiliency - Portland
+53,PDMC-PL-WA-20252,Pre-Disaster Mitigation,Flood Elevation and Stormwater Management,Active,WA Division of Emergency Management,City of Seattle,Regional Stormwater Resiliency - Seattle

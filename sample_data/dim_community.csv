@@ -4,10 +4,51 @@ community_key,community_id_number,community_name,state,participation_status,crs_
 3,COM-48002,Freeport,TX,Regular,7
 4,COM-48003,Metairie,LA,Regular,8
 5,COM-48004,New Orleans,LA,Regular,8
-6,COM-48005,Miami,FL,Regular,7
-7,COM-48006,Fort Myers,FL,Regular,6
-8,COM-48007,Tampa,FL,Regular,7
-9,COM-48008,Wilmington,NC,Regular,8
-10,COM-48009,Nags Head,NC,Regular,8
-11,COM-48010,Charleston,SC,Regular,7
-12,COM-48011,Myrtle Beach,SC,Regular,6
+6,COM-48005,Gulfport,MS,Regular,7
+7,COM-48006,Pascagoula,MS,Regular,6
+8,COM-48007,Mobile,AL,Regular,7
+9,COM-48008,Gulf Shores,AL,Regular,8
+10,COM-48009,Miami,FL,Regular,8
+11,COM-48010,Fort Myers,FL,Regular,7
+12,COM-48011,Tampa,FL,Regular,6
+13,COM-48012,Savannah,GA,Regular,7
+14,COM-48013,Brunswick,GA,Regular,8
+15,COM-48014,Charleston,SC,Regular,8
+16,COM-48015,Myrtle Beach,SC,Regular,7
+17,COM-48016,Wilmington,NC,Regular,6
+18,COM-48017,Nags Head,NC,Regular,7
+19,COM-48018,Virginia Beach,VA,Regular,8
+20,COM-48019,Norfolk,VA,Regular,8
+21,COM-48020,Annapolis,MD,Regular,7
+22,COM-48021,Ocean City,MD,Regular,6
+23,COM-48022,Rehoboth Beach,DE,Regular,7
+24,COM-48023,Ocean City,NJ,Regular,8
+25,COM-48024,Atlantic City,NJ,Regular,8
+26,COM-48025,Riverhead,NY,Regular,7
+27,COM-48026,Long Beach,NY,Regular,6
+28,COM-48027,Bridgeport,CT,Regular,7
+29,COM-48028,Newport,RI,Regular,8
+30,COM-48029,Barnstable,MA,Regular,8
+31,COM-48030,Portland,ME,Regular,7
+32,COM-48031,Philadelphia,PA,Regular,6
+33,COM-48032,Cleveland,OH,Regular,7
+34,COM-48033,Detroit,MI,Regular,8
+35,COM-48034,Chicago,IL,Regular,8
+36,COM-48035,Indianapolis,IN,Regular,7
+37,COM-48036,Milwaukee,WI,Regular,6
+38,COM-48037,Minneapolis,MN,Regular,7
+39,COM-48038,Des Moines,IA,Regular,8
+40,COM-48039,St. Louis,MO,Regular,8
+41,COM-48040,Louisville,KY,Regular,7
+42,COM-48041,Memphis,TN,Regular,6
+43,COM-48042,Little Rock,AR,Regular,7
+44,COM-48043,Tulsa,OK,Regular,8
+45,COM-48044,Wichita,KS,Regular,8
+46,COM-48045,Omaha,NE,Regular,7
+47,COM-48046,Denver,CO,Regular,6
+48,COM-48047,Phoenix,AZ,Regular,7
+49,COM-48048,Las Vegas,NV,Regular,8
+50,COM-48049,Long Beach,CA,Regular,8
+51,COM-48050,San Diego,CA,Regular,7
+52,COM-48051,Portland,OR,Regular,6
+53,COM-48052,Seattle,WA,Regular,7

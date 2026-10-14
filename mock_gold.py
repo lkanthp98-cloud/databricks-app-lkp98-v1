@@ -8,18 +8,121 @@ import pandas as pd
 AS_OF = pd.Timestamp("2026-10-09")
 rng = np.random.default_rng(5)
 # state, county, city, zip, weight, flood-zone mix [AE, VE, A, X, B]
-GEO = [("TX", "Harris", "Baytown", "77520", 6, [.45, .05, .1, .35, .05]), ("TX", "Galveston", "Galveston", "77550", 3, [.4, .25, .1, .2, .05]),
-       ("TX", "Brazoria", "Freeport", "77541", 2, [.4, .15, .1, .3, .05]), ("LA", "Jefferson", "Metairie", "70001", 4, [.5, .05, .15, .25, .05]),
-       ("LA", "Orleans", "New Orleans", "70112", 3, [.45, .05, .15, .3, .05]), ("FL", "Miami-Dade", "Miami", "33101", 7, [.35, .25, .1, .25, .05]),
-       ("FL", "Lee", "Fort Myers", "33901", 4, [.4, .2, .1, .25, .05]), ("FL", "Hillsborough", "Tampa", "33602", 3, [.35, .15, .1, .35, .05]),
-       ("NC", "New Hanover", "Wilmington", "28401", 3, [.35, .15, .1, .35, .05]), ("NC", "Dare", "Nags Head", "27959", 2, [.3, .3, .1, .25, .05]),
-       ("SC", "Charleston", "Charleston", "29401", 3, [.4, .15, .1, .3, .05]), ("SC", "Horry", "Myrtle Beach", "29577", 2, [.35, .2, .1, .3, .05])]
-GEO_COORDS = [
-    (29.7355, -94.9774), (29.3013, -94.7977), (28.9497, -95.4419),
-    (29.9841, -90.1526), (29.9511, -90.0715), (25.7617, -80.1918),
-    (26.6406, -81.8723), (27.9506, -82.4572), (34.2257, -77.9447),
-    (35.9188, -75.5977), (32.7765, -79.9311), (33.6891, -78.8867)
+GEO = [
+    # Gulf Coast
+    ("TX", "Harris", "Baytown", "77520", 5, [.45, .05, .10, .35, .05]),
+    ("TX", "Galveston", "Galveston", "77550", 3, [.40, .25, .10, .20, .05]),
+    ("TX", "Brazoria", "Freeport", "77541", 2, [.40, .15, .10, .30, .05]),
+    ("LA", "Jefferson", "Metairie", "70001", 4, [.50, .05, .15, .25, .05]),
+    ("LA", "Orleans", "New Orleans", "70112", 3, [.45, .05, .15, .30, .05]),
+    ("MS", "Harrison", "Gulfport", "39501", 2, [.40, .15, .10, .30, .05]),
+    ("MS", "Jackson", "Pascagoula", "39567", 2, [.40, .10, .15, .30, .05]),
+    ("AL", "Mobile", "Mobile", "36602", 3, [.40, .15, .10, .30, .05]),
+    ("AL", "Baldwin", "Gulf Shores", "36542", 2, [.35, .20, .10, .30, .05]),
+
+    # South Atlantic
+    ("FL", "Miami-Dade", "Miami", "33101", 6, [.35, .25, .10, .25, .05]),
+    ("FL", "Lee", "Fort Myers", "33901", 4, [.40, .20, .10, .25, .05]),
+    ("FL", "Hillsborough", "Tampa", "33602", 3, [.35, .15, .10, .35, .05]),
+    ("GA", "Chatham", "Savannah", "31401", 3, [.35, .15, .10, .35, .05]),
+    ("GA", "Glynn", "Brunswick", "31520", 2, [.35, .15, .10, .35, .05]),
+    ("SC", "Charleston", "Charleston", "29401", 3, [.40, .15, .10, .30, .05]),
+    ("SC", "Horry", "Myrtle Beach", "29577", 2, [.35, .20, .10, .30, .05]),
+    ("NC", "New Hanover", "Wilmington", "28401", 3, [.35, .15, .10, .35, .05]),
+    ("NC", "Dare", "Nags Head", "27959", 2, [.30, .30, .10, .25, .05]),
+    ("VA", "Virginia Beach", "Virginia Beach", "23451", 3, [.35, .15, .10, .35, .05]),
+    ("VA", "Norfolk", "Norfolk", "23510", 2, [.35, .10, .15, .35, .05]),
+    ("MD", "Anne Arundel", "Annapolis", "21401", 3, [.35, .10, .15, .35, .05]),
+    ("MD", "Worcester", "Ocean City", "21842", 2, [.30, .20, .10, .35, .05]),
+    ("DE", "Sussex", "Rehoboth Beach", "19971", 2, [.35, .15, .10, .35, .05]),
+
+    # Mid-Atlantic & Northeast
+    ("NJ", "Cape May", "Ocean City", "08226", 3, [.35, .20, .10, .30, .05]),
+    ("NJ", "Atlantic", "Atlantic City", "08401", 2, [.40, .15, .10, .30, .05]),
+    ("NY", "Suffolk", "Riverhead", "11901", 3, [.35, .15, .10, .35, .05]),
+    ("NY", "Nassau", "Long Beach", "11561", 2, [.40, .15, .10, .30, .05]),
+    ("CT", "Fairfield", "Bridgeport", "06604", 2, [.35, .10, .15, .35, .05]),
+    ("RI", "Newport", "Newport", "02840", 2, [.35, .15, .10, .35, .05]),
+    ("MA", "Barnstable", "Barnstable", "02630", 3, [.35, .15, .10, .35, .05]),
+    ("ME", "Cumberland", "Portland", "04101", 2, [.30, .10, .15, .40, .05]),
+    ("PA", "Philadelphia", "Philadelphia", "19106", 3, [.30, .05, .20, .40, .05]),
+
+    # Midwest & Great Lakes
+    ("OH", "Cuyahoga", "Cleveland", "44113", 2, [.30, .05, .20, .40, .05]),
+    ("MI", "Wayne", "Detroit", "48226", 2, [.30, .05, .20, .40, .05]),
+    ("IL", "Cook", "Chicago", "60601", 3, [.30, .05, .20, .40, .05]),
+    ("IN", "Marion", "Indianapolis", "46204", 2, [.25, .05, .25, .40, .05]),
+    ("WI", "Milwaukee", "Milwaukee", "53202", 2, [.30, .05, .20, .40, .05]),
+    ("MN", "Hennepin", "Minneapolis", "55401", 2, [.25, .05, .25, .40, .05]),
+    ("IA", "Polk", "Des Moines", "50309", 2, [.30, .05, .20, .40, .05]),
+    ("MO", "St. Louis", "St. Louis", "63101", 2, [.35, .05, .20, .35, .05]),
+
+    # South Central & Plains
+    ("KY", "Jefferson", "Louisville", "40202", 2, [.30, .05, .20, .40, .05]),
+    ("TN", "Shelby", "Memphis", "38103", 2, [.35, .05, .20, .35, .05]),
+    ("AR", "Pulaski", "Little Rock", "72201", 2, [.30, .05, .20, .40, .05]),
+    ("OK", "Tulsa", "Tulsa", "74103", 2, [.30, .05, .20, .40, .05]),
+    ("KS", "Sedgwick", "Wichita", "67202", 2, [.25, .05, .25, .40, .05]),
+    ("NE", "Douglas", "Omaha", "68102", 2, [.30, .05, .20, .40, .05]),
+
+    # West & Mountain
+    ("CO", "Denver", "Denver", "80202", 2, [.25, .05, .20, .45, .05]),
+    ("AZ", "Maricopa", "Phoenix", "85001", 2, [.20, .05, .20, .50, .05]),
+    ("NV", "Clark", "Las Vegas", "89101", 2, [.20, .05, .20, .50, .05]),
+
+    # Pacific
+    ("CA", "Los Angeles", "Long Beach", "90802", 3, [.30, .15, .15, .35, .05]),
+    ("CA", "San Diego", "San Diego", "92101", 3, [.30, .15, .15, .35, .05]),
+    ("OR", "Multnomah", "Portland", "97201", 2, [.30, .10, .20, .35, .05]),
+    ("WA", "King", "Seattle", "98101", 3, [.30, .10, .20, .35, .05]),
 ]
+
+GEO_COORDS = [
+    # Gulf Coast
+    (29.7355, -94.9774), (29.3013, -94.7977), (28.9497, -95.4419),
+    (29.9841, -90.1526), (29.9511, -90.0715), (30.3674, -89.0928),
+    (30.3658, -88.5561), (30.6954, -88.0399), (30.2460, -87.7008),
+
+    # South Atlantic
+    (25.7617, -80.1918), (26.6406, -81.8723), (27.9506, -82.4572),
+    (32.0809, -81.0912), (31.1499, -81.4915), (32.7765, -79.9311),
+    (33.6891, -78.8867), (34.2257, -77.9447), (35.9188, -75.5977),
+    (36.8529, -75.9780), (36.8508, -76.2859), (38.9784, -76.4922),
+    (38.3365, -75.0849), (38.7209, -75.0760),
+
+    # Mid-Atlantic & Northeast
+    (39.2776, -74.5746), (39.3643, -74.4229), (40.9170, -72.6620),
+    (40.5884, -73.6579), (41.1792, -73.1894), (41.4901, -71.3128),
+    (41.7003, -70.3002), (43.6591, -70.2568), (39.9526, -75.1652),
+
+    # Midwest & Great Lakes
+    (41.4993, -81.6944), (42.3314, -83.0458), (41.8781, -87.6298),
+    (39.7684, -86.1581), (43.0389, -87.9065), (44.9778, -93.2650),
+    (41.5868, -93.6250), (38.6270, -90.1994),
+
+    # South Central & Plains
+    (38.2527, -85.7585), (35.1495, -90.0490), (34.7465, -92.2896),
+    (36.1540, -95.9928), (37.6872, -97.3301), (41.2565, -95.9345),
+
+    # West & Mountain
+    (39.7392, -104.9903), (33.4484, -112.0740), (36.1699, -115.1398),
+
+    # Pacific
+    (33.7701, -118.1937), (32.7157, -117.1611), (45.5152, -122.6784),
+    (47.6062, -122.3321),
+]
+
+region_map = {
+    "TX": "Gulf Coast", "LA": "Gulf Coast", "MS": "Gulf Coast", "AL": "Gulf Coast",
+    "FL": "South Atlantic", "GA": "South Atlantic", "SC": "South Atlantic", "NC": "South Atlantic", "VA": "South Atlantic", "MD": "South Atlantic", "DE": "South Atlantic",
+    "NJ": "Mid-Atlantic", "NY": "Mid-Atlantic", "PA": "Mid-Atlantic",
+    "CT": "Northeast", "RI": "Northeast", "MA": "Northeast", "ME": "Northeast",
+    "OH": "Midwest", "MI": "Midwest", "IN": "Midwest", "IL": "Midwest", "WI": "Midwest", "MN": "Midwest", "MO": "Midwest", "IA": "Midwest",
+    "TN": "South Central", "KY": "South Central", "AR": "South Central",
+    "OK": "Great Plains", "KS": "Great Plains", "NE": "Great Plains",
+    "CO": "Mountain West", "AZ": "Mountain West", "NV": "Mountain West",
+    "CA": "Pacific", "OR": "Pacific", "WA": "Pacific",
+}
 ZONES = ["AE", "VE", "A", "X", "B"]
 CRS = {"AE": 7, "VE": 6, "A": 7, "X": 8, "B": 8}
 ZONE_RATE = {"VE": 2.4, "AE": 1.5, "A": 1.3, "B": .7, "X": .5}
@@ -35,7 +138,7 @@ def band(s):
     return "High" if s >= 66 else "Medium" if s >= 33 else "Low"
 
 
-def build(n_customers=700):
+def build(n_customers=1200):
     w = np.array([g[4] for g in GEO], float); w /= w.sum()
     props, pols, clms, custs = [], [], [], []
     pol_seq = clm_seq = 0
@@ -170,7 +273,7 @@ def build(n_customers=700):
     # 2. gold_loss_ratio_by_state_year
     lr_rows = []
     years = [2021, 2022, 2023, 2024, 2025, 2026]
-    states = ["TX", "FL", "LA", "NC", "SC"]
+    states = sorted(list(set(g[0] for g in GEO)))
     for st_ in states:
         for yr in years:
             prem = float(PO[(PO.state == st_) & (PO.policy_effective_date.dt.year == yr)].total_insurance_premium.sum())
@@ -178,9 +281,9 @@ def build(n_customers=700):
             cc = len(clms_subset)
             paid = float(clms_subset.amount_paid_on_building_claim.sum() + clms_subset.amount_paid_on_contents_claim.sum() + clms_subset.amount_paid_on_icc_claim.sum())
             if prem == 0:
-                prem = round(float(rng.uniform(800000, 3500000)), 2)
+                prem = round(float(rng.uniform(300000, 1600000)), 2)
                 paid = round(prem * float(rng.uniform(0.35, 0.78)), 2)
-                cc = int(rng.integers(15, 80))
+                cc = int(rng.integers(10, 45))
             lr = round(paid / max(prem, 1.0), 4)
             lr_rows.append(dict(state=st_, year=yr, total_premium=prem, claim_count=cc, total_paid=paid, loss_ratio=lr, data_status="FINALIZED" if yr < 2026 else "DEVELOPING"))
     LR_STATE_YEAR = pd.DataFrame(lr_rows)
@@ -194,13 +297,12 @@ def build(n_customers=700):
     MIT = pd.DataFrame(mit_rows)
 
     # 4. gold_property_risk
-    region_map = {"TX": "Gulf Coast", "LA": "Gulf Coast", "FL": "South Atlantic", "NC": "South Atlantic", "SC": "South Atlantic"}
     prop_risk_rows = []
     for st_ in states:
         for zg in ["VE", "AE", "A", "B", "X"]:
             for band_ in ["Pre-FIRM", "Post-FIRM"]:
                 for elev in [True, False]:
-                    reg = region_map.get(st_, "Gulf Coast")
+                    reg = region_map.get(st_, "Midwest")
                     pol_ct = int(rng.integers(40, 250))
                     clm_ct = int(pol_ct * (0.22 if zg in ["VE", "AE"] else 0.08) * (1.3 if band_ == "Pre-FIRM" else 0.8) * (0.7 if elev else 1.1))
                     avg_paid = float(round(rng.uniform(18000, 48000), 2))
@@ -225,7 +327,7 @@ def build(n_customers=700):
     # 5. gold_risk_by_geography
     geo_risk_rows = []
     for st_ in states:
-        reg = region_map.get(st_, "Gulf Coast")
+        reg = region_map.get(st_, "Midwest")
         sub_pr = PROP_RISK[PROP_RISK.state == st_]
         p_cnt = int(sub_pr.policy_count.sum())
         c_cnt = int(sub_pr.claim_count.sum())
@@ -287,8 +389,8 @@ def build(n_customers=700):
             zip_code=r["zip_code"],
             city=r["city"],
             flood_zone=r["flood_zone"],
-            latitude=round(float(29.0 + (hash(r['property_id']) % 1000) * 0.005), 4),
-            longitude=round(float(-95.0 - (hash(r['property_id']) % 1000) * 0.005), 4),
+            latitude=round(float(r["latitude"]), 4),
+            longitude=round(float(r["longitude"]), 4),
             occupancy_type="Single Family Residence",
             original_construction_date=pd.Timestamp("1995-06-15") if r["construction_date_band"] == "Pre-FIRM" else pd.Timestamp("2012-08-20"),
             primary_residence_indicator=True,
@@ -443,7 +545,7 @@ def build(n_customers=700):
             fips_state_code=f"4{i:01d}",
             county_code=f"{48000 + i}",
             fips_county_code=f"48{i:03d}",
-            region="Gulf Coast" if st_ in ["TX", "LA"] else "South Atlantic"
+            region=region_map.get(st_, "Midwest")
         )
         for i, (st_, _, _, _, _, _) in enumerate(GEO)
     ]

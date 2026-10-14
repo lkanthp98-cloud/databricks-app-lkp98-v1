@@ -4,10 +4,51 @@ COM-48001,Galveston,Galveston,TX,True,False,6,0.2,0.1,NONE
 COM-48002,Freeport,Brazoria,TX,True,False,7,0.15,0.05,NONE
 COM-48003,Metairie,Jefferson,LA,True,False,8,0.2,0.1,NONE
 COM-48004,New Orleans,Orleans,LA,True,False,8,0.15,0.05,NONE
-COM-48005,Miami,Miami-Dade,FL,True,False,7,0.2,0.1,NONE
-COM-48006,Fort Myers,Lee,FL,True,False,6,0.15,0.05,NONE
-COM-48007,Tampa,Hillsborough,FL,True,False,7,0.2,0.1,NONE
-COM-48008,Wilmington,New Hanover,NC,True,False,8,0.15,0.05,NONE
-COM-48009,Nags Head,Dare,NC,True,False,8,0.2,0.1,NONE
-COM-48010,Charleston,Charleston,SC,True,False,7,0.15,0.05,NONE
-COM-48011,Myrtle Beach,Horry,SC,True,False,6,0.2,0.1,NONE
+COM-48005,Gulfport,Harrison,MS,True,False,7,0.2,0.1,NONE
+COM-48006,Pascagoula,Jackson,MS,True,False,6,0.15,0.05,NONE
+COM-48007,Mobile,Mobile,AL,True,False,7,0.2,0.1,NONE
+COM-48008,Gulf Shores,Baldwin,AL,True,False,8,0.15,0.05,NONE
+COM-48009,Miami,Miami-Dade,FL,True,False,8,0.2,0.1,NONE
+COM-48010,Fort Myers,Lee,FL,True,False,7,0.15,0.05,NONE
+COM-48011,Tampa,Hillsborough,FL,True,False,6,0.2,0.1,NONE
+COM-48012,Savannah,Chatham,GA,True,False,7,0.15,0.05,NONE
+COM-48013,Brunswick,Glynn,GA,True,False,8,0.2,0.1,NONE
+COM-48014,Charleston,Charleston,SC,True,False,8,0.15,0.05,NONE
+COM-48015,Myrtle Beach,Horry,SC,True,False,7,0.2,0.1,NONE
+COM-48016,Wilmington,New Hanover,NC,True,False,6,0.15,0.05,NONE
+COM-48017,Nags Head,Dare,NC,True,False,7,0.2,0.1,NONE
+COM-48018,Virginia Beach,Virginia Beach,VA,True,False,8,0.15,0.05,NONE
+COM-48019,Norfolk,Norfolk,VA,True,False,8,0.2,0.1,NONE
+COM-48020,Annapolis,Anne Arundel,MD,True,False,7,0.15,0.05,NONE
+COM-48021,Ocean City,Worcester,MD,True,False,6,0.2,0.1,NONE
+COM-48022,Rehoboth Beach,Sussex,DE,True,False,7,0.15,0.05,NONE
+COM-48023,Ocean City,Cape May,NJ,True,False,8,0.2,0.1,NONE
+COM-48024,Atlantic City,Atlantic,NJ,True,False,8,0.15,0.05,NONE
+COM-48025,Riverhead,Suffolk,NY,True,False,7,0.2,0.1,NONE
+COM-48026,Long Beach,Nassau,NY,True,False,6,0.15,0.05,NONE
+COM-48027,Bridgeport,Fairfield,CT,True,False,7,0.2,0.1,NONE
+COM-48028,Newport,Newport,RI,True,False,8,0.15,0.05,NONE
+COM-48029,Barnstable,Barnstable,MA,True,False,8,0.2,0.1,NONE
+COM-48030,Portland,Cumberland,ME,True,False,7,0.15,0.05,NONE
+COM-48031,Philadelphia,Philadelphia,PA,True,False,6,0.2,0.1,NONE
+COM-48032,Cleveland,Cuyahoga,OH,True,False,7,0.15,0.05,NONE
+COM-48033,Detroit,Wayne,MI,True,False,8,0.2,0.1,NONE
+COM-48034,Chicago,Cook,IL,True,False,8,0.15,0.05,NONE
+COM-48035,Indianapolis,Marion,IN,True,False,7,0.2,0.1,NONE
+COM-48036,Milwaukee,Milwaukee,WI,True,False,6,0.15,0.05,NONE
+COM-48037,Minneapolis,Hennepin,MN,True,False,7,0.2,0.1,NONE
+COM-48038,Des Moines,Polk,IA,True,False,8,0.15,0.05,NONE
+COM-48039,St. Louis,St. Louis,MO,True,False,8,0.2,0.1,NONE
+COM-48040,Louisville,Jefferson,KY,True,False,7,0.15,0.05,NONE
+COM-48041,Memphis,Shelby,TN,True,False,6,0.2,0.1,NONE
+COM-48042,Little Rock,Pulaski,AR,True,False,7,0.15,0.05,NONE
+COM-48043,Tulsa,Tulsa,OK,True,False,8,0.2,0.1,NONE
+COM-48044,Wichita,Sedgwick,KS,True,False,8,0.15,0.05,NONE
+COM-48045,Omaha,Douglas,NE,True,False,7,0.2,0.1,NONE
+COM-48046,Denver,Denver,CO,True,False,6,0.15,0.05,NONE
+COM-48047,Phoenix,Maricopa,AZ,True,False,7,0.2,0.1,NONE
+COM-48048,Las Vegas,Clark,NV,True,False,8,0.15,0.05,NONE
+COM-48049,Long Beach,Los Angeles,CA,True,False,8,0.2,0.1,NONE
+COM-48050,San Diego,San Diego,CA,True,False,7,0.15,0.05,NONE
+COM-48051,Portland,Multnomah,OR,True,False,6,0.2,0.1,NONE
+COM-48052,Seattle,King,WA,True,False,7,0.15,0.05,NONE

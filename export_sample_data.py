@@ -20,7 +20,8 @@ def export_samples(output_dir: str = "sample_data"):
     out_path = Path(output_dir)
     out_path.mkdir(exist_ok=True, parents=True)
     
-    datasets = mock_gold.get()
+    mock_gold._cache.clear()
+    datasets = mock_gold.build()
     all_keys = TABLES + EXTRA_PROFILES
     print(f"Generating realistic sample data for {len(all_keys)} tables & profiles into '{output_dir}/'...")
     
